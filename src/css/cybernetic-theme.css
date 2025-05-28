@@ -1,0 +1,549 @@
+/**
+ * Cybernetic Theme with Circuitry Patterns
+ * Advanced electronic component styling for Cyberpunk GM Screen
+ */
+
+:root {
+  /* Core cybernetic colors */
+  --cyber-primary: #00ffff;
+  --cyber-secondary: #ff0080;
+  --cyber-accent: #00ff41;
+  --cyber-warning: #ffaa00;
+  --cyber-danger: #ff4444;
+  
+  /* Circuit board colors */
+  --circuit-trace: #00ffff;
+  --circuit-via: #00ff41;
+  --circuit-pad: #ffaa00;
+  --circuit-bg: #0a0a0a;
+  --circuit-mask: #1a1a2e;
+  
+  /* Component colors */
+  --component-resistor: #d4af37;
+  --component-capacitor: #4169e1;
+  --component-ic: #2f4f4f;
+  --component-led: #ff6347;
+  
+  /* Background layers */
+  --bg-circuit: linear-gradient(90deg, transparent 48%, var(--circuit-trace) 49%, var(--circuit-trace) 51%, transparent 52%),
+                linear-gradient(0deg, transparent 48%, var(--circuit-trace) 49%, var(--circuit-trace) 51%, transparent 52%);
+  --bg-pcb: radial-gradient(circle at 20% 20%, var(--circuit-via) 2px, transparent 2px),
+            radial-gradient(circle at 80% 80%, var(--circuit-pad) 1px, transparent 1px);
+  
+  /* Animation timings */
+  --flow-speed: 3s;
+  --pulse-speed: 2s;
+  --scan-speed: 4s;
+}
+
+/* Global cybernetic enhancements - Applied selectively to components */
+.cybernetic-overlay {
+  position: relative;
+}
+
+/* Don't override body styles - let existing theme system handle it */
+
+/* Apply circuit overlay only to specific components, not globally */
+.circuit-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    var(--bg-circuit),
+    var(--bg-pcb);
+  background-size: 80px 80px, 40px 40px;
+  background-position: 0 0, 20px 20px;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Circuit board patterns */
+.circuit-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.circuit-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    /* Horizontal traces */
+    linear-gradient(90deg, transparent 0%, transparent 48%, var(--circuit-trace) 49%, var(--circuit-trace) 51%, transparent 52%, transparent 100%),
+    /* Vertical traces */
+    linear-gradient(0deg, transparent 0%, transparent 48%, var(--circuit-trace) 49%, var(--circuit-trace) 51%, transparent 52%, transparent 100%),
+    /* Via holes */
+    radial-gradient(circle at 25% 25%, var(--circuit-via) 1px, transparent 2px),
+    radial-gradient(circle at 75% 75%, var(--circuit-via) 1px, transparent 2px),
+    /* IC pads */
+    radial-gradient(circle at 50% 50%, var(--circuit-pad) 2px, transparent 3px);
+  background-size: 60px 60px, 60px 60px, 40px 40px, 40px 40px, 80px 80px;
+  background-position: 0 0, 0 0, 10px 10px, 30px 30px, 0 0;
+  opacity: 0.3;
+  pointer-events: none;
+  animation: circuit-flow var(--flow-speed) infinite;
+}
+
+@keyframes circuit-flow {
+  0% { 
+    opacity: 0.2; 
+    background-position: 0 0, 0 0, 10px 10px, 30px 30px, 0 0;
+  }
+  50% { 
+    opacity: 0.4; 
+    background-position: 20px 20px, -20px -20px, 15px 15px, 25px 25px, 10px 10px;
+  }
+  100% { 
+    opacity: 0.2; 
+    background-position: 0 0, 0 0, 10px 10px, 30px 30px, 0 0;
+  }
+}
+
+/* Electronic component styles */
+.cyber-component {
+  background: linear-gradient(135deg, var(--bg-surface), var(--component-ic));
+  border: 1px solid var(--circuit-trace);
+  border-radius: 4px;
+  padding: 12px;
+  position: relative;
+  box-shadow: 
+    0 0 10px rgba(0, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.cyber-component::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.cyber-component::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  width: 4px;
+  height: 4px;
+  background: var(--circuit-via);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 
+    0 0 4px var(--circuit-via),
+    -8px 0 0 var(--circuit-via),
+    -16px 0 0 var(--circuit-via);
+  animation: data-flow var(--pulse-speed) infinite;
+}
+
+@keyframes data-flow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* IC Chip styling */
+.cyber-ic {
+  background: linear-gradient(45deg, var(--component-ic), #1a1a2e);
+  border: 2px solid var(--circuit-trace);
+  border-radius: 6px;
+  padding: 16px;
+  position: relative;
+  font-family: 'Share Tech Mono', monospace;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.cyber-ic::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 8px;
+  right: 8px;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--circuit-trace) 0px,
+    var(--circuit-trace) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+}
+
+.cyber-ic::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 8px;
+  right: 8px;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--circuit-trace) 0px,
+    var(--circuit-trace) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+}
+
+/* LED indicator */
+.cyber-led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--component-led);
+  box-shadow: 
+    0 0 8px var(--component-led),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.3);
+  animation: led-pulse var(--pulse-speed) infinite;
+}
+
+@keyframes led-pulse {
+  0%, 100% { 
+    opacity: 0.6; 
+    box-shadow: 0 0 8px var(--component-led);
+  }
+  50% { 
+    opacity: 1; 
+    box-shadow: 0 0 16px var(--component-led);
+  }
+}
+
+/* Resistor styling */
+.cyber-resistor {
+  display: inline-block;
+  width: 40px;
+  height: 12px;
+  background: linear-gradient(90deg, 
+    var(--component-resistor) 0%,
+    #8b7355 25%,
+    var(--component-resistor) 50%,
+    #8b7355 75%,
+    var(--component-resistor) 100%
+  );
+  border: 1px solid #654321;
+  border-radius: 6px;
+  position: relative;
+}
+
+.cyber-resistor::before,
+.cyber-resistor::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 2px;
+  background: var(--circuit-trace);
+  transform: translateY(-50%);
+}
+
+.cyber-resistor::before {
+  left: -8px;
+}
+
+.cyber-resistor::after {
+  right: -8px;
+}
+
+/* Capacitor styling */
+.cyber-capacitor {
+  display: inline-block;
+  width: 16px;
+  height: 24px;
+  background: linear-gradient(0deg, var(--component-capacitor), #6495ed);
+  border: 1px solid #4169e1;
+  border-radius: 2px 2px 8px 8px;
+  position: relative;
+}
+
+.cyber-capacitor::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 2px;
+  height: 8px;
+  background: var(--circuit-trace);
+  transform: translateX(-50%);
+}
+
+/* Panel enhancements */
+.panel.cyber-enhanced {
+  background: linear-gradient(135deg, var(--bg-surface), var(--component-ic));
+  border: 2px solid var(--circuit-trace);
+  border-radius: 8px;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.panel.cyber-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--bg-circuit);
+  background-size: 40px 40px;
+  opacity: 0.1;
+  pointer-events: none;
+  border-radius: 6px;
+}
+
+.panel.cyber-enhanced .panel-header {
+  background: linear-gradient(90deg, var(--component-ic), var(--circuit-mask));
+  border-bottom: 1px solid var(--circuit-trace);
+  position: relative;
+}
+
+.panel.cyber-enhanced .panel-header::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  width: 6px;
+  height: 6px;
+  background: var(--cyber-accent);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 8px var(--cyber-accent);
+  animation: status-blink 1s infinite;
+}
+
+@keyframes status-blink {
+  0%, 80% { opacity: 1; }
+  90%, 100% { opacity: 0.3; }
+}
+
+/* Button enhancements */
+.cyber-button {
+  background: linear-gradient(45deg, var(--bg-tertiary), var(--component-ic));
+  border: 1px solid var(--circuit-trace);
+  color: var(--cyber-primary);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.cyber-button:hover {
+  background: linear-gradient(45deg, var(--circuit-trace), var(--cyber-primary));
+  color: var(--circuit-bg);
+  box-shadow: 0 0 12px var(--circuit-trace);
+}
+
+.cyber-button:hover::before {
+  left: 100%;
+}
+
+.cyber-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 8px var(--circuit-trace);
+}
+
+/* Input field enhancements */
+.cyber-input {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--circuit-trace);
+  color: var(--cyber-primary);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: 'Share Tech Mono', monospace;
+  position: relative;
+}
+
+.cyber-input:focus {
+  outline: none;
+  border-color: var(--cyber-accent);
+  box-shadow: 
+    0 0 8px var(--cyber-accent),
+    inset 0 1px 0 rgba(0, 255, 65, 0.2);
+}
+
+/* Scan line effect */
+.scan-lines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-lines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 255, 255, 0.1) 2px,
+    rgba(0, 255, 255, 0.1) 3px
+  );
+  pointer-events: none;
+  animation: scan-move var(--scan-speed) infinite;
+}
+
+@keyframes scan-move {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Holographic effect */
+.holographic {
+  position: relative;
+  color: var(--cyber-primary);
+}
+
+.holographic::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--cyber-secondary);
+  z-index: -1;
+  animation: hologram-glitch 2s infinite;
+}
+
+@keyframes hologram-glitch {
+  0%, 90%, 100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  91%, 95% {
+    transform: translate(1px, 1px);
+    opacity: 0.8;
+  }
+  96%, 99% {
+    transform: translate(-1px, -1px);
+    opacity: 0.6;
+  }
+}
+
+/* Data stream effect */
+.data-stream {
+  position: relative;
+  overflow: hidden;
+}
+
+.data-stream::after {
+  content: '01001001010101001010010101001010101001';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  color: var(--cyber-accent);
+  opacity: 0.1;
+  word-wrap: break-word;
+  line-height: 1;
+  pointer-events: none;
+  animation: data-flow-text 10s infinite linear;
+}
+
+@keyframes data-flow-text {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(-100%); }
+}
+
+/* Power indicator */
+.power-indicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, var(--cyber-accent) 30%, transparent 31%);
+  border: 1px solid var(--cyber-accent);
+  border-radius: 2px;
+  position: relative;
+  animation: power-pulse var(--pulse-speed) infinite;
+}
+
+@keyframes power-pulse {
+  0%, 100% { 
+    opacity: 0.8;
+    box-shadow: 0 0 4px var(--cyber-accent);
+  }
+  50% { 
+    opacity: 1;
+    box-shadow: 0 0 12px var(--cyber-accent);
+  }
+}
+
+/* Utility classes */
+.cyber-glow {
+  box-shadow: 0 0 10px currentColor;
+}
+
+.cyber-border {
+  border: 1px solid var(--circuit-trace);
+}
+
+.cyber-bg {
+  background: var(--component-ic);
+}
+
+.cyber-text {
+  color: var(--cyber-primary);
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .circuit-pattern::before {
+    background-size: 40px 40px, 40px 40px, 20px 20px, 20px 20px, 60px 60px;
+  }
+  
+  .cyber-component {
+    padding: 8px;
+  }
+  
+  .cyber-ic {
+    padding: 12px;
+  }
+}
+
+/* Print media (disable animations and effects) */
+@media print {
+  .circuit-pattern::before,
+  .scan-lines::after,
+  .data-stream::after {
+    display: none;
+  }
+  
+  .cyber-led,
+  .power-indicator {
+    animation: none;
+  }
+}

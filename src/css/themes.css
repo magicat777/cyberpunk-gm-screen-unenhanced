@@ -1,0 +1,300 @@
+/* Cyberpunk Theme System */
+
+:root {
+  /* Default Theme (Cyberpunk Classic) */
+  --primary: #00ffff;
+  --secondary: #ff00ff;
+  --accent: #ffff00;
+  --danger: #ff0040;
+  --success: #00ff00;
+  --warning: #ff8800;
+  
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-surface: rgba(255, 255, 255, 0.05);
+  --bg-overlay: rgba(0, 0, 0, 0.8);
+  
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --text-accent: var(--primary);
+  
+  --border-color: rgba(0, 255, 255, 0.3);
+  --border-width: 1px;
+  --border-radius: 4px;
+  
+  --glow-small: 0 0 10px;
+  --glow-medium: 0 0 20px;
+  --glow-large: 0 0 40px;
+  
+  --shadow-small: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.5);
+  --shadow-large: 0 8px 16px rgba(0, 0, 0, 0.5);
+  
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  --font-primary: 'Orbitron', monospace;
+  --font-secondary: 'Share Tech Mono', monospace;
+  --font-display: 'Cyberpunk', 'Orbitron', monospace;
+}
+
+/* Corpo Theme - Clean and Professional */
+[data-theme="corpo"] {
+  --primary: #0080ff;
+  --secondary: #ffffff;
+  --accent: #00ccff;
+  --danger: #ff3333;
+  --success: #00cc66;
+  --warning: #ffaa00;
+  
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --bg-surface: rgba(0, 0, 0, 0.02);
+  --bg-overlay: rgba(255, 255, 255, 0.95);
+  
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-accent: var(--primary);
+  
+  --border-color: rgba(0, 128, 255, 0.2);
+  --border-radius: 2px;
+  
+  --glow-small: 0 0 5px;
+  --glow-medium: 0 0 10px;
+  --glow-large: 0 0 20px;
+}
+
+/* Street Kid Theme - Neon and Graffiti */
+[data-theme="street-kid"] {
+  --primary: #ff0040;
+  --secondary: #00ff00;
+  --accent: #ffff00;
+  --danger: #ff0000;
+  --success: #00ff00;
+  --warning: #ff8800;
+  
+  --bg-primary: #1a0d1a;
+  --bg-secondary: #261326;
+  --bg-surface: rgba(255, 0, 64, 0.1);
+  --bg-overlay: rgba(26, 13, 26, 0.9);
+  
+  --text-primary: #f0f0f0;
+  --text-secondary: #ff99cc;
+  --text-accent: var(--accent);
+  
+  --border-color: rgba(255, 0, 64, 0.5);
+  --border-width: 2px;
+  --border-radius: 0;
+  
+  --font-primary: 'Permanent Marker', cursive;
+  --font-secondary: 'VT323', monospace;
+}
+
+/* Nomad Theme - Desert and Rust */
+[data-theme="nomad"] {
+  --primary: #d4a574;
+  --secondary: #8b4513;
+  --accent: #ff6b35;
+  --danger: #cc3300;
+  --success: #669900;
+  --warning: #ff9933;
+  
+  --bg-primary: #2d2416;
+  --bg-secondary: #3d3426;
+  --bg-surface: rgba(212, 165, 116, 0.1);
+  --bg-overlay: rgba(45, 36, 22, 0.9);
+  
+  --text-primary: #e8d5b5;
+  --text-secondary: #b8a585;
+  --text-accent: var(--accent);
+  
+  --border-color: rgba(212, 165, 116, 0.4);
+  --border-width: 2px;
+  --border-radius: 8px;
+  
+  --font-primary: 'Bebas Neue', sans-serif;
+  --font-secondary: 'Special Elite', monospace;
+}
+
+/* Netrunner Theme - Matrix Style */
+[data-theme="netrunner"] {
+  --primary: #00ff00;
+  --secondary: #000000;
+  --accent: #00ffff;
+  --danger: #ff0000;
+  --success: #00ff00;
+  --warning: #ffff00;
+  
+  --bg-primary: #000000;
+  --bg-secondary: #001100;
+  --bg-surface: rgba(0, 255, 0, 0.05);
+  --bg-overlay: rgba(0, 0, 0, 0.95);
+  
+  --text-primary: #00ff00;
+  --text-secondary: #008800;
+  --text-accent: var(--accent);
+  
+  --border-color: rgba(0, 255, 0, 0.3);
+  --border-width: 1px;
+  --border-radius: 0;
+  
+  --glow-small: 0 0 5px;
+  --glow-medium: 0 0 15px;
+  --glow-large: 0 0 30px;
+  
+  --font-primary: 'Source Code Pro', monospace;
+  --font-secondary: 'IBM Plex Mono', monospace;
+  --font-display: 'Matrix Code NFI', monospace;
+}
+
+/* Theme-specific styles */
+
+/* Corpo specific */
+[data-theme="corpo"] body {
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="corpo"] .panel {
+  box-shadow: var(--shadow-small);
+  border: none;
+  background: var(--bg-secondary);
+}
+
+/* Street Kid specific */
+[data-theme="street-kid"] .panel {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="street-kid"] .panel::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 0, 64, 0.03) 10px,
+      rgba(255, 0, 64, 0.03) 20px
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-theme="street-kid"] h1,
+[data-theme="street-kid"] h2,
+[data-theme="street-kid"] h3 {
+  text-transform: uppercase;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+/* Nomad specific */
+[data-theme="nomad"] .panel {
+  border: var(--border-width) solid var(--border-color);
+  position: relative;
+}
+
+[data-theme="nomad"] .panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 50px,
+      rgba(139, 69, 19, 0.05) 50px,
+      rgba(139, 69, 19, 0.05) 51px
+    );
+  pointer-events: none;
+}
+
+/* Netrunner specific */
+[data-theme="netrunner"] * {
+  font-family: var(--font-primary) !important;
+}
+
+[data-theme="netrunner"] .panel {
+  border: 1px solid var(--primary);
+  position: relative;
+}
+
+[data-theme="netrunner"] .panel-header::before {
+  content: '>';
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  color: var(--primary);
+  animation: blink 1s infinite;
+  font-family: monospace;
+  font-size: 16px;
+  z-index: 1;
+}
+
+[data-theme="netrunner"] .panel-title {
+  padding-left: 20px; /* Make room for the > symbol */
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Theme transitions */
+* {
+  transition: 
+    background-color var(--transition-normal),
+    border-color var(--transition-normal),
+    color var(--transition-normal);
+}
+
+/* Theme switcher styles - Hidden in favor of header integration */
+.theme-switcher {
+  display: none !important;
+}
+
+.theme-btn {
+  padding: 8px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-radius: var(--border-radius);
+}
+
+.theme-btn:hover {
+  background: var(--bg-secondary);
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: var(--glow-small) var(--primary);
+}
+
+.theme-btn.active {
+  background: var(--primary);
+  color: var(--bg-primary);
+  border-color: var(--primary);
+  box-shadow: var(--glow-medium) var(--primary);
+}
+
+/* Accessibility */
+@media (prefers-contrast: high) {
+  :root {
+    --border-width: 2px;
+    --text-primary: #ffffff;
+    --bg-primary: #000000;
+  }
+}
