@@ -1,0 +1,29 @@
+{
+  "name": "cyberpunk-gm-screen-unenhanced",
+  "version": "3.0.0-alpha",
+  "description": "The UN-Enhanced Edition - Because We're Just Getting Started!",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 3000",
+    "test": "echo \"No tests yet - TODO: Add Playwright tests\"",
+    "lint": "echo \"No linting yet - TODO: Add ESLint\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magicat777/cyberpunk-gm-screen-unenhanced.git"
+  },
+  "keywords": [
+    "cyberpunk",
+    "cyberpunk-red",
+    "ttrpg",
+    "gm-tools",
+    "game-master",
+    "web-components"
+  ],
+  "author": "magicat777",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/magicat777/cyberpunk-gm-screen-unenhanced/issues"
+  },
+  "homepage": "https://github.com/magicat777/cyberpunk-gm-screen-unenhanced#readme"
+}
