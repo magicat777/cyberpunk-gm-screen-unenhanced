@@ -33,72 +33,83 @@ class CyberpunkCombatTracker {
             <span class="round-number" id="round-number">${this.round}</span>
           </div>
           <div class="combat-controls">
-            <holo-button id="start-combat" variant="${this.combatActive ? 'danger' : 'success'}" size="small">
+            <button id="start-combat" class="holo-button ${this.combatActive ? 'danger' : 'success'} small">
               ${this.combatActive ? 'End Combat' : 'Start Combat'}
-            </holo-button>
-            <holo-button id="next-turn" variant="primary" size="small" ${!this.combatActive ? 'disabled' : ''}>
+            </button>
+            <button id="next-turn" class="holo-button primary small" ${!this.combatActive ? 'disabled' : ''}>
               Next Turn
-            </holo-button>
+            </button>
           </div>
         </div>
         
         <!-- Add Combatant Form -->
         <div class="add-combatant-form">
           <div class="form-row">
-            <neon-input 
-              id="combatant-name" 
-              placeholder="Character Name" 
-              label="Name"
-              variant="primary"
-            ></neon-input>
-            <neon-input 
-              type="number" 
-              id="combatant-ref" 
-              placeholder="5" 
-              label="REF"
-              min="1" 
-              max="10"
-              variant="primary"
-              value="5"
-            ></neon-input>
-            <neon-input 
-              type="number" 
-              id="combatant-hp" 
-              placeholder="40" 
-              label="HP"
-              min="1" 
-              max="100"
-              variant="primary"
-              value="40"
-            ></neon-input>
+            <div class="input-group">
+              <label for="combatant-name">Name</label>
+              <input 
+                id="combatant-name" 
+                type="text"
+                placeholder="Character Name" 
+                class="neon-input primary"
+              />
+            </div>
+            <div class="input-group">
+              <label for="combatant-ref">REF</label>
+              <input 
+                type="number" 
+                id="combatant-ref" 
+                placeholder="5" 
+                min="1" 
+                max="10"
+                class="neon-input primary"
+                value="5"
+              />
+            </div>
+            <div class="input-group">
+              <label for="combatant-hp">HP</label>
+              <input 
+                type="number" 
+                id="combatant-hp" 
+                placeholder="40" 
+                min="1" 
+                max="100"
+                class="neon-input primary"
+                value="40"
+              />
+            </div>
           </div>
           <div class="form-row">
-            <neon-input 
-              type="number" 
-              id="combatant-body-armor" 
-              placeholder="11" 
-              label="Body SP"
-              min="0" 
-              max="20"
-              variant="secondary"
-              value="11"
-            ></neon-input>
-            <neon-input 
-              type="number" 
-              id="combatant-head-armor" 
-              placeholder="11" 
-              label="Head SP"
-              min="0" 
-              max="20"
-              variant="secondary"
-              value="11"
-            ></neon-input>
+            <div class="input-group">
+              <label for="combatant-body-armor">Body SP</label>
+              <input 
+                type="number" 
+                id="combatant-body-armor" 
+                placeholder="11" 
+                min="0" 
+                max="20"
+                class="neon-input secondary"
+                value="11"
+              />
+            </div>
+            <div class="input-group">
+              <label for="combatant-head-armor">Head SP</label>
+              <input 
+                type="number" 
+                id="combatant-head-armor" 
+                placeholder="11" 
+                min="0" 
+                max="20"
+                class="neon-input secondary"
+                value="11"
+              />
+            </div>
             <select id="combatant-type" class="type-select">
               <option value="PC">PC</option>
               <option value="NPC">NPC</option>
               <option value="Enemy">Enemy</option>
             </select>
-            <holo-button id="add-combatant" variant="success">Add</holo-button>
+            <button id="add-combatant" class="holo-button success">Add</button>
           </div>
         </div>
         
@@ -107,8 +118,8 @@ class CyberpunkCombatTracker {
           <div class="combatants-header">
             <span>Initiative Order</span>
             <div class="header-actions">
-              <holo-button id="roll-all-initiative" variant="secondary" size="small">Roll All Initiative</holo-button>
-              <holo-button id="clear-combat" variant="danger" size="small">Clear All</holo-button>
+              <button id="roll-all-initiative" class="holo-button secondary small">Roll All Initiative</button>
+              <button id="clear-combat" class="holo-button danger small">Clear All</button>
             </div>
           </div>
           <div class="combatants-list" id="combatants-list">

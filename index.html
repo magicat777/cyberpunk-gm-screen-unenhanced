@@ -40,6 +40,110 @@
       --header-height: 60px;
     }
     
+    /* Holo Button Styles */
+    .holo-button {
+      padding: 8px 16px;
+      background: transparent;
+      border: 2px solid var(--primary, #00ffff);
+      color: var(--primary, #00ffff);
+      cursor: pointer;
+      font-family: var(--font-mono, monospace);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .holo-button:hover:not(:disabled) {
+      background: var(--primary, #00ffff);
+      color: var(--bg-primary, #000);
+      box-shadow: 0 0 20px var(--primary, #00ffff);
+    }
+    
+    .holo-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .holo-button.primary {
+      border-color: var(--primary, #00ffff);
+      color: var(--primary, #00ffff);
+    }
+    
+    .holo-button.success {
+      border-color: #00ff41;
+      color: #00ff41;
+    }
+    
+    .holo-button.success:hover:not(:disabled) {
+      background: #00ff41;
+      box-shadow: 0 0 20px #00ff41;
+    }
+    
+    .holo-button.danger {
+      border-color: #ff0055;
+      color: #ff0055;
+    }
+    
+    .holo-button.danger:hover:not(:disabled) {
+      background: #ff0055;
+      box-shadow: 0 0 20px #ff0055;
+    }
+    
+    .holo-button.secondary {
+      border-color: #ff00ff;
+      color: #ff00ff;
+    }
+    
+    .holo-button.secondary:hover:not(:disabled) {
+      background: #ff00ff;
+      box-shadow: 0 0 20px #ff00ff;
+    }
+    
+    .holo-button.small {
+      padding: 6px 12px;
+      font-size: 0.875rem;
+    }
+    
+    /* Neon Input Styles */
+    .neon-input {
+      padding: 8px 12px;
+      background: var(--bg-surface, #1a1a1a);
+      border: 1px solid var(--border-color, #333);
+      color: var(--text-primary, #fff);
+      font-family: var(--font-mono, monospace);
+      transition: all 0.3s ease;
+    }
+    
+    .neon-input:focus {
+      outline: none;
+      border-color: var(--primary, #00ffff);
+      box-shadow: 0 0 10px var(--primary, #00ffff);
+    }
+    
+    .neon-input.primary {
+      border-color: var(--primary, #00ffff);
+    }
+    
+    .neon-input.secondary {
+      border-color: #ff00ff;
+    }
+    
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .input-group label {
+      font-size: 0.875rem;
+      color: var(--text-secondary, #999);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
     body {
       margin: 0;
       padding: 0;
@@ -1551,7 +1655,7 @@
       const uniqueId = `comprehensive-rules-reference-${Date.now()}`;
       window.panelSystem.createPanel({
         title: 'Comprehensive Rules Reference',
-        content: `<div id="${uniqueId}" style="height: 100%; overflow: hidden;"><comprehensive-rules-reference></comprehensive-rules-reference></div>`,
+        content: `<div id="${uniqueId}" style="height: 100%; overflow: hidden;"></div>`,
         position: { x: 250, y: 100 },
         size: { width: 800, height: 750 }
       });
@@ -1559,6 +1663,9 @@
       setTimeout(() => {
         const container = document.getElementById(uniqueId);
         if (container) {
+          const rulesReference = new RulesReference(container);
+          container.rulesReference = rulesReference;
+          
           // Enable wiki-style linking between rules and lore
           container.addEventListener('click', function(e) {
             if (e.target.getAttribute('onclick')?.includes('loadLoreArticle')) {
@@ -1621,8 +1728,8 @@
                 </label>
               </div>
               <div class="control-row" style="display: flex; gap: 10px;">
-                <holo-button class="generate-location-btn" variant="primary">Generate Location</holo-button>
-                <holo-button class="save-location-btn" variant="success" disabled>Save Location</holo-button>
+                <button class="holo-button primary generate-location-btn">Generate Location</button>
+                <button class="holo-button success save-location-btn" disabled>Save Location</button>
               </div>
             </div>
             
