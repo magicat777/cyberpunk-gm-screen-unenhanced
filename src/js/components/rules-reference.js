@@ -344,13 +344,15 @@ class RulesReference {
       <div class="rules-reference">
         <!-- Search Bar -->
         <div class="search-section">
-          <neon-input 
-            id="rules-search" 
-            type="text" 
-            placeholder="Search rules..." 
-            label="Quick Search"
-            variant="primary"
-          ></neon-input>
+          <div class="input-group">
+            <label for="rules-search">Quick Search</label>
+            <input 
+              id="rules-search" 
+              type="text" 
+              placeholder="Search rules..." 
+              class="neon-input primary"
+            />
+          </div>
         </div>
         
         <!-- Category Tabs -->
