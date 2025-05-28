@@ -12,15 +12,15 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CP GM Screen">
   <meta name="msapplication-TileColor" content="#00ffff">
-  <meta name="msapplication-TileImage" content="src/assets/images/icon-192x192.png">
+  <meta name="msapplication-TileImage" content="src/images/icon-192x192.png">
   
   <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json">
   
   <!-- Icons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="src/assets/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="src/assets/images/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="src/assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="src/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="src/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="src/images/apple-touch-icon.png">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,120 +28,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="src/css/design-system.css">
-  <link rel="stylesheet" href="src/css/cyberpunk-typography.css">
-  <link rel="stylesheet" href="src/css/cyberpunk-background.css">
-  <link rel="stylesheet" href="src/css/themes.css">
-  <link rel="stylesheet" href="src/css/enhanced-panels-fixed.css">
-  <link rel="stylesheet" href="src/css/cybernetic-theme.css">
+  <link rel="stylesheet" href="src/styles/design-system.css">
+  <link rel="stylesheet" href="src/styles/cyberpunk-typography.css">
+  <link rel="stylesheet" href="src/styles/cyberpunk-background.css">
+  <link rel="stylesheet" href="src/styles/themes.css">
+  <link rel="stylesheet" href="src/styles/enhanced-panels-fixed.css">
+  <link rel="stylesheet" href="src/styles/cybernetic-theme.css">
   
   <style>
     :root {
       --header-height: 60px;
-    }
-    
-    /* Holo Button Styles */
-    .holo-button {
-      padding: 8px 16px;
-      background: transparent;
-      border: 2px solid var(--primary, #00ffff);
-      color: var(--primary, #00ffff);
-      cursor: pointer;
-      font-family: var(--font-mono, monospace);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .holo-button:hover:not(:disabled) {
-      background: var(--primary, #00ffff);
-      color: var(--bg-primary, #000);
-      box-shadow: 0 0 20px var(--primary, #00ffff);
-    }
-    
-    .holo-button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-    
-    .holo-button.primary {
-      border-color: var(--primary, #00ffff);
-      color: var(--primary, #00ffff);
-    }
-    
-    .holo-button.success {
-      border-color: #00ff41;
-      color: #00ff41;
-    }
-    
-    .holo-button.success:hover:not(:disabled) {
-      background: #00ff41;
-      box-shadow: 0 0 20px #00ff41;
-    }
-    
-    .holo-button.danger {
-      border-color: #ff0055;
-      color: #ff0055;
-    }
-    
-    .holo-button.danger:hover:not(:disabled) {
-      background: #ff0055;
-      box-shadow: 0 0 20px #ff0055;
-    }
-    
-    .holo-button.secondary {
-      border-color: #ff00ff;
-      color: #ff00ff;
-    }
-    
-    .holo-button.secondary:hover:not(:disabled) {
-      background: #ff00ff;
-      box-shadow: 0 0 20px #ff00ff;
-    }
-    
-    .holo-button.small {
-      padding: 6px 12px;
-      font-size: 0.875rem;
-    }
-    
-    /* Neon Input Styles */
-    .neon-input {
-      padding: 8px 12px;
-      background: var(--bg-surface, #1a1a1a);
-      border: 1px solid var(--border-color, #333);
-      color: var(--text-primary, #fff);
-      font-family: var(--font-mono, monospace);
-      transition: all 0.3s ease;
-    }
-    
-    .neon-input:focus {
-      outline: none;
-      border-color: var(--primary, #00ffff);
-      box-shadow: 0 0 10px var(--primary, #00ffff);
-    }
-    
-    .neon-input.primary {
-      border-color: var(--primary, #00ffff);
-    }
-    
-    .neon-input.secondary {
-      border-color: #ff00ff;
-    }
-    
-    .input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    
-    .input-group label {
-      font-size: 0.875rem;
-      color: var(--text-secondary, #999);
-      text-transform: uppercase;
-      letter-spacing: 1px;
     }
     
     body {
@@ -983,16 +879,16 @@
 <body>
   <!-- Audio preload elements for sound effects -->
   <audio id="dice-roll-sound" preload="auto">
-    <source src="src/assets/sounds/dice-roll.mp3" type="audio/mpeg">
-    <source src="src/assets/sounds/dice-roll.ogg" type="audio/ogg">
+    <source src="sounds/dice-roll.mp3" type="audio/mpeg">
+    <source src="sounds/dice-roll.ogg" type="audio/ogg">
   </audio>
   <audio id="critical-hit-sound" preload="auto">
-    <source src="src/assets/sounds/critical-hit.mp3" type="audio/mpeg">
-    <source src="src/assets/sounds/critical-hit.ogg" type="audio/ogg">
+    <source src="sounds/critical-hit.mp3" type="audio/mpeg">
+    <source src="sounds/critical-hit.ogg" type="audio/ogg">
   </audio>
   <audio id="combat-hit-sound" preload="auto">
-    <source src="src/assets/sounds/combat-hit.mp3" type="audio/mpeg">
-    <source src="src/assets/sounds/combat-hit.ogg" type="audio/ogg">
+    <source src="sounds/combat-hit.mp3" type="audio/mpeg">
+    <source src="sounds/combat-hit.ogg" type="audio/ogg">
   </audio>
   <!-- Animated Background -->
   <!-- Will be added by JavaScript -->
@@ -1246,46 +1142,46 @@
   </audio>
   
   <!-- Scripts -->
-  <script src="src/js/components/cyberpunk-background.js"></script>
-  <script src="src/js/core/theme-manager.js"></script>
-  <script src="src/js/components/enhanced-panel-system-fixed.js"></script>
-  <!-- <script src="src/js/components/holo-button.js"></script> -->
-  <!-- <script src="src/js/components/neon-input.js"></script> -->
-  <!-- <script src="src/js/components/glitch-text.js"></script> -->
-  <!-- <script src="src/js/components/cyber-card.js"></script> -->
-  <!-- <script src="src/js/components/data-table.js"></script> -->
-  <!-- <script src="src/js/components/loading-spinner.js"></script> -->
-  <!-- <script src="src/js/components/error-message.js"></script> -->
-  <script src="src/js/components/enhanced-dice-roller-fixed.js"></script>
-  <script src="src/js/components/compact-dice-roller.js?v=3"></script>
-  <script src="src/js/components/advanced-combat-tracker-fixed.js"></script>
-  <script src="src/js/components/npc-generator.js"></script>
-  <script src="src/js/components/enhanced-npc-generator.js"></script>
-  <script src="src/js/components/rules-reference.js"></script>
-  <script src="src/js/components/enhanced-rules-reference.js"></script>
-  <script src="src/js/components/location-generator-implementation.js"></script>
-  <script src="src/js/components/enhanced-location-generator.js"></script>
-  <script src="src/js/components/encounter-generator-advanced.js"></script>
-  <script src="src/js/components/encounter-panel-advanced.js"></script>
-  <script src="src/js/components/encounter-panel-simple.js"></script>
-  <script src="src/js/components/netrunning-interface.js"></script>
+  <script src="src/js/cyberpunk-background.js"></script>
+  <script src="src/js/theme-manager.js"></script>
+  <script src="src/js/enhanced-panel-system-fixed.js"></script>
+  <script src="src/components/holo-button.js"></script>
+  <script src="src/components/neon-input.js"></script>
+  <script src="src/components/glitch-text.js"></script>
+  <script src="src/components/cyber-card.js"></script>
+  <script src="src/components/data-table.js"></script>
+  <script src="src/components/loading-spinner.js"></script>
+  <script src="src/components/error-message.js"></script>
+  <script src="src/js/enhanced-dice-roller-fixed.js"></script>
+  <script src="src/js/compact-dice-roller.js?v=3"></script>
+  <script src="src/js/advanced-combat-tracker-fixed.js"></script>
+  <script src="src/js/npc-generator.js"></script>
+  <script src="src/js/enhanced-npc-generator.js"></script>
+  <script src="src/js/rules-reference.js"></script>
+  <script src="src/js/enhanced-rules-reference.js"></script>
+  <script src="src/js/location-generator-implementation.js"></script>
+  <script src="src/js/enhanced-location-generator.js"></script>
+  <script src="src/js/encounter-generator-advanced.js"></script>
+  <script src="src/js/encounter-panel-advanced.js"></script>
+  <script src="src/js/encounter-panel-simple.js"></script>
+  <script src="src/js/netrunning-interface.js"></script>
   <script src="src/js/netrunning-advanced.js"></script>
-  <script src="src/js/components/netrunning-enhanced.js"></script>
-  <script src="src/js/components/enhanced-lore-database.js"></script>
-  <script src="src/js/components/enhanced-sound-system.js"></script>
+  <script src="src/js/netrunning-enhanced.js"></script>
+  <script src="src/js/enhanced-lore-database.js"></script>
+  <script src="src/js/enhanced-sound-system.js"></script>
   <script src="src/js/enhanced-performance-monitor.js"></script>
   <script src="src/js/virtual-scroll.js"></script>
   <script src="src/js/collaboration-system.js"></script>
   <script src="src/js/atmosphere-system.js"></script>
-  <script src="src/js/components/ai-gm-assistant.js"></script>
-  <script src="src/js/components/campaign-tracker.js"></script>
+  <script src="src/js/ai-gm-assistant.js"></script>
+  <script src="src/js/campaign-tracker.js"></script>
   <script src="src/js/panel-utils.js"></script>
   <script src="src/js/notes-text-editor.js"></script>
-  <!-- <script src="src/js/notes-filesystem-manager.js"></script> -->
+  <script src="src/js/notes-filesystem-manager.js"></script>
   <script src="src/js/module-index.js"></script>
-  <script src="src/js/components/panel-templates.js"></script>
+  <script src="src/js/panel-templates.js"></script>
   <script src="src/js/help-system.js"></script>
-  <script src="src/js/components/campaign-manager.js"></script>
+  <script src="src/js/campaign-manager.js"></script>
   <script src="src/js/performance-optimizer.js"></script>
   <script src="src/js/comprehensive-rules-reference.js"></script>
   <script src="src/js/panel-implementations-fixed.js"></script>
@@ -1655,7 +1551,7 @@
       const uniqueId = `comprehensive-rules-reference-${Date.now()}`;
       window.panelSystem.createPanel({
         title: 'Comprehensive Rules Reference',
-        content: `<div id="${uniqueId}" style="height: 100%; overflow: hidden;"></div>`,
+        content: `<div id="${uniqueId}" style="height: 100%; overflow: hidden;"><comprehensive-rules-reference></comprehensive-rules-reference></div>`,
         position: { x: 250, y: 100 },
         size: { width: 800, height: 750 }
       });
@@ -1663,9 +1559,6 @@
       setTimeout(() => {
         const container = document.getElementById(uniqueId);
         if (container) {
-          const rulesReference = new RulesReference(container);
-          container.rulesReference = rulesReference;
-          
           // Enable wiki-style linking between rules and lore
           container.addEventListener('click', function(e) {
             if (e.target.getAttribute('onclick')?.includes('loadLoreArticle')) {
@@ -1728,8 +1621,8 @@
                 </label>
               </div>
               <div class="control-row" style="display: flex; gap: 10px;">
-                <button class="holo-button primary generate-location-btn">Generate Location</button>
-                <button class="holo-button success save-location-btn" disabled>Save Location</button>
+                <holo-button class="generate-location-btn" variant="primary">Generate Location</holo-button>
+                <holo-button class="save-location-btn" variant="success" disabled>Save Location</holo-button>
               </div>
             </div>
             
@@ -1813,41 +1706,14 @@
         
         setTimeout(() => {
           const container = document.getElementById(uniqueId);
-          if (container) {
+          if (container && window.nightCityMap && window.nightCityMap.createMapPanel) {
+            const mapContent = window.nightCityMap.createMapPanel();
+            container.appendChild(mapContent);
+          } else {
             container.innerHTML = `
-              <div style="padding: 20px; color: var(--text-primary);">
-                <h3 style="color: var(--primary); margin-bottom: 20px;">Night City Districts</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                  <div class="district-card" style="border: 1px solid var(--border-color); padding: 10px; background: var(--bg-surface); cursor: pointer;">
-                    <h4 style="color: #00ff41;">City Center</h4>
-                    <p style="font-size: 0.9em;">Corporate Plaza, financial district</p>
-                  </div>
-                  <div class="district-card" style="border: 1px solid var(--border-color); padding: 10px; background: var(--bg-surface); cursor: pointer;">
-                    <h4 style="color: #ff0055;">Watson</h4>
-                    <p style="font-size: 0.9em;">Little China, Kabuki markets</p>
-                  </div>
-                  <div class="district-card" style="border: 1px solid var(--border-color); padding: 10px; background: var(--bg-surface); cursor: pointer;">
-                    <h4 style="color: #ffaa00;">Westbrook</h4>
-                    <p style="font-size: 0.9em;">Japantown, luxury district</p>
-                  </div>
-                  <div class="district-card" style="border: 1px solid var(--border-color); padding: 10px; background: var(--bg-surface); cursor: pointer;">
-                    <h4 style="color: #ff00ff;">Heywood</h4>
-                    <p style="font-size: 0.9em;">The Glen, Vista del Rey</p>
-                  </div>
-                  <div class="district-card" style="border: 1px solid var(--border-color); padding: 10px; background: var(--bg-surface); cursor: pointer;">
-                    <h4 style="color: #00ffff;">Pacifica</h4>
-                    <p style="font-size: 0.9em;">Combat Zone, abandoned district</p>
-                  </div>
-                  <div class="district-card" style="border: 1px solid var(--border-color); padding: 10px; background: var(--bg-surface); cursor: pointer;">
-                    <h4 style="color: #88ff00;">Santo Domingo</h4>
-                    <p style="font-size: 0.9em;">Industrial, Arroyo district</p>
-                  </div>
-                </div>
-                <div style="margin-top: 20px; padding: 15px; border: 1px solid var(--border-color); background: rgba(0,255,255,0.1);">
-                  <p style="color: var(--text-secondary); font-size: 0.9em;">
-                    Interactive map features coming soon. Click on districts for detailed information about locations, gangs, and notable figures.
-                  </p>
-                </div>
+              <div style="padding: 20px; text-align: center; color: var(--text-secondary);">
+                <p>Loading Night City Map...</p>
+                <p style="font-size: 0.9em;">Make sure night-city-map.js is loaded.</p>
               </div>
             `;
           }
@@ -2326,44 +2192,6 @@
     function initializeDebugPanel(uniqueId) {
       const container = document.getElementById(uniqueId);
       if (!container) return;
-      
-      // Enhanced error capturing
-      const errorLog = [];
-      const originalError = console.error;
-      const originalWarn = console.warn;
-      
-      // Override console methods to capture errors
-      console.error = function(...args) {
-        errorLog.push({ type: 'error', message: args.join(' '), timestamp: new Date().toISOString() });
-        originalError.apply(console, args);
-        updateConsoleDisplay();
-      };
-      
-      console.warn = function(...args) {
-        errorLog.push({ type: 'warn', message: args.join(' '), timestamp: new Date().toISOString() });
-        originalWarn.apply(console, args);
-        updateConsoleDisplay();
-      };
-      
-      // Capture unhandled errors
-      window.addEventListener('error', (event) => {
-        errorLog.push({ 
-          type: 'error', 
-          message: `${event.message} at ${event.filename}:${event.lineno}:${event.colno}`,
-          timestamp: new Date().toISOString()
-        });
-        updateConsoleDisplay();
-      });
-      
-      // Function to update console display
-      function updateConsoleDisplay() {
-        const consoleOutput = container.querySelector('.console-output');
-        if (consoleOutput) {
-          consoleOutput.innerHTML = errorLog.slice(-50).reverse().map(entry => 
-            `<div class="console-entry ${entry.type}">[${entry.timestamp}] ${entry.message}</div>`
-          ).join('');
-        }
-      }
       
       // Tab switching
       const tabs = container.querySelectorAll('.debug-tab');
@@ -3430,7 +3258,7 @@
   </script>
   
   <!-- Sound Manager -->
-  <script src="src/js/components/sound-manager.js"></script>
+  <script src="src/js/sound-manager.js"></script>
   <script>
     // Initialize sound manager
     window.soundManager = new SoundManager();
@@ -3840,7 +3668,7 @@
               <div style="text-align: center; padding: 40px; color: #0ff;">
                 <h3 style="color: #f0f; margin-bottom: 20px;">Encounter Generator</h3>
                 <p style="margin-bottom: 20px; color: #f00;">Error: Encounter generator scripts not loaded</p>
-                <button onclick="location.reload()" class="holo-button primary">Reload Page</button>
+                <button onclick="location.reload()" class="btn-primary">Reload Page</button>
               </div>
             `;
           }
@@ -4205,8 +4033,6 @@
     }
     
     // Corporation Generator Panel
-    
-    // Gang Generator Panel
     function createCorporationPanel() {
       if (!window.panelSystem) {
         console.error('Panel system not initialized');
@@ -4217,7 +4043,7 @@
       window.panelSystem.createPanel({
         title: 'Corporation Generator',
         content: `<div id="${uniqueId}" style="height: 100%; overflow: auto; padding: 15px; background: rgba(0,0,0,0.9);"></div>`,
-        position: { x: 320, y: 100 },
+        position: { x: 100, y: 80 },
         size: { width: 500, height: 650 }
       });
       
@@ -4226,23 +4052,23 @@
         if (container) {
           container.innerHTML = `
             <div style="color: #0ff; font-family: 'Courier New', monospace;">
-              <h3 style="color: #f0f; margin-bottom: 15px; text-transform: uppercase; border-bottom: 1px solid #f0f; padding-bottom: 5px;">Corporation Generator</h3>
+              <h3 style="color: #f0f; margin-bottom: 15px; text-transform: uppercase; border-bottom: 1px solid #f0f; padding-bottom: 5px;">Corporate Generator</h3>
               
               <div style="margin-bottom: 20px;">
-                <button onclick="generateCorporation('${uniqueId}')" class="holo-button primary" style="width: 100%;">Generate Corporation</button>
+                <button onclick="generateCorporation('${uniqueId}')" style="width: 100%; background: #0f4f4f; border: 1px solid #0ff; color: #0ff; padding: 12px; cursor: pointer; font-family: inherit; font-size: 16px; font-weight: bold;">Generate Corporation</button>
               </div>
               
               <div id="corp-result-${uniqueId}" style="border: 1px solid #0ff; background: rgba(0,255,255,0.1); padding: 15px; min-height: 400px;">
-                <div style="color: #666; text-align: center; padding: 40px;">Click "Generate Corporation" to create a new megacorp</div>
+                <div style="color: #666; text-align: center; padding: 40px;">Click "Generate Corporation" to create a new corporate entity</div>
               </div>
               
               <div style="margin-top: 15px; padding: 10px; border: 1px solid #444; background: rgba(255,255,255,0.05);">
                 <div style="font-size: 12px; color: #888;">
                   <strong>Generator Features:</strong><br>
-                  • Corporate names and sectors<br>
-                  • Executive leadership profiles<br>
-                  • Business operations and subsidiaries<br>
-                  • Resources, assets, and dark secrets
+                  • Procedural corporation names and specialties<br>
+                  • Corporate structure and key personnel<br>
+                  • Business operations and reputation<br>
+                  • Assets, resources, and threat level
                 </div>
               </div>
             </div>
@@ -4251,6 +4077,7 @@
       }, 100);
     }
     
+    // Gang Generator Panel
     function createGangPanel() {
       if (!window.panelSystem) {
         console.error('Panel system not initialized');
@@ -4273,7 +4100,7 @@
               <h3 style="color: #f0f; margin-bottom: 15px; text-transform: uppercase; border-bottom: 1px solid #f0f; padding-bottom: 5px;">Gang Generator</h3>
               
               <div style="margin-bottom: 20px;">
-                <button onclick="generateGang('${uniqueId}')" class="holo-button primary" style="width: 100%;">Generate Gang</button>
+                <button onclick="generateGang('${uniqueId}')" style="width: 100%; background: #0f4f4f; border: 1px solid #0ff; color: #0ff; padding: 12px; cursor: pointer; font-family: inherit; font-size: 16px; font-weight: bold;">Generate Gang</button>
               </div>
               
               <div id="gang-result-${uniqueId}" style="border: 1px solid #0ff; background: rgba(0,255,255,0.1); padding: 15px; min-height: 350px;">
@@ -5017,13 +4844,13 @@
   </script>
   
   <!-- User Profile Manager -->
-  <!-- <script src="src/js/user-profile-manager.js"></script> -->
+  <script src="src/js/user-profile-manager.js"></script>
   
   <!-- Notes File Manager -->
   <script src="src/js/notes-file-manager.js"></script>
   
   <!-- Night City Map -->
-  <!-- <script src="src/js/night-city-map.js"></script> -->
+  <script src="src/js/night-city-map.js"></script>
   
   <!-- Test Suite (Development Only) -->
   <script src="src/js/panel-test-suite.js"></script>
