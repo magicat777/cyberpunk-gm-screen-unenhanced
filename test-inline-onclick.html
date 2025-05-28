@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Inline onclick</title>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #00ffff;
+      font-family: monospace;
+      padding: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      background: transparent;
+      border: 2px solid #00ffff;
+      color: #00ffff;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:hover {
+      background: #00ffff;
+      color: #0a0a0a;
+    }
+  </style>
+</head>
+<body>
+  <h1>Testing Inline onclick</h1>
+  
+  <button onclick="testFunction1()">Test 1: Direct function call</button>
+  <button onclick="window.testFunction2()">Test 2: Window function call</button>
+  <button onclick="console.log('Test 3: Direct console.log')">Test 3: Direct console.log</button>
+  <button id="test4">Test 4: addEventListener</button>
+  
+  <div id="output"></div>
+  
+  <script>
+    const output = document.getElementById('output');
+    
+    function log(msg) {
+      console.log(msg);
+      output.innerHTML += msg + '<br>';
+    }
+    
+    // Test 1: Regular function
+    function testFunction1() {
+      log('✅ Test 1: Regular function works!');
+    }
+    
+    // Test 2: Window function
+    window.testFunction2 = function() {
+      log('✅ Test 2: Window function works!');
+    }
+    
+    // Test 4: addEventListener
+    document.getElementById('test4').addEventListener('click', () => {
+      log('✅ Test 4: addEventListener works!');
+    });
+    
+    log('Page loaded. Click buttons to test...');
+  </script>
+</body>
+</html>

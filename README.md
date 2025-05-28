@@ -1,212 +1,159 @@
-# Cyberpunk GM Screen - UN-Enhanced Edition™ 🎲
+# Cyberpunk GM Screen
 
-> "It's called UN-Enhanced because we're just getting started, choom!"
+A comprehensive digital Game Master screen for the Cyberpunk RED tabletop roleplaying game, featuring rich content, advanced generators, and a sophisticated UI.
 
-[![Version](https://img.shields.io/badge/version-3.0.0--alpha-cyan.svg)](https://github.com/yourusername/cyberpunk-gm-screen-unenhanced)
-[![UN-Enhancement Level](https://img.shields.io/badge/UN--Enhanced-15%25-magenta.svg)](https://github.com/yourusername/cyberpunk-gm-screen-unenhanced)
-[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
+## Core Features
 
-## 🌃 Welcome to Night City's Most UN-Enhanced GM Tool
+### Panel System
+- Draggable and resizable panels with smooth animations
+- Layout save/restore with auto-save functionality
+- Import/export layouts as JSON files
+- Mobile-responsive design with tab-based navigation
+- Touch gesture support for tablets
 
-While other GM screens might claim to be "enhanced," ours is proudly **UN-Enhanced** - meaning there's always room for more chrome, more features, and more style. Every update makes it LESS un-enhanced and MORE awesome.
+### Content & Tools
+- **Enhanced Dice Roller** with cyberpunk sound effects
+- **Advanced Combat Tracker** with initiative management
+- **Rich Text Notes** with markdown support and auto-save
+- **NPC Generator** with difficulty tiers and full stats
+- **Location Generator** for Night City districts
+- **Advanced Encounter Generator** with detailed scenarios
+- **Comprehensive Lore Database** with 50+ searchable entries
+- **Rules Quick Reference** with organized categories
+- **Campaign Manager** with data export/import
 
-### Current UN-Enhancement Level: 15% 📊
-### Target: ∞
+### New in Phase 10
+- **Enhanced Typography System** with fluid responsive text
+- **Reading Mode** for comfortable long-form content viewing
+- **Automated Test Suite** for quality assurance
+- **Performance Optimization** with FPS monitoring
+- **Progressive Web App** support for offline use
 
-## 🚀 What Makes It UN-Enhanced?
+## Features
 
-The UN-Enhanced Edition is a complete reimagining of the Cyberpunk GM Screen, built from the ground up with modern web technologies and a component-based architecture. It's not just a tool - it's an experience.
+### UI Modernization
+- **Multiple Themes**: Choose between Neon Synthwave, Tech Noir, and Minimal themes
+- **Improved UX**: Enhanced visual feedback and animations
+- **Responsive Design**: Better support for different screen sizes
+- **Consistent Components**: Standardized UI using CSS variables
+- **Accessibility**: Improved keyboard navigation and screen reader support
+- **Modular Architecture**: Clean, maintainable code structure
 
-## ✨ Features (So Far...)
+### Layout Management
+- **Auto-Save**: Panel positions and sizes are automatically saved
+- **Import/Export**: Share your favorite layouts with other GMs
+- **Custom Notifications**: Non-blocking status messages
+- **Layout Persistence**: Your setup is restored when you reload the page
 
-### 🤖 AI-Powered GM Assistant
-- Generate NPCs with personalities, backstories, and plot hooks
-- Create random encounters on the fly
-- Get rules clarifications instantly
-- Generate loot, names, and more
-- Multiple AI personas to match your style
+### Enhanced Panels
+- **Character Management**: Save and load character sheets
+- **Note Taking**: Auto-saves content as you type
+- **Generators**: Create NPCs, loot, locations, and encounters
+- **Collections**: Save generated content for later reference
 
-### 🗂️ Campaign Progress Tracker
-- Manage multiple campaigns simultaneously
-- Track timeline events and story progression
-- Monitor objectives and player characters
-- Import/export campaign data
-- Visual statistics dashboard
+## Recent Improvements
 
-### 🌐 Enhanced Netrunning Interface
-Three different modes for every netrunning need:
-- **Interactive Mode**: Click through cyberspace nodes
-- **GM Tools Mode**: Build custom architectures
-- **Narrative Mode**: Rich descriptions and story prompts
+### Phase 10 - Enhanced Content & Typography
+- **Typography System**: Fluid responsive fonts with multiple families for different content types
+- **Lore Database**: 50+ entries covering corporations, districts, gangs, technology, and history
+- **Advanced Encounters**: Multi-phase scenarios with environmental details and NPC personalities
+- **Automated Testing**: Comprehensive test suite with performance benchmarking
+- **PWA Support**: Offline functionality with service worker caching
 
-### 🎯 Smart Encounter Generator
-- Context-aware encounter creation
-- Difficulty scaling
-- Environmental factors
-- Complication system
-- Quick preset encounters
+### Previous Phases
+- **Major UI Modernization**: Complete rewrite with modern architecture ([See documentation](./docs/ui-modernization-artifacts/UI-MODERNIZATION-SUMMARY.md))
+- Added theme switching with Neon Synthwave, Tech Noir, and Minimal themes
+- Implemented central state management and event delegation
+- Enhanced accessibility with ARIA attributes and keyboard navigation
+- Improved code architecture with modular pattern and error handling
+- Fixed panel functionality issues with robust error recovery
+- Added comprehensive CSS custom properties system
+- Enhanced UI with non-blocking notifications
+- Optimized performance for panel management
 
-### 🎲 Advanced Dice System
-- Cyberpunk RED dice mechanics
-- Critical success/failure detection
-- Roll history with statistics
-- Sound effects and animations
-- Advantage/disadvantage rolls
+## Project Structure
 
-### ⚔️ Combat Tracker
-- Initiative management
-- HP and armor tracking
-- Status effects
-- Combat log
-- Round/turn management
+- `src/frontend/`: Frontend web application
+   - `css/`: Stylesheets 
+     - `styles.css`: Original styles
+     - `styles-modern.css`: New themeable styles
+     - `styles-refactored.css`: Modern component-based CSS architecture
+     - `cyberpunk-variables.css`: CSS variables and design tokens
+     - `cyberpunk-neon-synthwave.css`: Neon 80s theme
+     - `cyberpunk-tech-noir.css`: Terminal-inspired theme
+     - `cyberpunk-reset.css`: Consistent baseline styles
+     - `cyberpunk-typography.css`: Font system
+   - `fonts/`: Custom fonts
+   - `images/`: Icons and images
+   - `js/`: JavaScript files
+     - Core Systems:
+       - `enhanced-panel-system-fixed.js`: Advanced panel management
+       - `performance-optimizer.js`: FPS monitoring and optimization
+       - `service-worker.js`: PWA offline support
+     - Panels & Features:
+       - `enhanced-dice-roller.js`: Dice rolling with sound effects
+       - `advanced-combat-tracker.js`: Initiative and combat management
+       - `npc-generator.js`: Detailed NPC creation
+       - `location-generator-implementation.js`: Night City locations
+       - `encounter-generator-advanced.js`: Rich encounter scenarios
+       - `lore-database.js` & `lore-browser.js`: Searchable lore system
+     - Utilities:
+       - `panel-test-suite.js`: Automated testing framework
+       - `sound-manager.js`: Cyberpunk audio effects
+       - `campaign-manager.js`: Data export/import
+- `docs/`: Project documentation
+   - `ui-modernization-artifacts/`: UI modernization documentation and artifacts
+   - `LAYOUT_SAVE_IMPROVED.md`: Documentation for layout system
+- `scripts/`: Utility scripts
 
-### 🌆 Atmosphere System
-- Dynamic audio-visual backgrounds
-- Cyberpunk ambience
-- Scene-specific effects
-- Immersive soundscapes
+## Usage
 
-### 📊 And Much More...
-- Real-time collaboration
-- Virtual scrolling for performance
-- 15+ specialized panels
-- 5 cyberpunk themes
-- Mobile responsive design
-- Offline capable (PWA)
+### Themes
+The application supports three themes:
+1. **Neon Synthwave**: 80s-inspired bright neon colors with purple and cyan 
+2. **Tech Noir**: Terminal-inspired dark theme with teal accents
+3. **Minimal**: Clean, understated design for distraction-free gaming
 
-## 🛠️ Technology Stack
+To switch themes, use the theme selector in the top right corner of the toolbar.
 
-- **Frontend**: Vanilla JavaScript with Web Components
-- **Styling**: CSS3 with custom properties
-- **Architecture**: Component-based with Shadow DOM
-- **Storage**: LocalStorage with IndexedDB planned
-- **Performance**: Virtual scrolling, lazy loading
-- **Testing**: Playwright E2E tests
+### Getting Started
+1. Open `cyberpunk-gm-screen.html` in a modern web browser
+2. Use the side tray to create panels for your game session
+3. Drag panels to arrange your perfect layout
+4. Your layout auto-saves and will be restored on reload
 
-## 🚀 Quick Start
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/cyberpunk-gm-screen-unenhanced.git
-cd cyberpunk-gm-screen-unenhanced
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Open your browser to `http://localhost:3000`
-
-## 🎮 Usage
-
-1. **Create Panels**: Click any tool in the side menu
-2. **Arrange Layout**: Drag panels by their headers
-3. **Resize**: Drag panel edges
-4. **Minimize**: Double-click headers
-5. **Save Layout**: Use the layout manager
+### Testing
+Run automated tests with: Open the browser console and type `runPanelTests()`
 
 ### Keyboard Shortcuts
-- `Ctrl+D` - Open Dice Roller
-- `Ctrl+N` - Create Note
-- `Ctrl+S` - Save Layout
-- `Esc` - Close Active Panel
-- `1-9` - Quick Switch Panels
+- `Alt + Tab`: Switch between panels
+- `Esc`: Close active panel
+- `Ctrl + S`: Save current layout
+- `g`: Generate (in encounter panel)
+- `/`: Focus search (in lore browser)
 
-## 🗺️ UN-Enhancement Roadmap
+## Development
 
-### Phase 1: Foundation (Current) ✅
-- [x] Core panel system
-- [x] Basic tools implementation
-- [x] Theme system
-- [x] Mobile support
+### Prerequisites
+- Web browser
+- Git (for version control)
+- Node.js (optional, for running local server)
 
-### Phase 2: Intelligence 🔄
-- [x] AI GM Assistant
-- [x] Smart encounter generation
-- [ ] Predictive dice statistics
-- [ ] Auto-generated plot threads
+### Setup
+1. Clone this repository
+2. Run `./scripts/run-local-server.sh` to start a local development server
+3. Open your browser to the displayed URL
 
-### Phase 3: Immersion 📅
-- [ ] 3D netrunning visualization
-- [ ] Voice commands
-- [ ] AR mode for mobile
-- [ ] Holographic UI elements
+### Documentation
+For developers working on this project, please review:
+- [Phase 10 Summary - Enhanced Content](./docs/PHASE-10-SUMMARY.md)
+- [UI Modernization Summary](./docs/ui-modernization-artifacts/UI-MODERNIZATION-SUMMARY.md)
+- [Implementation Plan](./docs/ui-modernization-artifacts/UI-MODERNIZATION-IMPLEMENTATION-PLAN.md)
+- [Implementation Progress](./docs/ui-modernization-artifacts/UI-MODERNIZATION-IMPLEMENTATION-PROGRESS.md)
+- [Technical Debt and Future Work](./docs/ui-modernization-artifacts/TECHNICAL-DEBT-AND-FUTURE-WORK.md)
 
-### Phase 4: Integration 🔮
-- [ ] Roll20/Foundry VTT plugins
-- [ ] Discord bot
-- [ ] Stream overlay mode
-- [ ] Cloud sync
+## Deployment
+This project can be deployed to GitHub Pages.
 
-### Phase 5: Beyond 🌟
-- [ ] Neural interface support*
-- [ ] Quantum dice
-- [ ] Time travel campaign tracker
-- [ ] Actual AI consciousness**
-
-<sub>* Pending Neuralink approval</sub>  
-<sub>** Pending technological singularity</sub>
-
-## 🤝 Contributing
-
-We welcome all cyborgs, netrunners, and code samurai to help make this project LESS un-enhanced!
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/MoreChrome`)
-3. Commit your changes (`git commit -m '✨ Add more chrome'`)
-4. Push to the branch (`git push origin feature/MoreChrome`)
-5. Open a Pull Request
-
-### Contribution Guidelines
-- Follow the existing code style
-- Add tests for new features
-- Update documentation
-- Use semantic commit messages
-- Make it more cyberpunk
-
-## 📖 Documentation
-
-- [Architecture Guide](docs/ARCHITECTURE.md)
-- [Component API](docs/API.md)
-- [Theme Creation](docs/THEMES.md)
-- [Plugin Development](docs/PLUGINS.md)
-
-## 🙏 Acknowledgments
-
-- Original [Cyberpunk GM Screen](https://github.com/originalrepo) for inspiration
-- The Cyberpunk RED community
-- R. Talsorian Games for the amazing TTRPG
-- CD Projekt Red for the aesthetic inspiration
-- All the GMs running games in Night City
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🔗 Links
-
-- [Live Demo](https://yourusername.github.io/cyberpunk-gm-screen-unenhanced)
-- [Discord Community](https://discord.gg/cyberpunkgm)
-- [Bug Reports](https://github.com/yourusername/cyberpunk-gm-screen-unenhanced/issues)
-- [Feature Requests](https://github.com/yourusername/cyberpunk-gm-screen-unenhanced/discussions)
-
----
-
-<div align="center">
-  
-**Remember:** In Night City, you can be anyone you want to be.  
-In the UN-Enhanced Edition, you can build any tool you need.
-
-*Wake up, Samurai. We have features to implement.*
-
-</div>
-
----
-
-<sub>Cyberpunk RED™ is a trademark of R. Talsorian Games Inc. This project is not affiliated with or endorsed by R. Talsorian Games Inc.</sub>
+## License
+See the LICENSE file for details.

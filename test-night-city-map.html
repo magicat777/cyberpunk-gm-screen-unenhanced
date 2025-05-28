@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Night City Map Test</title>
+  <link rel="stylesheet" href="src/styles/design-system.css">
+  <link rel="stylesheet" href="src/styles/enhanced-panels-fixed.css">
+  <link rel="stylesheet" href="src/styles/themes.css">
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Orbitron', monospace;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    .test-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .test-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .test-header h1 {
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+    
+    .map-test-wrapper {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid #00ffff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    }
+    
+    .cyber-button {
+      background: rgba(0, 255, 255, 0.1);
+      border: 1px solid #00ffff;
+      color: #00ffff;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-family: 'Orbitron', monospace;
+      transition: all 0.3s;
+      margin: 5px;
+    }
+    
+    .cyber-button:hover {
+      background: rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 10px #00ffff;
+    }
+  </style>
+</head>
+<body data-theme="neon-synthwave">
+  <div class="test-container">
+    <div class="test-header">
+      <h1>Night City Interactive Map Test</h1>
+      <p>Testing the Night City map component</p>
+    </div>
+    
+    <div class="map-test-wrapper">
+      <div id="map-container"></div>
+    </div>
+    
+    <div style="margin-top: 20px; text-align: center;">
+      <button class="cyber-button" onclick="testMapCreation()">Create Map Panel</button>
+      <button class="cyber-button" onclick="testDistrictClick()">Test District Click</button>
+      <button class="cyber-button" onclick="testEncounterGeneration()">Test Encounter Generation</button>
+    </div>
+  </div>
+
+  <script src="src/js/night-city-map.js"></script>
+  <script>
+    // Test functions
+    function testMapCreation() {
+      const container = document.getElementById('map-container');
+      container.innerHTML = ''; // Clear existing content
+      
+      if (window.nightCityMap && window.nightCityMap.createMapPanel) {
+        const mapPanel = window.nightCityMap.createMapPanel();
+        container.appendChild(mapPanel);
+        console.log('✅ Map panel created successfully');
+      } else {
+        console.error('❌ Night City Map not loaded');
+        alert('Night City Map module not loaded!');
+      }
+    }
+    
+    function testDistrictClick() {
+      if (window.nightCityMap) {
+        window.nightCityMap.selectDistrict('watson');
+        console.log('✅ District selection tested');
+      } else {
+        console.error('❌ Night City Map not available');
+      }
+    }
+    
+    function testEncounterGeneration() {
+      if (window.nightCityMap) {
+        window.nightCityMap.generateEncounter();
+        console.log('✅ Encounter generation tested');
+      } else {
+        console.error('❌ Night City Map not available');
+      }
+    }
+    
+    // Auto-create map on load
+    window.addEventListener('DOMContentLoaded', () => {
+      console.log('Page loaded, creating map...');
+      setTimeout(testMapCreation, 100);
+    });
+  </script>
+</body>
+</html>

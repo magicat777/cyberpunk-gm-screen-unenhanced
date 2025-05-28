@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlitchText Component Demo - Cyberpunk GM Screen</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="src/styles/design-system.css">
+  <link rel="stylesheet" href="src/styles/cyberpunk-typography.css">
+  <link rel="stylesheet" href="src/styles/cyberpunk-background.css">
+  <link rel="stylesheet" href="src/styles/themes.css">
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      min-height: 100vh;
+    }
+    
+    .demo-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px;
+      background: var(--bg-surface);
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+    }
+    
+    h1 {
+      font-family: var(--font-display);
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+      text-align: center;
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      font-family: var(--font-display);
+      color: var(--secondary);
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+    
+    .demo-section {
+      margin-bottom: 40px;
+      padding: 20px;
+      background: var(--bg-overlay);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+    }
+    
+    .demo-item {
+      margin: 20px 0;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .demo-text {
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 60px;
+    }
+    
+    .demo-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .control-button {
+      padding: 10px 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-family: var(--font-secondary);
+      font-size: 14px;
+      transition: all 0.3s;
+      text-transform: uppercase;
+    }
+    
+    .control-button:hover {
+      background: var(--primary);
+      color: var(--bg-primary);
+      border-color: var(--primary);
+      box-shadow: 0 0 10px var(--primary);
+    }
+    
+    .code-example {
+      margin-top: 10px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--text-secondary);
+      overflow-x: auto;
+    }
+    
+    .glitch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    
+    .glitch-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .description {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+    
+    .interactive-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 30px;
+    }
+    
+    .big-glitch {
+      font-size: 3rem;
+    }
+    
+    .hero-text {
+      font-size: 4rem;
+      margin: 40px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body class="theme-neon-synthwave">
+  <div class="demo-container">
+    <h1>
+      <glitch-text text="GlitchText Demo" intensity="high" continuous></glitch-text>
+    </h1>
+    
+    <!-- Hero Example -->
+    <div class="demo-section">
+      <div class="hero-text">
+        <glitch-text 
+          text="CYBERPUNK 2077" 
+          intensity="extreme" 
+          speed="fast"
+          color="danger"
+          hover-glitch
+        ></glitch-text>
+      </div>
+      <p style="text-align: center; color: var(--text-secondary);">
+        Hover over the text to trigger extreme glitch effect
+      </p>
+    </div>
+    
+    <!-- Intensity Levels -->
+    <div class="demo-section">
+      <h2>Intensity Levels</h2>
+      <div class="glitch-grid">
+        <div class="glitch-item">
+          <glitch-text text="LOW INTENSITY" intensity="low" continuous></glitch-text>
+          <span class="description">intensity="low"</span>
+        </div>
+        <div class="glitch-item">
+          <glitch-text text="MEDIUM INTENSITY" intensity="medium" continuous></glitch-text>
+          <span class="description">intensity="medium"</span>
+        </div>
+        <div class="glitch-item">
+          <glitch-text text="HIGH INTENSITY" intensity="high" continuous></glitch-text>
+          <span class="description">intensity="high"</span>
+        </div>
+        <div class="glitch-item">
+          <glitch-text text="EXTREME" intensity="extreme" continuous></glitch-text>
+          <span class="description">intensity="extreme"</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Speed Variations -->
+    <div class="demo-section">
+      <h2>Speed Variations</h2>
+      <div class="glitch-grid">
+        <div class="glitch-item">
+          <glitch-text text="SLOW GLITCH" speed="slow" intensity="high" continuous></glitch-text>
+          <span class="description">speed="slow"</span>
+        </div>
+        <div class="glitch-item">
+          <glitch-text text="NORMAL SPEED" speed="normal" intensity="high" continuous></glitch-text>
+          <span class="description">speed="normal"</span>
+        </div>
+        <div class="glitch-item">
+          <glitch-text text="FAST GLITCH" speed="fast" intensity="high" continuous></glitch-text>
+          <span class="description">speed="fast"</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Color Variants -->
+    <div class="demo-section">
+      <h2>Color Variants</h2>
+      <div class="glitch-grid">
+        <div class="glitch-item">
+          <glitch-text text="PRIMARY" color="primary" intensity="medium" continuous></glitch-text>
+          <span class="description">color="primary"</span>
+        </div>
+        <div class="glitch-item">
+          <glitch-text text="SECONDARY" color="secondary" intensity="medium" continuous></glitch-text>
+          <span class="description">color="secondary"</span>
+        </div>
+        <div class="glitch-item">
+          <glitch-text text="ACCENT" color="accent" intensity="medium" continuous></glitch-text>
+          <span class="description">color="accent"</span>
+        </div>
+        <div class="glitch-item">
+          <glitch-text text="DANGER" color="danger" intensity="medium" continuous></glitch-text>
+          <span class="description">color="danger"</span>
+        </div>
+        <div class="glitch-item">
+          <glitch-text text="SUCCESS" color="success" intensity="medium" continuous></glitch-text>
+          <span class="description">color="success"</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Interactive Controls -->
+    <div class="demo-section">
+      <h2>Interactive Controls</h2>
+      <div class="interactive-section">
+        <div class="big-glitch">
+          <glitch-text 
+            id="interactiveText" 
+            text="HACK THE SYSTEM" 
+            intensity="medium"
+            speed="normal"
+            color="primary"
+          ></glitch-text>
+        </div>
+        
+        <div class="demo-controls">
+          <button class="control-button" onclick="triggerGlitch()">Trigger Glitch</button>
+          <button class="control-button" onclick="toggleContinuous()">Toggle Continuous</button>
+        </div>
+        
+        <div class="demo-controls">
+          <button class="control-button" onclick="setIntensity('low')">Low</button>
+          <button class="control-button" onclick="setIntensity('medium')">Medium</button>
+          <button class="control-button" onclick="setIntensity('high')">High</button>
+          <button class="control-button" onclick="setIntensity('extreme')">Extreme</button>
+        </div>
+        
+        <div class="demo-controls">
+          <button class="control-button" onclick="setSpeed('slow')">Slow</button>
+          <button class="control-button" onclick="setSpeed('normal')">Normal</button>
+          <button class="control-button" onclick="setSpeed('fast')">Fast</button>
+        </div>
+        
+        <div class="demo-controls">
+          <button class="control-button" onclick="setText('SYSTEM BREACH')">Change Text 1</button>
+          <button class="control-button" onclick="setText('ACCESS DENIED')">Change Text 2</button>
+          <button class="control-button" onclick="setText('NEURAL LINK ACTIVE')">Change Text 3</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Usage Examples -->
+    <div class="demo-section">
+      <h2>Usage Examples</h2>
+      
+      <div class="demo-item">
+        <div class="demo-text">
+          <glitch-text text="HOVER TO GLITCH" hover-glitch intensity="high" color="primary"></glitch-text>
+        </div>
+        <div class="code-example">
+&lt;glitch-text text="HOVER TO GLITCH" hover-glitch intensity="high"&gt;&lt;/glitch-text&gt;
+        </div>
+      </div>
+      
+      <div class="demo-item">
+        <div class="demo-text">
+          <glitch-text text="CONTINUOUS GLITCH" continuous intensity="medium" speed="slow"></glitch-text>
+        </div>
+        <div class="code-example">
+&lt;glitch-text text="CONTINUOUS GLITCH" continuous intensity="medium" speed="slow"&gt;&lt;/glitch-text&gt;
+        </div>
+      </div>
+      
+      <div class="demo-item">
+        <div class="demo-text">
+          <glitch-text intensity="extreme" speed="fast" color="danger">INLINE TEXT</glitch-text>
+        </div>
+        <div class="code-example">
+&lt;glitch-text intensity="extreme" speed="fast" color="danger"&gt;INLINE TEXT&lt;/glitch-text&gt;
+        </div>
+      </div>
+    </div>
+    
+    <!-- Cyberpunk Messages -->
+    <div class="demo-section">
+      <h2>Cyberpunk Messages</h2>
+      <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+        <glitch-text text="WAKE UP SAMURAI" intensity="high" speed="slow" color="primary" continuous></glitch-text>
+        <glitch-text text="JACK IN TO CYBERSPACE" intensity="medium" speed="normal" color="secondary" hover-glitch></glitch-text>
+        <glitch-text text="SYSTEM MALFUNCTION" intensity="extreme" speed="fast" color="danger" continuous></glitch-text>
+        <glitch-text text="FIREWALL BREACHED" intensity="high" speed="normal" color="accent" hover-glitch></glitch-text>
+        <glitch-text text="NEURAL OVERLOAD" intensity="extreme" speed="fast" color="primary" continuous></glitch-text>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Load Components -->
+  <script src="src/components/glitch-text.js"></script>
+  
+  <script>
+    // Interactive controls
+    const interactiveText = document.getElementById('interactiveText');
+    let isContinuous = false;
+    
+    function triggerGlitch() {
+      interactiveText.glitch(1500);
+    }
+    
+    function toggleContinuous() {
+      isContinuous = !isContinuous;
+      if (isContinuous) {
+        interactiveText.setAttribute('continuous', '');
+      } else {
+        interactiveText.removeAttribute('continuous');
+      }
+    }
+    
+    function setIntensity(intensity) {
+      interactiveText.setIntensity(intensity);
+    }
+    
+    function setSpeed(speed) {
+      interactiveText.setSpeed(speed);
+    }
+    
+    function setText(text) {
+      interactiveText.setText(text);
+    }
+    
+    // Listen to glitch events
+    document.addEventListener('glitch-start', (e) => {
+      console.log('Glitch started on:', e.target);
+    });
+    
+    document.addEventListener('glitch-stop', (e) => {
+      console.log('Glitch stopped on:', e.target);
+    });
+    
+    // Create some dynamic glitch text
+    setTimeout(() => {
+      const dynamicSection = document.createElement('div');
+      dynamicSection.className = 'demo-section';
+      dynamicSection.innerHTML = `
+        <h2>Dynamically Created</h2>
+        <div style="text-align: center; font-size: 2rem;">
+          <glitch-text text="RUNTIME GENERATED" intensity="high" color="success" continuous></glitch-text>
+        </div>
+      `;
+      document.querySelector('.demo-container').appendChild(dynamicSection);
+    }, 1000);
+  </script>
+</body>
+</html>

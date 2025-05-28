@@ -1,29 +1,81 @@
 {
-  "name": "cyberpunk-gm-screen-unenhanced",
-  "version": "3.0.0-alpha",
-  "description": "The UN-Enhanced Edition - Because We're Just Getting Started!",
-  "main": "index.html",
+  "name": "cyberpunk-gm-screen",
+  "version": "1.0.0",
+  "description": "A digital Game Master screen for the Cyberpunk RED tabletop roleplaying game.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
-    "dev": "python3 -m http.server 3000",
-    "test": "echo \"No tests yet - TODO: Add Playwright tests\"",
-    "lint": "echo \"No linting yet - TODO: Add ESLint\""
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "stylelint": "stylelint \"src/**/*.{css,scss}\"",
+    "stylelint:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "type-check": "tsc --noEmit",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged",
+    "commit": "cz",
+    "clean": "rm -rf dist node_modules",
+    "ci:local": "./scripts/ci-local.sh",
+    "test:accessibility": "node test-accessibility.js",
+    "analyze": "npm run build && npx source-map-explorer 'dist/assets/*.js'",
+    "deploy:staging": "npm run build && netlify deploy --dir=dist",
+    "deploy:production": "npm run build && netlify deploy --dir=dist --prod",
+    "audit": "npm audit --audit-level=moderate",
+    "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/magicat777/cyberpunk-gm-screen-unenhanced.git"
+    "url": "git+https://github.com/magicat777/cyberpunk-gm-screen.git"
   },
-  "keywords": [
-    "cyberpunk",
-    "cyberpunk-red",
-    "ttrpg",
-    "gm-tools",
-    "game-master",
-    "web-components"
-  ],
-  "author": "magicat777",
-  "license": "MIT",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/magicat777/cyberpunk-gm-screen-unenhanced/issues"
+    "url": "https://github.com/magicat777/cyberpunk-gm-screen/issues"
   },
-  "homepage": "https://github.com/magicat777/cyberpunk-gm-screen-unenhanced#readme"
+  "homepage": "https://github.com/magicat777/cyberpunk-gm-screen#readme",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@axe-core/puppeteer": "^4.10.1",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@playwright/test": "^1.52.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@types/node": "^22.15.21",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "@vitejs/plugin-legacy": "^6.1.1",
+    "@vitest/coverage-v8": "^3.1.4",
+    "@vitest/ui": "^3.1.4",
+    "dotenv": "^16.5.0",
+    "eslint": "^9.27.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "husky": "^8.0.0",
+    "jsdom": "^26.1.0",
+    "lighthouse": "^12.6.0",
+    "lint-staged": "^16.0.0",
+    "prettier": "^3.5.3",
+    "puppeteer": "^24.9.0",
+    "rollup-plugin-visualizer": "^6.0.0",
+    "sass": "^1.89.0",
+    "stylelint": "^16.19.1",
+    "stylelint-config-standard": "^38.0.0",
+    "terser": "^5.39.2",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.1.4"
+  }
 }

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Content Demo - Cyberpunk GM Screen</title>
+  <link rel="stylesheet" href="/src/styles/design-system.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .demo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .demo-header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .demo-header h1 {
+      color: #00ffff;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+
+    .demo-panels {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+
+    .demo-panel {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 8px;
+      overflow: hidden;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-panel-header {
+      padding: 16px;
+      background: rgba(0, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+      font-weight: 600;
+      color: #00ffff;
+    }
+
+    .demo-panel-content {
+      flex: 1;
+      overflow: auto;
+      padding: 16px;
+    }
+
+    /* Dice Roller Styles */
+    .dice-roller {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .dice-input-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .dice-input {
+      flex: 1;
+      padding: 8px 12px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      color: #e0e0e0;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .dice-input:focus {
+      outline: none;
+      border-color: #00ffff;
+      box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.2);
+    }
+
+    .roll-button, .clear-button {
+      padding: 8px 16px;
+      background: #00ffff;
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .roll-button:hover {
+      background: #00e6e6;
+      transform: translateY(-1px);
+    }
+
+    .clear-button {
+      background: #cc0052;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .clear-button:hover {
+      background: #ff0066;
+    }
+
+    .dice-history {
+      flex: 1;
+      overflow-y: auto;
+      border-top: 1px solid rgba(0, 255, 255, 0.2);
+      padding-top: 16px;
+    }
+
+    .roll-result {
+      margin-bottom: 12px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+      border-left: 3px solid #00ffff;
+    }
+
+    .roll-result.critical {
+      border-left-color: #00ff00;
+      background: rgba(0, 255, 0, 0.1);
+    }
+
+    .roll-result.fumble {
+      border-left-color: #ff0000;
+      background: rgba(255, 0, 0, 0.1);
+    }
+
+    .roll-formula {
+      font-family: monospace;
+      color: #00ffff;
+    }
+
+    .roll-total {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .roll-details {
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* Notes Styles */
+    .notes {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .notes-toolbar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    .format-button {
+      padding: 6px 12px;
+      background: rgba(0, 255, 255, 0.1);
+      color: #00ffff;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .format-button:hover {
+      background: rgba(0, 255, 255, 0.2);
+    }
+
+    .notes-textarea {
+      flex: 1;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      color: #e0e0e0;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 14px;
+      resize: none;
+    }
+
+    .notes-textarea:focus {
+      outline: none;
+      border-color: #00ffff;
+    }
+
+    .notes-status {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* Initiative Tracker Styles */
+    .initiative-tracker {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .initiative-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    .combat-status {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .round-display {
+      color: #00ffff;
+      font-weight: 600;
+    }
+
+    .add-character-button {
+      padding: 8px 16px;
+      background: #00ffff;
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .character-list {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .character-item {
+      margin-bottom: 12px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+
+    .character-item.active {
+      border-color: #00ffff;
+      background: rgba(0, 255, 255, 0.1);
+    }
+
+    .character-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .character-name {
+      font-weight: 600;
+      color: #00ffff;
+    }
+
+    .initiative-value {
+      width: 50px;
+      padding: 4px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      color: #e0e0e0;
+      text-align: center;
+      border-radius: 4px;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: #999;
+      padding: 40px;
+    }
+  </style>
+</head>
+<body>
+  <main class="demo-container">
+    <div class="demo-header">
+      <h1>Panel Content Components Demo</h1>
+      <p>Phase 4: Panel Implementation - Working Demo</p>
+    </div>
+
+    <div class="demo-panels">
+      <!-- Dice Roller Panel -->
+      <div class="demo-panel">
+        <div class="demo-panel-header">Dice Roller</div>
+        <div class="demo-panel-content">
+          <div class="dice-roller">
+            <div class="dice-input-group">
+              <input type="text" class="dice-input" id="dice-formula" placeholder="Enter dice formula (e.g., 1d10!, 2d6+3)" value="1d10!">
+              <button type="button" class="roll-button" onclick="rollDice()">Roll</button>
+              <button type="button" class="clear-button" onclick="clearHistory()">Clear</button>
+            </div>
+            <div class="dice-history" id="dice-history">
+              <div class="empty-state">No rolls yet. Enter a formula and click Roll!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes Panel -->
+      <div class="demo-panel">
+        <div class="demo-panel-header">Notes</div>
+        <div class="demo-panel-content">
+          <div class="notes">
+            <div class="notes-toolbar">
+              <button type="button" class="format-button" onclick="formatText('**', '**')">Bold</button>
+              <button type="button" class="format-button" onclick="formatText('*', '*')">Italic</button>
+              <button type="button" class="format-button" onclick="formatText('~~', '~~')">Strike</button>
+              <button type="button" class="format-button" onclick="formatText('`', '`')">Code</button>
+              <button type="button" class="format-button" onclick="formatText('\n- ', '')">List</button>
+            </div>
+            <textarea class="notes-textarea" id="notes-content" placeholder="Enter your notes here..."></textarea>
+            <div class="notes-status">
+              <span id="save-status">Ready</span>
+              <span id="char-count">0 characters</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Initiative Tracker Panel -->
+      <div class="demo-panel">
+        <div class="demo-panel-header">Initiative Tracker</div>
+        <div class="demo-panel-content">
+          <div class="initiative-tracker">
+            <div class="initiative-header">
+              <div class="combat-status">
+                <span class="round-display" id="round-display">Not in combat</span>
+                <button type="button" class="add-character-button" onclick="addCharacter()">+ Add Character</button>
+              </div>
+              <div>
+                <button type="button" id="combat-button" onclick="toggleCombat()">Start Combat</button>
+                <button type="button" id="next-turn-button" onclick="nextTurn()" style="display: none;">Next Turn</button>
+              </div>
+            </div>
+            <div class="character-list" id="character-list">
+              <div class="empty-state">No characters added. Click "Add Character" to begin.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script>
+    // Dice Roller functionality
+    let rollHistory = [];
+
+    function rollDice() {
+      const formula = document.getElementById('dice-formula').value;
+      if (!formula) return;
+
+      const result = evaluateDiceFormula(formula);
+      rollHistory.unshift({
+        formula,
+        ...result,
+        timestamp: new Date()
+      });
+
+      updateDiceHistory();
+    }
+
+    function evaluateDiceFormula(formula) {
+      // Simple dice roller implementation
+      let total = 0;
+      let rolls = [];
+      let critical = false;
+      let fumble = false;
+
+      // Parse dice notation (simplified)
+      const diceRegex = /(\d+)d(\d+)(!?)/g;
+      let match;
+      let remaining = formula;
+
+      while ((match = diceRegex.exec(formula)) !== null) {
+        const count = parseInt(match[1]);
+        const sides = parseInt(match[2]);
+        const exploding = match[3] === '!';
+
+        for (let i = 0; i < count; i++) {
+          let roll = Math.floor(Math.random() * sides) + 1;
+          rolls.push(roll);
+          total += roll;
+
+          if (sides === 10 && roll === 10) critical = true;
+          if (sides === 10 && roll === 1) fumble = true;
+
+          // Handle exploding dice
+          if (exploding && roll === sides) {
+            let explodeRoll = Math.floor(Math.random() * sides) + 1;
+            rolls.push(explodeRoll);
+            total += explodeRoll;
+          }
+        }
+      }
+
+      // Add modifiers
+      const modifierMatch = formula.match(/[+-]\d+$/);
+      if (modifierMatch) {
+        total += parseInt(modifierMatch[0]);
+      }
+
+      return { rolls, total, critical, fumble };
+    }
+
+    function updateDiceHistory() {
+      const historyEl = document.getElementById('dice-history');
+      
+      if (rollHistory.length === 0) {
+        historyEl.innerHTML = '<div class="empty-state">No rolls yet. Enter a formula and click Roll!</div>';
+        return;
+      }
+
+      historyEl.innerHTML = rollHistory.map(roll => {
+        const cssClass = roll.critical ? 'critical' : roll.fumble ? 'fumble' : '';
+        return `
+          <div class="roll-result ${cssClass}">
+            <div class="roll-formula">${roll.formula}</div>
+            <div class="roll-total">${roll.total}</div>
+            <div class="roll-details">
+              Rolls: [${roll.rolls.join(', ')}]
+              ${roll.critical ? ' - CRITICAL!' : ''}
+              ${roll.fumble ? ' - FUMBLE!' : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function clearHistory() {
+      rollHistory = [];
+      updateDiceHistory();
+    }
+
+    // Notes functionality
+    let saveTimeout;
+    const notesTextarea = document.getElementById('notes-content');
+    const saveStatus = document.getElementById('save-status');
+    const charCount = document.getElementById('char-count');
+
+    // Load saved notes
+    notesTextarea.value = localStorage.getItem('gm-notes') || '';
+    updateCharCount();
+
+    notesTextarea.addEventListener('input', () => {
+      updateCharCount();
+      
+      // Show saving status
+      saveStatus.textContent = 'Saving...';
+      saveStatus.style.color = '#ffcc00';
+
+      // Debounce save
+      clearTimeout(saveTimeout);
+      saveTimeout = setTimeout(() => {
+        localStorage.setItem('gm-notes', notesTextarea.value);
+        saveStatus.textContent = 'Saved';
+        saveStatus.style.color = '#00ff00';
+        
+        setTimeout(() => {
+          saveStatus.textContent = 'Ready';
+          saveStatus.style.color = '#999';
+        }, 2000);
+      }, 1000);
+    });
+
+    function updateCharCount() {
+      charCount.textContent = `${notesTextarea.value.length} characters`;
+    }
+
+    function formatText(prefix, suffix) {
+      const start = notesTextarea.selectionStart;
+      const end = notesTextarea.selectionEnd;
+      const text = notesTextarea.value;
+      const selection = text.substring(start, end);
+      
+      notesTextarea.value = text.substring(0, start) + prefix + selection + suffix + text.substring(end);
+      notesTextarea.focus();
+      notesTextarea.setSelectionRange(start + prefix.length, end + prefix.length);
+      
+      // Trigger save
+      notesTextarea.dispatchEvent(new Event('input'));
+    }
+
+    // Initiative Tracker functionality
+    let characters = [];
+    let currentTurn = 0;
+    let round = 1;
+    let inCombat = false;
+
+    function addCharacter() {
+      const name = prompt('Character name:');
+      if (!name) return;
+      
+      const initiative = parseInt(prompt('Initiative roll:') || '0');
+      const type = confirm('Is this a Player Character?') ? 'PC' : 'NPC';
+      
+      characters.push({
+        id: Date.now(),
+        name,
+        initiative,
+        type,
+        active: false
+      });
+      
+      characters.sort((a, b) => b.initiative - a.initiative);
+      updateCharacterList();
+    }
+
+    function updateCharacterList() {
+      const listEl = document.getElementById('character-list');
+      
+      if (characters.length === 0) {
+        listEl.innerHTML = '<div class="empty-state">No characters added. Click "Add Character" to begin.</div>';
+        return;
+      }
+
+      listEl.innerHTML = characters.map((char, index) => `
+        <div class="character-item ${index === currentTurn && inCombat ? 'active' : ''}">
+          <div class="character-header">
+            <span class="character-name">${char.name} (${char.type})</span>
+            <div>
+              Initiative: <input type="number" class="initiative-value" value="${char.initiative}" 
+                onchange="updateInitiative(${char.id}, this.value)">
+              <button type="button" onclick="removeCharacter(${char.id})" style="margin-left: 8px; color: #ff0066;">Remove</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateInitiative(id, value) {
+      const char = characters.find(c => c.id === id);
+      if (char) {
+        char.initiative = parseInt(value);
+        characters.sort((a, b) => b.initiative - a.initiative);
+        updateCharacterList();
+      }
+    }
+
+    function removeCharacter(id) {
+      characters = characters.filter(c => c.id !== id);
+      if (currentTurn >= characters.length) currentTurn = 0;
+      updateCharacterList();
+    }
+
+    function toggleCombat() {
+      inCombat = !inCombat;
+      const combatButton = document.getElementById('combat-button');
+      const nextButton = document.getElementById('next-turn-button');
+      const roundDisplay = document.getElementById('round-display');
+      
+      if (inCombat) {
+        combatButton.textContent = 'End Combat';
+        combatButton.style.background = '#ff0066';
+        nextButton.style.display = 'inline-block';
+        currentTurn = 0;
+        round = 1;
+        roundDisplay.textContent = `Round ${round}`;
+      } else {
+        combatButton.textContent = 'Start Combat';
+        combatButton.style.background = '#00ff00';
+        nextButton.style.display = 'none';
+        roundDisplay.textContent = 'Not in combat';
+      }
+      
+      updateCharacterList();
+    }
+
+    function nextTurn() {
+      if (!inCombat || characters.length === 0) return;
+      
+      currentTurn++;
+      if (currentTurn >= characters.length) {
+        currentTurn = 0;
+        round++;
+        document.getElementById('round-display').textContent = `Round ${round}`;
+      }
+      
+      updateCharacterList();
+    }
+
+    // Keyboard shortcuts
+    document.getElementById('dice-formula').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') rollDice();
+    });
+  </script>
+  </main>
+</body>
+</html>

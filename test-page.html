@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Page</title>
+    <script>
+        // Test if files load correctly
+        function testPageLoad() {
+            const scripts = document.querySelectorAll('script[src]');
+            const styles = document.querySelectorAll('link[rel="stylesheet"]');
+            
+            console.log('=== RESOURCE LOADING TEST ===');
+            console.log('Scripts found:', scripts.length);
+            console.log('Stylesheets found:', styles.length);
+            
+            // Check if key objects are defined
+            setTimeout(() => {
+                console.log('=== OBJECT AVAILABILITY TEST ===');
+                console.log('CyberpunkBackground:', typeof CyberpunkBackground);
+                console.log('ThemeManager:', typeof ThemeManager);
+                console.log('EnhancedPanelSystem:', typeof EnhancedPanelSystem);
+                console.log('CyberpunkDiceRoller:', typeof CyberpunkDiceRoller);
+                console.log('CyberpunkCombatTracker:', typeof CyberpunkCombatTracker);
+                console.log('HoloButton:', customElements.get('holo-button') ? 'defined' : 'undefined');
+                console.log('NeonInput:', customElements.get('neon-input') ? 'defined' : 'undefined');
+            }, 1000);
+        }
+        
+        window.addEventListener('DOMContentLoaded', testPageLoad);
+    </script>
+</head>
+<body>
+    <h1>Testing Cyberpunk Enhanced Page</h1>
+    <iframe src="cyberpunk-enhanced.html" width="100%" height="600" onload="console.log('Page loaded successfully')"></iframe>
+</body>
+</html>

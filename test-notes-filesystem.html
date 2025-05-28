@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Notes Filesystem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .test-results {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .success { color: #4CAF50; }
+        .error { color: #f44336; }
+        button {
+            background: #00ccff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background: #0099cc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Notes Filesystem Test</h1>
+    
+    <div>
+        <button onclick="testFilesystemManager()">Test Filesystem Manager</button>
+        <button onclick="testNotesPanel()">Test Notes Panel</button>
+        <button onclick="checkScriptsLoaded()">Check Scripts Loaded</button>
+    </div>
+    
+    <div class="test-results" id="results"></div>
+    
+    <!-- Load the scripts -->
+    <script src="src/js/notes-filesystem-manager.js"></script>
+    <script src="src/js/notes-text-editor.js"></script>
+    
+    <script>
+        function log(message, isError = false) {
+            const results = document.getElementById('results');
+            const entry = document.createElement('div');
+            entry.className = isError ? 'error' : 'success';
+            entry.textContent = message;
+            results.appendChild(entry);
+            console.log(message);
+        }
+        
+        function checkScriptsLoaded() {
+            log('Checking loaded scripts...');
+            
+            if (window.NotesFilesystemManager) {
+                log('✓ NotesFilesystemManager class is loaded');
+            } else {
+                log('✗ NotesFilesystemManager class not found', true);
+            }
+            
+            if (window.notesFilesystemManager) {
+                log('✓ notesFilesystemManager instance exists');
+            } else {
+                log('✗ notesFilesystemManager instance not found', true);
+            }
+            
+            if (window.createEnhancedNotesPanel) {
+                log('✓ createEnhancedNotesPanel function exists');
+            } else {
+                log('✗ createEnhancedNotesPanel function not found', true);
+            }
+        }
+        
+        async function testFilesystemManager() {
+            log('Testing Filesystem Manager...');
+            
+            try {
+                if (!window.notesFilesystemManager) {
+                    throw new Error('Filesystem manager not initialized');
+                }
+                
+                // Test if methods exist
+                if (typeof window.notesFilesystemManager.saveToDocuments === 'function') {
+                    log('✓ saveToDocuments method exists');
+                } else {
+                    log('✗ saveToDocuments method not found', true);
+                }
+                
+                if (typeof window.notesFilesystemManager.loadFromDocuments === 'function') {
+                    log('✓ loadFromDocuments method exists');
+                } else {
+                    log('✗ loadFromDocuments method not found', true);
+                }
+                
+                // Test format conversion
+                const testHtml = '<p>Test content</p>';
+                const markdown = window.notesFilesystemManager.htmlToMarkdown(testHtml);
+                log(`✓ HTML to Markdown conversion: "${markdown}"`);
+                
+            } catch (error) {
+                log(`✗ Error: ${error.message}`, true);
+            }
+        }
+        
+        function testNotesPanel() {
+            log('Testing Notes Panel Creation...');
+            
+            try {
+                // Create a mock panel system if it doesn't exist
+                if (!window.panelSystem) {
+                    window.panelSystem = {
+                        createPanel: (config) => {
+                            const panel = document.createElement('div');
+                            panel.className = 'panel';
+                            panel.innerHTML = `
+                                <div class="panel-header">${config.title}</div>
+                                <div class="panel-content">${config.content}</div>
+                            `;
+                            document.body.appendChild(panel);
+                            log('✓ Mock panel created');
+                            return panel;
+                        }
+                    };
+                }
+                
+                // Try to create enhanced notes panel
+                if (window.createEnhancedNotesPanel) {
+                    window.createEnhancedNotesPanel();
+                    log('✓ Enhanced notes panel created');
+                    
+                    // Check if filesystem buttons exist
+                    setTimeout(() => {
+                        const saveButton = document.querySelector('[id^="file-save-docs"]');
+                        const loadButton = document.querySelector('[id^="file-load-docs"]');
+                        
+                        if (saveButton) {
+                            log('✓ Save to Documents button found');
+                        } else {
+                            log('✗ Save to Documents button not found', true);
+                        }
+                        
+                        if (loadButton) {
+                            log('✓ Load from Documents button found');
+                        } else {
+                            log('✗ Load from Documents button not found', true);
+                        }
+                    }, 500);
+                } else {
+                    log('✗ createEnhancedNotesPanel not available', true);
+                }
+            } catch (error) {
+                log(`✗ Error: ${error.message}`, true);
+            }
+        }
+        
+        // Run initial check
+        setTimeout(checkScriptsLoaded, 100);
+    </script>
+</body>
+</html>

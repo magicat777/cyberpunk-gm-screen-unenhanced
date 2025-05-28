@@ -1,21 +1,60 @@
 {
-  "name": "Cyberpunk GM Screen - UN-Enhanced Edition",
-  "short_name": "UN-Enhanced",
-  "description": "Because we're just getting started, choom!",
-  "start_url": "./",
+  "name": "Cyberpunk GM Screen",
+  "short_name": "CP GM Screen",
+  "description": "Enhanced digital GM screen for Cyberpunk RED tabletop RPG",
+  "start_url": "./cyberpunk-gm-screen.html",
   "display": "standalone",
+  "orientation": "any",
   "background_color": "#0a0a0a",
   "theme_color": "#00ffff",
+  "categories": ["games", "entertainment", "productivity"],
   "icons": [
     {
-      "src": "src/assets/images/icon-192x192.png",
+      "src": "src/images/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "src/assets/images/icon-512x512.png",
+      "src": "src/images/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "src/images/screenshot-desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "src/images/screenshot-mobile.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "New Dice Panel",
+      "short_name": "Dice",
+      "description": "Create a new dice roller panel",
+      "url": "./cyberpunk-gm-screen.html?action=dice",
+      "icons": [{ "src": "src/images/dice-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Combat Tracker",
+      "short_name": "Combat",
+      "description": "Open combat tracker",
+      "url": "./cyberpunk-gm-screen.html?action=combat",
+      "icons": [{ "src": "src/images/combat-icon.png", "sizes": "96x96" }]
+    }
+  ],
+  "prefer_related_applications": false,
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "edge_side_panel": {
+    "preferred_width": 400
+  }
 }

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Content Demo - Cyberpunk GM Screen</title>
+  <link rel="stylesheet" href="/src/styles/design-system.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: var(--background-primary);
+      color: var(--text-primary);
+      font-family: var(--font-family-base);
+    }
+
+    .demo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .demo-header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .demo-panels {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+
+    .demo-panel {
+      background: var(--surface-background);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-panel-header {
+      padding: 16px;
+      background: var(--card-background);
+      border-bottom: 1px solid var(--border-color);
+      font-weight: 600;
+    }
+
+    .demo-panel-content {
+      flex: 1;
+      overflow: auto;
+    }
+
+    .theme-switcher {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .theme-button {
+      padding: 8px 16px;
+      background: var(--button-background);
+      color: var(--button-text);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .theme-button:hover {
+      background: var(--button-hover-background);
+    }
+
+    .theme-button.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+  </style>
+</head>
+<body data-theme="synthwave">
+  <div class="demo-container">
+    <div class="demo-header">
+      <h1>Panel Content Components Demo</h1>
+      <p>Phase 4: Panel Implementation - Content Components</p>
+      
+      <div class="theme-switcher">
+        <button class="theme-button active" data-theme="synthwave">Synthwave</button>
+        <button class="theme-button" data-theme="tech-noir">Tech Noir</button>
+        <button class="theme-button" data-theme="minimal">Minimal</button>
+      </div>
+    </div>
+
+    <div class="demo-panels">
+      <div class="demo-panel">
+        <div class="demo-panel-header">Dice Roller</div>
+        <div class="demo-panel-content" id="dice-roller-container"></div>
+      </div>
+
+      <div class="demo-panel">
+        <div class="demo-panel-header">Notes</div>
+        <div class="demo-panel-content" id="notes-container"></div>
+      </div>
+
+      <div class="demo-panel">
+        <div class="demo-panel-header">Initiative Tracker</div>
+        <div class="demo-panel-content" id="initiative-tracker-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { EventBus } from '/src/lib/EventBus.js';
+    import { Store } from '/src/lib/Store.js';
+    import { DiceRoller } from '/src/components/panels/dice-roller/DiceRoller.js';
+    import { Notes } from '/src/components/panels/notes/Notes.js';
+    import { InitiativeTracker } from '/src/components/panels/initiative-tracker/InitiativeTracker.js';
+
+    // Initialize core systems
+    const eventBus = new EventBus();
+    const store = new Store({
+      panels: {
+        'dice-roller': {
+          config: { id: 'dice-roller', type: 'dice-roller' },
+          data: { history: [] }
+        },
+        'notes': {
+          config: { id: 'notes', type: 'notes' },
+          data: { content: '', savedAt: null }
+        },
+        'initiative-tracker': {
+          config: { id: 'initiative-tracker', type: 'initiative-tracker' },
+          data: { characters: [], currentTurn: 0, round: 1, isRunning: false }
+        }
+      },
+      settings: {
+        theme: 'synthwave',
+        fontSize: 16,
+        fontFamily: 'system-ui',
+        animations: true,
+        autoSave: true,
+        saveInterval: 30000,
+        soundEnabled: true,
+        language: 'en'
+      }
+    });
+
+    // Create and mount components
+    const diceRoller = new DiceRoller({
+      eventBus,
+      store,
+      panelId: 'dice-roller'
+    });
+    diceRoller.mount(document.getElementById('dice-roller-container'));
+
+    const notes = new Notes({
+      eventBus,
+      store,
+      panelId: 'notes'
+    });
+    notes.mount(document.getElementById('notes-container'));
+
+    const initiativeTracker = new InitiativeTracker({
+      eventBus,
+      store,
+      panelId: 'initiative-tracker'
+    });
+    initiativeTracker.mount(document.getElementById('initiative-tracker-container'));
+
+    // Theme switching
+    document.querySelectorAll('.theme-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const theme = button.dataset.theme;
+        document.body.setAttribute('data-theme', theme);
+        
+        // Update active state
+        document.querySelectorAll('.theme-button').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        button.classList.add('active');
+
+        // Emit theme change event
+        eventBus.emit('theme:changed', { theme });
+      });
+    });
+
+    // Event logging
+    eventBus.on('*', (event, data) => {
+      console.log('Event:', event, data);
+    });
+  </script>
+</body>
+</html>

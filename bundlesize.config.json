@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "path": "dist/assets/*.js",
+      "maxSize": "50kb",
+      "compression": "gzip"
+    },
+    {
+      "path": "dist/assets/*.css",
+      "maxSize": "20kb",
+      "compression": "gzip"
+    },
+    {
+      "path": "dist/assets/index-*.js",
+      "maxSize": "30kb",
+      "compression": "gzip"
+    }
+  ],
+  "ci": {
+    "trackBranches": ["main", "develop"],
+    "buildSha": true,
+    "commitMessage": "Bundle Size: {results}"
+  }
+}

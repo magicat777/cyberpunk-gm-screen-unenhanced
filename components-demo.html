@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyberpunk Components Demo</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="src/styles/design-system.css">
+  <link rel="stylesheet" href="src/styles/cyberpunk-typography.css">
+  <link rel="stylesheet" href="src/styles/cyberpunk-background.css">
+  <link rel="stylesheet" href="src/styles/themes.css">
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    
+    .demo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      color: var(--secondary);
+      margin: 40px 0 20px 0;
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .section {
+      margin-bottom: 60px;
+    }
+    
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+    
+    .demo-item {
+      padding: 20px;
+      background: var(--bg-overlay);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+    
+    .demo-item h3 {
+      margin-top: 0;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+      flex-wrap: wrap;
+    }
+    
+    .code-sample {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 15px;
+      margin: 15px 0;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      overflow-x: auto;
+      color: var(--text-secondary);
+    }
+    
+    .table-demo {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body class="theme-neon-synthwave">
+  <div class="demo-container">
+    <h1>
+      <glitch-text text="Cyberpunk UI Components" intensity="high" hover-glitch color="primary"></glitch-text>
+    </h1>
+    
+    <!-- CyberCard Demo -->
+    <div class="section">
+      <h2>CyberCard Component</h2>
+      <div class="demo-grid">
+        <!-- Basic Cards -->
+        <div class="demo-item">
+          <h3>Basic Variants</h3>
+          <cyber-card title="Default Card" subtitle="Standard styling">
+            <p>This is the default card variant with standard cyberpunk styling.</p>
+          </cyber-card>
+          <br>
+          <cyber-card variant="primary" title="Primary Card" subtitle="Enhanced visibility" glow>
+            <p>Primary variant with glow effect enabled.</p>
+          </cyber-card>
+        </div>
+        
+        <!-- Interactive Cards -->
+        <div class="demo-item">
+          <h3>Interactive Cards</h3>
+          <cyber-card variant="secondary" title="Interactive Card" subtitle="Click me!" interactive>
+            <p>This card responds to clicks and has hover effects.</p>
+            <div slot="actions">
+              <button style="padding: 8px 16px; background: var(--primary); border: none; color: white; cursor: pointer;">Action</button>
+            </div>
+          </cyber-card>
+          <br>
+          <cyber-card variant="accent" title="Card with Icon" subtitle="Multiple slots" interactive>
+            <span slot="icon">🚀</span>
+            <p>This card has an icon and action buttons.</p>
+            <div slot="footer">Footer content here</div>
+          </cyber-card>
+        </div>
+        
+        <!-- State Cards -->
+        <div class="demo-item">
+          <h3>State Variants</h3>
+          <cyber-card variant="danger" title="Error State" subtitle="Something went wrong" error>
+            <p>This card shows an error state with appropriate styling.</p>
+          </cyber-card>
+          <br>
+          <cyber-card variant="success" title="Success State" subtitle="Operation completed" success>
+            <p>This card shows a success state with confirmation styling.</p>
+          </cyber-card>
+          <br>
+          <cyber-card title="Loading State" subtitle="Please wait..." loading>
+            <p>This card is in a loading state.</p>
+          </cyber-card>
+        </div>
+      </div>
+      
+      <div class="controls">
+        <button onclick="toggleCardVariant()" style="padding: 10px 20px; background: var(--accent); border: none; color: black; cursor: pointer;">Toggle Variant</button>
+        <button onclick="toggleCardGlow()" style="padding: 10px 20px; background: var(--secondary); border: none; color: white; cursor: pointer;">Toggle Glow</button>
+        <button onclick="toggleCardLoading()" style="padding: 10px 20px; background: var(--primary); border: none; color: black; cursor: pointer;">Toggle Loading</button>
+      </div>
+      
+      <div class="code-sample">
+&lt;cyber-card variant="primary" title="Card Title" subtitle="Subtitle" glow interactive&gt;
+  &lt;p&gt;Card content goes here&lt;/p&gt;
+  &lt;div slot="actions"&gt;
+    &lt;button&gt;Action&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/cyber-card&gt;
+      </div>
+    </div>
+    
+    <!-- DataTable Demo -->
+    <div class="section">
+      <h2>DataTable Component</h2>
+      
+      <div class="demo-item">
+        <h3>Interactive Data Table</h3>
+        <div class="table-demo">
+          <data-table 
+            id="demo-table" 
+            selectable 
+            multi-select 
+            striped 
+            page-size="5">
+          </data-table>
+        </div>
+        
+        <div class="controls">
+          <button onclick="addTableRow()" style="padding: 8px 16px; background: var(--success); border: none; color: white; cursor: pointer;">Add Row</button>
+          <button onclick="removeSelected()" style="padding: 8px 16px; background: var(--danger); border: none; color: white; cursor: pointer;">Remove Selected</button>
+          <button onclick="toggleTableLoading()" style="padding: 8px 16px; background: var(--warning); border: none; color: black; cursor: pointer;">Toggle Loading</button>
+          <button onclick="getSelectedRows()" style="padding: 8px 16px; background: var(--primary); border: none; color: black; cursor: pointer;">Get Selected</button>
+        </div>
+        
+        <div class="code-sample">
+&lt;data-table selectable multi-select striped page-size="10"&gt;&lt;/data-table&gt;
+
+&lt;script&gt;
+const table = document.querySelector('data-table');
+table.setData(data, [
+  { key: 'name', title: 'Name', sortable: true },
+  { key: 'role', title: 'Role', width: '120px' },
+  { key: 'level', title: 'Level', formatter: (val) => `Lvl ${val}` }
+]);
+&lt;/script&gt;
+        </div>
+      </div>
+    </div>
+    
+    <!-- Combined Demo -->
+    <div class="section">
+      <h2>Combined Components</h2>
+      
+      <cyber-card variant="primary" title="NPC Database" subtitle="Character Management" interactive glow>
+        <div style="margin-bottom: 20px;">
+          <neon-input 
+            type="text" 
+            placeholder="Search NPCs..." 
+            label="Quick Search"
+            id="npc-search">
+          </neon-input>
+        </div>
+        
+        <data-table 
+          id="npc-table" 
+          selectable 
+          compact 
+          page-size="3">
+        </data-table>
+        
+        <div slot="actions">
+          <button onclick="generateNPC()" style="padding: 8px 16px; background: var(--accent); border: none; color: black; cursor: pointer;">Generate NPC</button>
+          <button onclick="exportNPCs()" style="padding: 8px 16px; background: var(--secondary); border: none; color: white; cursor: pointer;">Export Data</button>
+        </div>
+      </cyber-card>
+    </div>
+    
+    <!-- Component Showcase Grid -->
+    <div class="section">
+      <h2>Component Showcase</h2>
+      <div class="demo-grid">
+        <cyber-card variant="primary" title="System Status" glow>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>CPU: <span style="color: var(--success);">85%</span></div>
+            <div>Memory: <span style="color: var(--warning);">92%</span></div>
+            <div>Network: <span style="color: var(--success);">Online</span></div>
+            <div>ICE: <span style="color: var(--danger);">Hostile</span></div>
+          </div>
+        </cyber-card>
+        
+        <cyber-card variant="secondary" title="Mission Brief" interactive>
+          <glitch-text text="CLASSIFIED" intensity="medium" continuous></glitch-text>
+          <p style="margin: 10px 0;">Target: Arasaka Data Center</p>
+          <p style="margin: 0;">Security Level: Maximum</p>
+        </cyber-card>
+        
+        <cyber-card variant="accent" title="Inventory" subtitle="Equipment Status">
+          <ul style="margin: 0; padding-left: 20px;">
+            <li>Mantis Blades (2/2)</li>
+            <li>Legendary Katana</li>
+            <li>Militech Centaur</li>
+            <li>Zetatech Neural Proc</li>
+          </ul>
+        </cyber-card>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Load Components -->
+  <script src="src/components/neon-input.js"></script>
+  <script src="src/components/glitch-text.js"></script>
+  <script src="src/components/cyber-card.js"></script>
+  <script src="src/components/data-table.js"></script>
+  
+  <script>
+    // Demo data for table
+    const sampleData = [
+      { name: 'Johnny Silverhand', role: 'Rockerboy', level: 10, corp: 'None', status: 'Legendary' },
+      { name: 'V', role: 'Solo', level: 8, corp: 'Freelance', status: 'Active' },
+      { name: 'Judy Alvarez', role: 'Netrunner', level: 6, corp: 'Independent', status: 'Active' },
+      { name: 'Panam Palmer', role: 'Nomad', level: 7, corp: 'Aldecaldos', status: 'Active' },
+      { name: 'Viktor Vektor', role: 'Medtech', level: 9, corp: 'Independent', status: 'Retired' },
+      { name: 'Takemura Goro', role: 'Solo', level: 9, corp: 'Ex-Arasaka', status: 'Rogue' },
+      { name: 'Rogue Amendiares', role: 'Fixer', level: 10, corp: 'Afterlife', status: 'Active' }
+    ];
+    
+    const tableColumns = [
+      { key: 'name', title: 'Name', sortable: true },
+      { key: 'role', title: 'Role', width: '100px' },
+      { 
+        key: 'level', 
+        title: 'Level', 
+        width: '80px',
+        formatter: (val) => `Lvl ${val}`,
+        render: (val, row) => `<span style="color: var(--accent); font-weight: bold;">${val}</span>`
+      },
+      { key: 'corp', title: 'Affiliation', width: '120px' },
+      { 
+        key: 'status', 
+        title: 'Status',
+        width: '100px',
+        render: (val) => {
+          const colors = {
+            'Active': 'var(--success)',
+            'Retired': 'var(--warning)',
+            'Rogue': 'var(--danger)',
+            'Legendary': 'var(--primary)'
+          };
+          return `<span style="color: ${colors[val] || 'var(--text-primary)'};">${val}</span>`;
+        }
+      }
+    ];
+    
+    // Initialize demo table
+    const demoTable = document.getElementById('demo-table');
+    demoTable.setData([...sampleData], tableColumns);
+    demoTable.setTitle('Character Database');
+    
+    // Initialize NPC table
+    const npcTable = document.getElementById('npc-table');
+    npcTable.setData(sampleData.slice(0, 3), tableColumns);
+    npcTable.setTitle('Active NPCs');
+    
+    // Demo functions
+    let cardVariantIndex = 0;
+    const cardVariants = ['default', 'primary', 'secondary', 'accent', 'danger', 'success'];
+    
+    function toggleCardVariant() {
+      cardVariantIndex = (cardVariantIndex + 1) % cardVariants.length;
+      const cards = document.querySelectorAll('cyber-card');
+      cards[0].setAttribute('variant', cardVariants[cardVariantIndex]);
+    }
+    
+    function toggleCardGlow() {
+      const card = document.querySelector('cyber-card');
+      if (card.hasAttribute('glow')) {
+        card.removeAttribute('glow');
+      } else {
+        card.setAttribute('glow', '');
+      }
+    }
+    
+    function toggleCardLoading() {
+      const card = document.querySelector('cyber-card[loading], cyber-card:not([loading])');
+      if (card.hasAttribute('loading')) {
+        card.removeAttribute('loading');
+      } else {
+        card.setAttribute('loading', '');
+      }
+    }
+    
+    function addTableRow() {
+      const newRow = {
+        name: `Generated NPC ${Date.now()}`,
+        role: ['Solo', 'Netrunner', 'Tech'][Math.floor(Math.random() * 3)],
+        level: Math.floor(Math.random() * 10) + 1,
+        corp: 'Generated',
+        status: 'Active'
+      };
+      demoTable.addRow(newRow);
+    }
+    
+    function removeSelected() {
+      const selected = demoTable.getSelectedRows();
+      if (selected.length === 0) {
+        alert('No rows selected');
+        return;
+      }
+      
+      if (confirm(`Remove ${selected.length} selected row(s)?`)) {
+        // Get indices and remove in reverse order
+        const indices = [];
+        demoTable._data.forEach((row, index) => {
+          if (selected.includes(row)) {
+            indices.push(index);
+          }
+        });
+        
+        indices.reverse().forEach(index => {
+          demoTable.removeRow(index);
+        });
+      }
+    }
+    
+    function toggleTableLoading() {
+      demoTable.setLoading(!demoTable._loading);
+    }
+    
+    function getSelectedRows() {
+      const selected = demoTable.getSelectedRows();
+      alert(`Selected ${selected.length} rows:\n${selected.map(r => r.name).join('\n')}`);
+    }
+    
+    function generateNPC() {
+      const names = ['Alex', 'Morgan', 'Casey', 'Riley', 'Jordan'];
+      const roles = ['Solo', 'Netrunner', 'Tech', 'Fixer', 'Media'];
+      
+      const newNPC = {
+        name: names[Math.floor(Math.random() * names.length)] + ' ' + Math.random().toString(36).substr(2, 5),
+        role: roles[Math.floor(Math.random() * roles.length)],
+        level: Math.floor(Math.random() * 10) + 1,
+        corp: 'Generated',
+        status: 'Active'
+      };
+      
+      npcTable.addRow(newNPC);
+    }
+    
+    function exportNPCs() {
+      const data = npcTable.getSelectedRows();
+      if (data.length === 0) {
+        alert('No NPCs selected for export');
+        return;
+      }
+      
+      const json = JSON.stringify(data, null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'npcs.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+    
+    // Search functionality
+    const searchInput = document.getElementById('npc-search');
+    searchInput.addEventListener('neon-input', (e) => {
+      const searchTerm = e.detail.value.toLowerCase();
+      const filteredData = sampleData.filter(npc => 
+        npc.name.toLowerCase().includes(searchTerm) ||
+        npc.role.toLowerCase().includes(searchTerm)
+      );
+      npcTable.setData(filteredData, tableColumns);
+    });
+    
+    // Table event listeners
+    demoTable.addEventListener('row-click', (e) => {
+      console.log('Row clicked:', e.detail.row);
+    });
+    
+    demoTable.addEventListener('selection-change', (e) => {
+      console.log('Selection changed:', e.detail.selectedRows.length, 'rows selected');
+    });
+    
+    // Card event listeners
+    document.querySelectorAll('cyber-card[interactive]').forEach(card => {
+      card.addEventListener('cyber-card-click', (e) => {
+        console.log('Card clicked:', e.target);
+      });
+    });
+  </script>
+</body>
+</html>

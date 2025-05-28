@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyberpunk GM Screen - Enhanced Edition (Debug)</title>
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: monospace;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    
+    .welcome-screen {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 10;
+      transition: opacity 0.5s;
+    }
+    
+    .welcome-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .welcome-title {
+      font-size: 3rem;
+      font-weight: 900;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #00ffff;
+      text-shadow: 0 0 20px #00ffff;
+    }
+    
+    .welcome-subtitle {
+      font-size: 1.2rem;
+      color: #a0a0a0;
+      margin: 1rem 0 2rem;
+    }
+    
+    .start-button {
+      padding: 1rem 2rem;
+      background: transparent;
+      border: 2px solid #00ffff;
+      color: #00ffff;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .start-button:hover {
+      background: #00ffff;
+      color: #0a0a0a;
+      box-shadow: 0 0 20px #00ffff;
+    }
+    
+    .app-header {
+      background: rgba(255, 255, 255, 0.05);
+      border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+      padding: 10px 20px;
+      display: none;
+    }
+    
+    .debug-info {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #00ffff;
+      padding: 10px;
+      font-size: 12px;
+      max-width: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    
+    .debug-info h3 {
+      margin: 0 0 10px 0;
+      color: #00ffff;
+    }
+    
+    .debug-log {
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+    
+    .error { color: #ff0040; }
+    .success { color: #00ff00; }
+    .info { color: #00ffff; }
+  </style>
+</head>
+<body>
+  <!-- Debug Info Panel -->
+  <div class="debug-info">
+    <h3>Debug Console</h3>
+    <div class="debug-log" id="debugLog"></div>
+  </div>
+  
+  <!-- Header Bar -->
+  <header class="app-header" id="appHeader">
+    <h1>Cyberpunk GM Screen - Debug Mode</h1>
+  </header>
+  
+  <!-- Welcome Screen -->
+  <div class="welcome-screen" id="welcomeScreen">
+    <h1 class="welcome-title">Cyberpunk GM Screen</h1>
+    <p class="welcome-subtitle">Enhanced Edition - Debug Mode</p>
+    <button class="start-button" onclick="startApp()">Jack In</button>
+    <br><br>
+    <button class="start-button" onclick="testScripts()">Test Scripts</button>
+  </div>
+  
+  <script>
+    // Debug logging
+    const debugLog = document.getElementById('debugLog');
+    
+    function log(message, type = 'info') {
+      const timestamp = new Date().toLocaleTimeString();
+      const logEntry = `[${timestamp}] ${message}\n`;
+      const span = document.createElement('span');
+      span.className = type;
+      span.textContent = logEntry;
+      debugLog.appendChild(span);
+      debugLog.scrollTop = debugLog.scrollHeight;
+      console.log(message);
+    }
+    
+    // Override console methods for debugging
+    const originalError = console.error;
+    console.error = function(...args) {
+      originalError.apply(console, args);
+      log('ERROR: ' + args.join(' '), 'error');
+    };
+    
+    window.addEventListener('error', (event) => {
+      log(`JS Error: ${event.message} at ${event.filename}:${event.lineno}:${event.colno}`, 'error');
+    });
+    
+    // Test if scripts are loading
+    function testScripts() {
+      log('Testing script loading...', 'info');
+      
+      // List of scripts to check
+      const scripts = [
+        { name: 'CyberpunkBackground', path: 'src/js/cyberpunk-background.js' },
+        { name: 'ThemeManager', path: 'src/js/theme-manager.js' },
+        { name: 'EnhancedPanelSystem', path: 'src/js/enhanced-panel-system-fixed.js' },
+        { name: 'HoloButton', path: 'src/components/holo-button.js' },
+        { name: 'NeonInput', path: 'src/components/neon-input.js' },
+        { name: 'CyberpunkDiceRoller', path: 'src/js/enhanced-dice-roller-fixed.js' },
+        { name: 'CyberpunkCombatTracker', path: 'src/js/advanced-combat-tracker-fixed.js' }
+      ];
+      
+      scripts.forEach(script => {
+        if (window[script.name]) {
+          log(`✓ ${script.name} loaded`, 'success');
+        } else {
+          log(`✗ ${script.name} NOT loaded (${script.path})`, 'error');
+          
+          // Try to load it
+          const scriptElement = document.createElement('script');
+          scriptElement.src = script.path;
+          scriptElement.onload = () => log(`Loaded ${script.name}`, 'success');
+          scriptElement.onerror = () => log(`Failed to load ${script.path}`, 'error');
+          document.head.appendChild(scriptElement);
+        }
+      });
+      
+      // Check custom elements
+      setTimeout(() => {
+        log('\nChecking custom elements:', 'info');
+        log(`holo-button: ${customElements.get('holo-button') ? '✓ registered' : '✗ not registered'}`, 
+            customElements.get('holo-button') ? 'success' : 'error');
+        log(`neon-input: ${customElements.get('neon-input') ? '✓ registered' : '✗ not registered'}`, 
+            customElements.get('neon-input') ? 'success' : 'error');
+      }, 1000);
+    }
+    
+    // Simple startApp function
+    function startApp() {
+      log('startApp() called', 'info');
+      
+      try {
+        // Hide welcome screen
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        if (welcomeScreen) {
+          welcomeScreen.classList.add('hidden');
+          log('Welcome screen hidden', 'success');
+        } else {
+          log('Welcome screen not found!', 'error');
+        }
+        
+        // Show header
+        const header = document.getElementById('appHeader');
+        if (header) {
+          header.style.display = 'block';
+          log('Header shown', 'success');
+        } else {
+          log('Header not found!', 'error');
+        }
+        
+        log('App started successfully!', 'success');
+        
+      } catch (error) {
+        log(`Error in startApp: ${error.message}`, 'error');
+      }
+    }
+    
+    // Initial log
+    log('Debug page loaded', 'info');
+    log('Click "Test Scripts" to check if all dependencies load', 'info');
+    log('Click "Jack In" to test the startup function', 'info');
+  </script>
+</body>
+</html>

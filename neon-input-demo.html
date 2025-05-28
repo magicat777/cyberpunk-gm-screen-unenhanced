@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeonInput Component Demo - Cyberpunk GM Screen</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="src/styles/design-system.css">
+  <link rel="stylesheet" href="src/styles/cyberpunk-typography.css">
+  <link rel="stylesheet" href="src/styles/cyberpunk-background.css">
+  <link rel="stylesheet" href="src/styles/themes.css">
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      min-height: 100vh;
+    }
+    
+    .demo-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+      background: var(--bg-surface);
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+    }
+    
+    h1 {
+      font-family: var(--font-display);
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    
+    h2 {
+      font-family: var(--font-display);
+      color: var(--secondary);
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+    
+    .demo-section {
+      margin-bottom: 40px;
+      padding: 20px;
+      background: var(--bg-overlay);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+    }
+    
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .code-example {
+      margin-top: 10px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--text-secondary);
+      overflow-x: auto;
+    }
+    
+    .validation-result {
+      margin-top: 10px;
+      padding: 10px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+    
+    .valid {
+      color: var(--success);
+    }
+    
+    .invalid {
+      color: var(--danger);
+    }
+  </style>
+</head>
+<body class="theme-neon-synthwave">
+  <div class="demo-container">
+    <h1>NeonInput Component Demo</h1>
+    
+    <!-- Basic Examples -->
+    <div class="demo-section">
+      <h2>Basic Input Types</h2>
+      <div class="demo-grid">
+        <div>
+          <neon-input 
+            type="text" 
+            placeholder="Enter your handle..."
+            label="Street Name"
+            helper-text="Your alias in Night City"
+          ></neon-input>
+          <div class="code-example">type="text"</div>
+        </div>
+        
+        <div>
+          <neon-input 
+            type="email" 
+            placeholder="user@megacorp.com"
+            label="Email"
+            required
+          ></neon-input>
+          <div class="code-example">type="email" required</div>
+        </div>
+        
+        <div>
+          <neon-input 
+            type="password" 
+            placeholder="••••••••"
+            label="Access Code"
+            minlength="8"
+            show-counter
+          ></neon-input>
+          <div class="code-example">type="password" minlength="8"</div>
+        </div>
+        
+        <div>
+          <neon-input 
+            type="number" 
+            placeholder="0"
+            label="Eurodollars"
+            min="0"
+            max="999999"
+            step="100"
+          ></neon-input>
+          <div class="code-example">type="number" min="0" max="999999"</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Validation Examples -->
+    <div class="demo-section">
+      <h2>Validation Examples</h2>
+      <div class="demo-grid">
+        <div>
+          <neon-input 
+            type="text"
+            label="Character Name"
+            placeholder="Johnny Silverhand"
+            required
+            minlength="3"
+            maxlength="20"
+            show-counter
+          ></neon-input>
+          <div class="code-example">required minlength="3" maxlength="20"</div>
+        </div>
+        
+        <div>
+          <neon-input 
+            type="text"
+            label="Phone Number"
+            placeholder="555-CYBER"
+            pattern="[0-9]{3}-[A-Z]{5}"
+            pattern-error="Format: 555-CYBER"
+            helper-text="Format: 555-CYBER"
+          ></neon-input>
+          <div class="code-example">pattern="[0-9]{3}-[A-Z]{5}"</div>
+        </div>
+        
+        <div>
+          <neon-input 
+            type="number"
+            label="Character Level"
+            placeholder="1"
+            min="1"
+            max="10"
+            value="5"
+            helper-text="Between 1 and 10"
+          ></neon-input>
+          <div class="code-example">min="1" max="10"</div>
+        </div>
+        
+        <div>
+          <neon-input 
+            type="text"
+            label="Custom Validator"
+            placeholder="MEGACORP"
+            validator="validateCorporation"
+            validator-error="Must be a valid corporation"
+            helper-text="Enter a megacorp name"
+          ></neon-input>
+          <div class="code-example">validator="validateCorporation"</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Variants -->
+    <div class="demo-section">
+      <h2>Variants & States</h2>
+      <div class="demo-grid">
+        <div>
+          <neon-input 
+            variant="primary"
+            label="Primary Variant"
+            placeholder="Cyan glow"
+            value="Primary Input"
+          ></neon-input>
+        </div>
+        
+        <div>
+          <neon-input 
+            variant="secondary"
+            label="Secondary Variant"
+            placeholder="Magenta glow"
+            value="Secondary Input"
+          ></neon-input>
+        </div>
+        
+        <div>
+          <neon-input 
+            variant="accent"
+            label="Accent Variant"
+            placeholder="Yellow glow"
+            value="Accent Input"
+          ></neon-input>
+        </div>
+        
+        <div>
+          <neon-input 
+            label="Disabled Input"
+            placeholder="Cannot edit"
+            value="System Locked"
+            disabled
+          ></neon-input>
+        </div>
+        
+        <div>
+          <neon-input 
+            label="Error State"
+            placeholder="Invalid data"
+            value="ERROR"
+            error
+            error-text="System malfunction detected"
+          ></neon-input>
+        </div>
+        
+        <div>
+          <neon-input 
+            label="Success State"
+            placeholder="Valid data"
+            value="AUTHENTICATED"
+            success
+            helper-text="Access granted"
+          ></neon-input>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Advanced Features -->
+    <div class="demo-section">
+      <h2>Advanced Features</h2>
+      <div class="demo-grid">
+        <div>
+          <neon-input 
+            type="text"
+            label="No Scan Effect"
+            placeholder="Static input"
+            no-scan
+            helper-text="Scanning disabled"
+          ></neon-input>
+        </div>
+        
+        <div>
+          <neon-input 
+            type="text"
+            label="With Sound"
+            placeholder="Focus for sound"
+            sound
+            helper-text="Audio feedback enabled"
+          ></neon-input>
+        </div>
+        
+        <div>
+          <neon-input 
+            type="text"
+            label="Character Counter"
+            placeholder="Type here..."
+            maxlength="50"
+            show-counter
+            helper-text="Max 50 characters"
+          ></neon-input>
+        </div>
+        
+        <div>
+          <neon-input 
+            type="password"
+            label="Secure Access"
+            placeholder="••••••••"
+            minlength="12"
+            maxlength="32"
+            show-counter
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$"
+            pattern-error="Must contain uppercase, lowercase, number, and special character"
+          ></neon-input>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Interactive Validation Test -->
+    <div class="demo-section">
+      <h2>Interactive Validation Test</h2>
+      <neon-input 
+        id="testInput"
+        type="text"
+        label="Test Input"
+        placeholder="Try different values..."
+        required
+        minlength="5"
+        maxlength="15"
+        show-counter
+        helper-text="Required, 5-15 characters"
+      ></neon-input>
+      <button onclick="validateTest()" style="margin-top: 10px; padding: 10px 20px; background: var(--primary); color: var(--bg-primary); border: none; cursor: pointer;">
+        Validate
+      </button>
+      <div id="validationResult" class="validation-result"></div>
+    </div>
+  </div>
+  
+  <!-- Load Components -->
+  <script src="src/components/neon-input.js"></script>
+  
+  <script>
+    // Custom validator example
+    window.validateCorporation = function(value) {
+      const validCorps = ['ARASAKA', 'MILITECH', 'BIOTECHNICA', 'ZETATECH', 'PETROCHEM'];
+      return {
+        valid: validCorps.includes(value.toUpperCase()),
+        message: `Must be one of: ${validCorps.join(', ')}`
+      };
+    };
+    
+    // Validation test function
+    function validateTest() {
+      const input = document.getElementById('testInput');
+      const result = document.getElementById('validationResult');
+      const isValid = input.checkValidity();
+      
+      result.innerHTML = `
+        <strong>Validation Result:</strong><br>
+        Valid: <span class="${isValid ? 'valid' : 'invalid'}">${isValid}</span><br>
+        Value: "${input.value}"<br>
+        Length: ${input.value.length}
+      `;
+    }
+    
+    // Listen to all neon-input events for demo
+    document.addEventListener('neon-input', (e) => {
+      console.log('Input event:', e.detail);
+    });
+    
+    document.addEventListener('neon-change', (e) => {
+      console.log('Change event:', e.detail);
+    });
+    
+    document.addEventListener('neon-focus', (e) => {
+      console.log('Focus event on:', e.target);
+    });
+    
+    document.addEventListener('neon-blur', (e) => {
+      console.log('Blur event on:', e.target);
+    });
+  </script>
+</body>
+</html>

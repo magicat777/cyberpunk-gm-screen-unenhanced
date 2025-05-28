@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyberpunk GM Screen - Enhanced Edition</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="src/styles/design-system.css">
+  <link rel="stylesheet" href="src/styles/cyberpunk-background.css">
+  <link rel="stylesheet" href="src/styles/themes.css">
+  <link rel="stylesheet" href="src/styles/enhanced-panels-fixed.css">
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-primary);
+      color: var(--text-primary);
+      background: var(--bg-primary);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .main-container {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Header Styles */
+    .app-header {
+      background: var(--bg-surface);
+      border-bottom: 2px solid var(--border-color);
+      z-index: 10000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    
+    .header-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .menu-toggle {
+      padding: 8px 12px;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 20px;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    
+    .menu-toggle:hover {
+      background: var(--bg-overlay);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .header-brand {
+      display: flex;
+      align-items: baseline;
+      gap: 15px;
+      flex: 1;
+      margin-left: 20px;
+    }
+    
+    .header-title {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-family: var(--font-display);
+    }
+    
+    .header-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .header-btn {
+      padding: 8px 12px;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    
+    .header-btn:hover {
+      background: var(--bg-overlay);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    
+    /* Side Tray Styles */
+    .side-tray {
+      position: fixed;
+      top: var(--header-height, 100px); /* Dynamic header height */
+      left: -300px;
+      width: 300px;
+      height: calc(100% - var(--header-height, 100px));
+      background: var(--bg-surface);
+      border-right: 2px solid var(--border-color);
+      z-index: 9999; /* Below header (10000) */
+      transition: left 0.3s ease;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .side-tray.open {
+      left: 0;
+    }
+    
+    .tray-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.5);
+      border-bottom: 2px solid var(--border-color);
+      flex-shrink: 0;
+    }
+    
+    .tray-content-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    
+    .tray-content-wrapper::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    .tray-content-wrapper::-webkit-scrollbar-track {
+      background: var(--bg-surface);
+    }
+    
+    .tray-content-wrapper::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+    
+    .tray-content-wrapper::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+    
+    .tray-title {
+      margin: 0;
+      font-size: 1.2rem;
+      color: var(--primary);
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .tray-close {
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 20px;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    
+    .tray-close:hover {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: white;
+    }
+    
+    .tray-content {
+      padding: 20px;
+    }
+    
+    .tray-section {
+      margin-bottom: 30px;
+    }
+    
+    .tray-section-title {
+      margin: 0 0 15px 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .tray-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      background: var(--bg-overlay);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-family: var(--font-secondary);
+      font-size: 14px;
+      text-align: left;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    
+    .tray-btn:hover:not(.disabled) {
+      background: var(--bg-surface);
+      border-color: var(--primary);
+      color: var(--primary);
+      box-shadow: var(--glow-small) var(--primary);
+      transform: translateX(5px);
+    }
+    
+    .tray-btn.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .tray-btn .icon {
+      font-size: 18px;
+    }
+    
+    /* Footer Styles */
+    .app-footer {
+      background: var(--bg-surface);
+      border-top: 2px solid var(--border-color);
+      padding: 10px 20px;
+      text-align: center;
+      z-index: 10000;
+    }
+    
+    .footer-content {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    .footer-separator {
+      margin: 0 10px;
+      color: var(--border-color);
+    }
+    
+    /* Minimized Panel Bar */
+    .minimized-panel-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-surface);
+      border-top: 2px solid var(--border-color);
+      padding: 10px;
+      z-index: 1000;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+    }
+    
+    .minimized-panels-container {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+    
+    .minimized-panel-btn {
+      padding: 8px 16px;
+      background: var(--bg-overlay);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: var(--font-secondary);
+      font-size: 14px;
+      transition: all 0.3s;
+      border-radius: 4px;
+    }
+    
+    .minimized-panel-btn:hover {
+      background: var(--bg-surface);
+      border-color: var(--primary);
+      color: var(--primary);
+      box-shadow: var(--glow-small) var(--primary);
+    }
+    
+    .welcome-screen {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 10;
+      transition: opacity 0.5s;
+    }
+    
+    .welcome-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .welcome-title {
+      font-size: 3rem;
+      font-weight: 900;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--primary);
+      text-shadow: var(--glow-large) var(--primary);
+      animation: glitch 3s infinite;
+    }
+    
+    .welcome-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin: 1rem 0 2rem;
+    }
+    
+    .start-button {
+      padding: 1rem 2rem;
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      font-size: 1.1rem;
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .start-button:hover {
+      background: var(--primary);
+      color: var(--bg-primary);
+      box-shadow: var(--glow-large) var(--primary);
+      transform: scale(1.05);
+    }
+    
+    .start-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s;
+    }
+    
+    .start-button:hover::before {
+      left: 100%;
+    }
+    
+    @keyframes glitch {
+      0%, 100% { text-shadow: var(--glow-large) var(--primary); }
+      20% { text-shadow: var(--glow-large) var(--secondary); }
+      40% { text-shadow: var(--glow-large) var(--accent); }
+      60% { text-shadow: var(--glow-large) var(--danger); }
+      80% { text-shadow: var(--glow-large) var(--success); }
+    }
+    
+    .quick-start {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .quick-start-btn {
+      padding: 10px 20px;
+      background: var(--bg-overlay);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: var(--font-secondary);
+      font-size: 14px;
+    }
+    
+    .quick-start-btn:hover {
+      background: var(--bg-surface);
+      border-color: var(--primary);
+      color: var(--primary);
+      box-shadow: var(--glow-small) var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <!-- Will be added by JavaScript -->
+  
+  <!-- Header Bar -->
+  <header class="app-header" id="appHeader" style="display: none;">
+    <div class="header-main">
+      <div class="header-left">
+        <button class="header-btn" onclick="themeManager.cycleTheme()" title="Change Theme">
+          <span class="icon">🎨</span>
+        </button>
+        <button class="menu-toggle" onclick="toggleSideTray()" title="Toggle Menu">
+          <span class="icon">☰</span>
+        </button>
+      </div>
+      <div class="header-brand">
+        <h1 class="header-title">Cyberpunk GM Screen</h1>
+        <span class="header-subtitle">Enhanced Edition</span>
+      </div>
+      <div class="header-actions">
+        <!-- Empty for now, can add future actions here -->
+      </div>
+    </div>
+  </header>
+  
+  <!-- Side Tray -->
+  <aside class="side-tray" id="sideTray">
+    <div class="tray-header">
+      <h3 class="tray-title">Tools & Features</h3>
+      <button class="tray-close" onclick="toggleSideTray()">×</button>
+    </div>
+    <div class="tray-content-wrapper">
+      <div class="tray-content">
+      <div class="tray-section">
+        <h4 class="tray-section-title">Create Panels</h4>
+        <button class="tray-btn" onclick="if(window.appStarted) { createDicePanel(); toggleSideTray(); } else { alert('Please click Jack In first!'); }">
+          <span class="icon">🎲</span> Enhanced Dice Roller
+        </button>
+        <button class="tray-btn" onclick="if(window.appStarted) { createCombatPanel(); toggleSideTray(); } else { alert('Please click Jack In first!'); }">
+          <span class="icon">⚔️</span> Advanced Combat Tracker
+        </button>
+        <button class="tray-btn" onclick="if(window.appStarted) { createNotesPanel(); toggleSideTray(); } else { alert('Please click Jack In first!'); }">
+          <span class="icon">📝</span> Session Notes
+        </button>
+        <button class="tray-btn" onclick="if(window.appStarted) { createAllPanels(); toggleSideTray(); } else { alert('Please click Jack In first!'); }">
+          <span class="icon">⊕</span> Create All Panels
+        </button>
+      </div>
+      <div class="tray-section">
+        <h4 class="tray-section-title">Panel Management</h4>
+        <button class="tray-btn" onclick="if(window.appStarted) { fitPanelsToScreen(); toggleSideTray(); } else { alert('Please click Jack In first!'); }">
+          <span class="icon">⊞</span> Arrange Panels
+        </button>
+        <button class="tray-btn" onclick="if(window.appStarted) { minimizeAllPanels(); toggleSideTray(); } else { alert('Please click Jack In first!'); }">
+          <span class="icon">⊖</span> Minimize All Panels
+        </button>
+        <button class="tray-btn danger" onclick="if(window.appStarted) { clearAllPanels(); toggleSideTray(); } else { alert('Please click Jack In first!'); }" style="border-color: var(--danger); color: var(--danger);">
+          <span class="icon">×</span> Clear All Panels
+        </button>
+      </div>
+      <div class="tray-section">
+        <h4 class="tray-section-title">Coming Soon</h4>
+        <button class="tray-btn disabled">
+          <span class="icon">👥</span> NPC Generator
+        </button>
+        <button class="tray-btn disabled">
+          <span class="icon">📖</span> Rules Reference
+        </button>
+        <button class="tray-btn disabled">
+          <span class="icon">🌐</span> Lore Database
+        </button>
+        <button class="tray-btn disabled">
+          <span class="icon">💻</span> Netrunning Interface
+        </button>
+      </div>
+      <div class="tray-section">
+        <h4 class="tray-section-title">Settings</h4>
+        <button class="tray-btn" onclick="openThemeSelector()">
+          <span class="icon">🎨</span> Theme Settings
+        </button>
+        <button class="tray-btn" onclick="togglePerformanceMode()">
+          <span class="icon">⚡</span> Performance Mode
+        </button>
+      </div>
+    </div>
+    </div>
+  </aside>
+
+  <!-- Main Container -->
+  <div class="main-container">
+    <!-- Panel Container -->
+    <div class="panel-container"></div>
+    
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcomeScreen">
+      <h1 class="welcome-title">Cyberpunk GM Screen</h1>
+      <p class="welcome-subtitle">Enhanced Edition - Night City Awaits</p>
+      <button class="start-button" id="jackInButton" onclick="startApp()">Jack In</button>
+    </div>
+    
+    <!-- Minimized Panel Bar -->
+    <div class="minimized-panel-bar" id="minimizedPanelBar" style="display: none;">
+      <div class="minimized-panels-container" id="minimizedPanels"></div>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer class="app-footer" id="appFooter" style="display: none;">
+    <div class="footer-content">
+      <span class="footer-text">Cyberpunk GM Screen © 2025 | Built for Night City Game Masters</span>
+      <span class="footer-separator">|</span>
+      <span class="footer-text">Powered by Web Components & Modern CSS</span>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="src/js/cyberpunk-background.js"></script>
+  <script src="src/js/theme-manager.js"></script>
+  <script src="src/js/enhanced-panel-system-fixed.js"></script>
+  <script src="src/components/holo-button.js"></script>
+  <script src="src/components/neon-input.js"></script>
+  <script src="src/js/enhanced-dice-roller-fixed.js"></script>
+  <script src="src/js/advanced-combat-tracker-fixed.js"></script>
+  
+  <script>
+    // Define startApp immediately so it's available for onclick
+    function startApp() {
+      console.log('🚀 startApp() called');
+      
+      try {
+      
+      // Make sure DOM is ready
+      if (document.readyState === 'loading') {
+        console.log('⏳ DOM not ready, waiting...');
+        document.addEventListener('DOMContentLoaded', startApp);
+        return;
+      }
+      
+      // Hide welcome screen
+      const welcomeScreen = document.getElementById('welcomeScreen');
+      if (welcomeScreen) {
+        welcomeScreen.classList.add('hidden');
+      } else {
+        console.error('❌ Welcome screen not found!');
+      }
+      
+      // Show header and footer
+      const header = document.getElementById('appHeader');
+      const footer = document.getElementById('appFooter');
+      
+      console.log('🔍 Header element:', header);
+      console.log('🔍 Footer element:', footer);
+      
+      if (header) {
+        header.style.display = 'flex';
+        console.log('✅ Header shown');
+      } else {
+        console.error('❌ Header element not found!');
+      }
+      
+      if (footer) {
+        footer.style.display = 'block';
+        console.log('✅ Footer shown');
+      } else {
+        console.error('❌ Footer element not found!');
+      }
+      
+      // Update header height CSS variable
+      setTimeout(() => {
+        const header = document.getElementById('appHeader');
+        if (header) {
+          const headerHeight = header.offsetHeight;
+          document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+          console.log('📏 Header height updated to:', headerHeight + 'px');
+        }
+      }, 50);
+      
+      // Set app started flag
+      window.appStarted = true;
+      console.log('🚀 App started - panel system ready!');
+      
+      // Don't automatically create panels - let the user choose
+      // or load from saved layout
+      
+      } catch (error) {
+        console.error('❌ Error in startApp:', error);
+        alert('Error starting app. Check console for details.');
+      }
+    }
+    
+    // Make it globally accessible
+    window.startApp = startApp;
+    
+    // Add event listener to Jack In button as soon as DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('jackInButton');
+        if (btn) {
+          btn.addEventListener('click', startApp);
+          console.log('✅ Added click listener to Jack In button');
+        }
+      });
+    } else {
+      const btn = document.getElementById('jackInButton');
+      if (btn) {
+        btn.addEventListener('click', startApp);
+        console.log('✅ Added click listener to Jack In button');
+      }
+    }
+    
+    // Verify scripts loaded
+    console.log('🔍 Script load check:');
+    console.log('- CyberpunkBackground:', typeof CyberpunkBackground);
+    console.log('- ThemeManager:', typeof ThemeManager);
+    console.log('- EnhancedPanelSystem:', typeof EnhancedPanelSystem);
+    console.log('- Custom elements registered:', customElements.get('holo-button') ? 'yes' : 'no');
+    console.log('- startApp function:', typeof startApp);
+    
+    // Initialize systems on page load
+    let background;
+    let themeManager;
+    let panelSystem;
+    
+    window.addEventListener('DOMContentLoaded', () => {
+      console.log('🎯 DOMContentLoaded fired');
+      
+      try {
+      // Initialize animated background
+      background = new CyberpunkBackground({
+        circuits: true,
+        rain: false,  // Start with rain off
+        neonPulse: true,
+        glitch: false,
+        performance: 'high'  // Force high performance to allow effects
+      });
+      
+      // Make background globally accessible
+      window.background = background;
+      
+      // Initialize theme manager
+      themeManager = new ThemeManager();
+      
+      // Initialize panel system
+      panelSystem = new EnhancedPanelSystem({
+        container: document.querySelector('.panel-container'),
+        enableDocking: true,
+        enableTabbing: true,
+        enablePersistence: true
+      });
+      
+      // Make panel system globally accessible
+      window.panelSystem = panelSystem;
+      
+      // Set header height CSS variable after header is shown
+      setTimeout(() => {
+        const header = document.getElementById('appHeader');
+        if (header) {
+          const headerHeight = header.offsetHeight;
+          document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+          console.log('📏 Header height set to:', headerHeight + 'px');
+        }
+      }, 100);
+      
+      console.log('✅ All systems initialized successfully');
+      
+      // Add event listener to Jack In button
+      const jackInButton = document.querySelector('.start-button');
+      if (jackInButton) {
+        console.log('🔘 Adding click listener to Jack In button');
+        jackInButton.addEventListener('click', () => {
+          console.log('🖱️ Jack In button clicked');
+          startApp();
+        });
+      } else {
+        console.error('❌ Jack In button not found!');
+      }
+      
+      } catch (error) {
+        console.error('❌ Error during initialization:', error);
+        alert('Error initializing app components. Check console for details.');
+      }
+    });
+    
+    // Panel creation functions
+    function createDicePanel() {
+      if (!window.panelSystem) {
+        console.error('Panel system not initialized');
+        return;
+      }
+      // Generate unique ID for this instance
+      const uniqueId = `dice-roller-${Date.now()}`;
+      const panel = window.panelSystem.createPanel({
+        title: 'Enhanced Dice Roller',
+        content: `<div id="${uniqueId}" style="height: 100%; overflow: auto;"></div>`,
+        position: { x: 50, y: 50 },
+        size: { width: 450, height: 600 }
+      });
+      
+      // Initialize enhanced dice roller
+      setTimeout(() => {
+        const container = document.getElementById(uniqueId);
+        if (container) {
+          new CyberpunkDiceRoller(container);
+        }
+      }, 100);
+    }
+    
+    function createCombatPanel() {
+      if (!window.panelSystem) {
+        console.error('Panel system not initialized');
+        return;
+      }
+      // Generate unique ID for this instance
+      const uniqueId = `combat-tracker-${Date.now()}`;
+      const panel = window.panelSystem.createPanel({
+        title: 'Advanced Combat Tracker',
+        content: `<div id="${uniqueId}" style="height: 100%; overflow: auto;"></div>`,
+        position: { x: 520, y: 50 },
+        size: { width: 650, height: 700 }
+      });
+      
+      // Initialize advanced combat tracker
+      setTimeout(() => {
+        const container = document.getElementById(uniqueId);
+        if (container) {
+          // Store tracker instance on the container to avoid global conflicts
+          const tracker = new CyberpunkCombatTracker(container);
+          container.combatTracker = tracker;
+          // Also set global for backward compatibility
+          window.combatTracker = tracker;
+        }
+      }, 100);
+    }
+    
+    function createNotesPanel() {
+      if (!window.panelSystem) {
+        console.error('Panel system not initialized');
+        return;
+      }
+      window.panelSystem.createPanel({
+        title: 'Session Notes',
+        content: `
+          <div class="notes-panel">
+            <textarea id="notesArea" style="width: 100%; height: 300px; background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-primary); padding: 10px; font-family: var(--font-secondary); resize: vertical;" placeholder="Type your notes here..."></textarea>
+            <div style="margin-top: 10px; display: flex; justify-content: space-between;">
+              <button onclick="saveNotes()" style="padding: 8px 16px; background: var(--bg-surface); border: 1px solid var(--success); color: var(--success); cursor: pointer;">Save</button>
+              <button onclick="clearNotes()" style="padding: 8px 16px; background: var(--bg-surface); border: 1px solid var(--danger); color: var(--danger); cursor: pointer;">Clear</button>
+            </div>
+          </div>
+        `,
+        position: { x: 900, y: 50 },
+        size: { width: 350, height: 400 }
+      });
+    }
+    
+    function createAllPanels() {
+      // Create panels with slight delays to ensure proper initialization
+      createDicePanel();
+      setTimeout(() => createCombatPanel(), 100);
+      setTimeout(() => createNotesPanel(), 200);
+      
+      // Arrange them after creation
+      setTimeout(() => fitPanelsToScreen(), 300);
+    }
+    
+    function fitPanelsToScreen() {
+      if (window.panelSystem) {
+        window.panelSystem.fitAllToScreen();
+      }
+    }
+    
+    function clearAllPanels() {
+      if (window.panelSystem && confirm('Clear all panels? This will remove all current panels.')) {
+        window.panelSystem.resetLayout();
+      }
+    }
+    
+    function minimizeAllPanels() {
+      if (window.panelSystem) {
+        window.panelSystem.minimizeAll();
+      }
+    }
+    
+    // Side Tray Functions
+    function toggleSideTray() {
+      const tray = document.getElementById('sideTray');
+      tray.classList.toggle('open');
+    }
+    
+    function openThemeSelector() {
+      // Create a simple theme selector dialog
+      const themes = ['cyberpunk', 'corpo', 'street-kid', 'nomad', 'netrunner'];
+      const currentTheme = document.body.getAttribute('data-theme') || 'cyberpunk';
+      
+      const dialog = document.createElement('div');
+      dialog.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--bg-surface);
+        border: 2px solid var(--border-color);
+        padding: 20px;
+        border-radius: 8px;
+        z-index: 10002;
+        min-width: 300px;
+      `;
+      
+      dialog.innerHTML = `
+        <h3 style="margin: 0 0 20px 0; color: var(--primary);">Select Theme</h3>
+        ${themes.map(theme => `
+          <button onclick="setTheme('${theme}'); this.parentElement.remove();" 
+                  style="display: block; width: 100%; padding: 10px; margin-bottom: 10px;
+                         background: ${theme === currentTheme ? 'var(--primary)' : 'var(--bg-overlay)'};
+                         color: ${theme === currentTheme ? 'var(--bg-primary)' : 'var(--text-primary)'};
+                         border: 1px solid var(--border-color); cursor: pointer; border-radius: 4px;">
+            ${theme.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+          </button>
+        `).join('')}
+        <button onclick="this.parentElement.remove();" 
+                style="width: 100%; padding: 10px; background: var(--bg-overlay);
+                       color: var(--text-primary); border: 1px solid var(--danger);
+                       cursor: pointer; border-radius: 4px; margin-top: 10px;">
+          Cancel
+        </button>
+      `;
+      
+      document.body.appendChild(dialog);
+    }
+    
+    function setTheme(theme) {
+      if (window.themeManager) {
+        window.themeManager.setTheme(theme);
+      }
+    }
+    
+    function togglePerformanceMode() {
+      if (window.background) {
+        const current = window.background.config.performance;
+        const newMode = current === 'high' ? 'low' : 'high';
+        window.background.setPerformance(newMode);
+        
+        // Visual feedback
+        const btn = event.target.closest('button');
+        btn.innerHTML = `<span class="icon">⚡</span> Performance Mode: ${newMode.toUpperCase()}`;
+      }
+    }
+    
+    // Note: Dice rolling is now handled by the CyberpunkDiceRoller class
+    // Note: Combat tracking is now handled by the CyberpunkCombatTracker class
+    
+    // Notes functions
+    function saveNotes() {
+      const notes = document.getElementById('notesArea').value;
+      localStorage.setItem('cyberpunk-session-notes', notes);
+      
+      // Visual feedback
+      const textarea = document.getElementById('notesArea');
+      textarea.style.borderColor = 'var(--success)';
+      setTimeout(() => {
+        textarea.style.borderColor = 'var(--border-color)';
+      }, 1000);
+    }
+    
+    function loadNotes() {
+      const saved = localStorage.getItem('cyberpunk-session-notes');
+      if (saved && document.getElementById('notesArea')) {
+        document.getElementById('notesArea').value = saved;
+      }
+    }
+    
+    function clearNotes() {
+      if (confirm('Clear all notes?')) {
+        document.getElementById('notesArea').value = '';
+        localStorage.removeItem('cyberpunk-session-notes');
+      }
+    }
+    
+    // Load saved notes on panel creation
+    setTimeout(loadNotes, 1000);
+    
+    // Debug function to test background effects
+    window.testBackground = function() {
+      console.log('🧪 Testing background effects...');
+      if (!window.background) {
+        console.error('❌ Background not initialized!');
+        return;
+      }
+      
+      console.log('🧪 Background instance:', window.background);
+      console.log('🧪 Background elements:', window.background.elements);
+      console.log('🧪 Background config:', window.background.config);
+      
+      // Check if background element exists in DOM
+      const bgElement = document.querySelector('.cyberpunk-bg');
+      console.log('🧪 Background element in DOM:', bgElement);
+      
+      if (bgElement) {
+        console.log('🧪 Background children:', bgElement.children);
+        console.log('🧪 Background computed styles:', window.getComputedStyle(bgElement));
+      }
+      
+      // Try to manually trigger rain
+      console.log('🧪 Manually triggering rain effect...');
+      window.background.toggleEffect('rain');
+    };
+    
+    // Run test after a short delay
+    setTimeout(() => {
+      console.log('🚀 Running automatic background test...');
+      window.testBackground();
+    }, 2000);
+  </script>
+</body>
+</html>

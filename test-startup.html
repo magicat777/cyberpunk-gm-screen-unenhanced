@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Startup</title>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #00ffff;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    
+    .test-button {
+      padding: 20px 40px;
+      font-size: 24px;
+      background: transparent;
+      border: 2px solid #00ffff;
+      color: #00ffff;
+      cursor: pointer;
+      margin: 10px;
+    }
+    
+    .test-button:hover {
+      background: #00ffff;
+      color: #0a0a0a;
+    }
+    
+    #output {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #00ffff;
+      min-width: 400px;
+      max-height: 400px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cyberpunk GM Screen - Startup Test</h1>
+  
+  <button class="test-button" onclick="testStartup()">Test Jack In</button>
+  <button class="test-button" onclick="window.location.href='cyberpunk-enhanced.html'">Go to Main Page</button>
+  
+  <div id="output">Console output will appear here...</div>
+  
+  <script>
+    // Capture console output
+    const output = document.getElementById('output');
+    const originalLog = console.log;
+    const originalError = console.error;
+    
+    console.log = function(...args) {
+      originalLog.apply(console, args);
+      output.textContent += '✅ ' + args.join(' ') + '\n';
+    };
+    
+    console.error = function(...args) {
+      originalError.apply(console, args);
+      output.textContent += '❌ ' + args.join(' ') + '\n';
+    };
+    
+    function testStartup() {
+      output.textContent = 'Testing startup sequence...\n\n';
+      
+      // Test 1: Check if scripts loaded
+      console.log('Test 1: Checking script availability');
+      console.log('- window.CyberpunkBackground:', typeof window.CyberpunkBackground);
+      console.log('- window.ThemeManager:', typeof window.ThemeManager);
+      console.log('- window.EnhancedPanelSystem:', typeof window.EnhancedPanelSystem);
+      console.log('- window.CyberpunkDiceRoller:', typeof window.CyberpunkDiceRoller);
+      console.log('- window.CyberpunkCombatTracker:', typeof window.CyberpunkCombatTracker);
+      
+      // Test 2: Check custom elements
+      console.log('\nTest 2: Checking custom elements');
+      console.log('- holo-button:', customElements.get('holo-button') ? 'registered' : 'not registered');
+      console.log('- neon-input:', customElements.get('neon-input') ? 'registered' : 'not registered');
+      
+      // Test 3: Check DOM elements
+      console.log('\nTest 3: Checking DOM elements in main page');
+      console.log('(These will be undefined in test page)');
+      console.log('- welcomeScreen:', document.getElementById('welcomeScreen') ? 'found' : 'not found');
+      console.log('- appHeader:', document.getElementById('appHeader') ? 'found' : 'not found');
+      console.log('- appFooter:', document.getElementById('appFooter') ? 'found' : 'not found');
+      
+      // Test 4: Check if startApp is defined
+      console.log('\nTest 4: Checking startApp function');
+      console.log('- window.startApp:', typeof window.startApp);
+      
+      console.log('\n✨ Test complete! Check for any errors above.');
+    }
+  </script>
+  
+  <!-- Load the required scripts -->
+  <script src="src/js/cyberpunk-background.js"></script>
+  <script src="src/js/theme-manager.js"></script>
+  <script src="src/js/enhanced-panel-system-fixed.js"></script>
+  <script src="src/components/holo-button.js"></script>
+  <script src="src/components/neon-input.js"></script>
+  <script src="src/js/enhanced-dice-roller-fixed.js"></script>
+  <script src="src/js/advanced-combat-tracker-fixed.js"></script>
+</body>
+</html>
