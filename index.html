@@ -983,16 +983,16 @@
 <body>
   <!-- Audio preload elements for sound effects -->
   <audio id="dice-roll-sound" preload="auto">
-    <source src="sounds/dice-roll.mp3" type="audio/mpeg">
-    <source src="sounds/dice-roll.ogg" type="audio/ogg">
+    <source src="src/assets/sounds/dice-roll.mp3" type="audio/mpeg">
+    <source src="src/assets/sounds/dice-roll.ogg" type="audio/ogg">
   </audio>
   <audio id="critical-hit-sound" preload="auto">
-    <source src="sounds/critical-hit.mp3" type="audio/mpeg">
-    <source src="sounds/critical-hit.ogg" type="audio/ogg">
+    <source src="src/assets/sounds/critical-hit.mp3" type="audio/mpeg">
+    <source src="src/assets/sounds/critical-hit.ogg" type="audio/ogg">
   </audio>
   <audio id="combat-hit-sound" preload="auto">
-    <source src="sounds/combat-hit.mp3" type="audio/mpeg">
-    <source src="sounds/combat-hit.ogg" type="audio/ogg">
+    <source src="src/assets/sounds/combat-hit.mp3" type="audio/mpeg">
+    <source src="src/assets/sounds/combat-hit.ogg" type="audio/ogg">
   </audio>
   <!-- Animated Background -->
   <!-- Will be added by JavaScript -->
@@ -1267,7 +1267,7 @@
   <script src="src/js/components/enhanced-location-generator.js"></script>
   <script src="src/js/components/encounter-generator-advanced.js"></script>
   <script src="src/js/components/encounter-panel-advanced.js"></script>
-  <script src="src/js/encounter-panel-simple.js"></script>
+  <script src="src/js/components/encounter-panel-simple.js"></script>
   <script src="src/js/components/netrunning-interface.js"></script>
   <script src="src/js/netrunning-advanced.js"></script>
   <script src="src/js/components/netrunning-enhanced.js"></script>
@@ -3775,7 +3775,7 @@
               <div style="text-align: center; padding: 40px; color: #0ff;">
                 <h3 style="color: #f0f; margin-bottom: 20px;">Encounter Generator</h3>
                 <p style="margin-bottom: 20px; color: #f00;">Error: Encounter generator scripts not loaded</p>
-                <button onclick="location.reload()" class="btn-primary">Reload Page</button>
+                <button onclick="location.reload()" class="holo-button primary">Reload Page</button>
               </div>
             `;
           }
