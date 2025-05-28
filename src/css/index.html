@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk RED GM Screen</title>
+    
+    <!-- Modernized CSS Architecture -->
+    <link rel="stylesheet" href="cyberpunk-variables.css">
+    <link rel="stylesheet" href="cyberpunk-reset.css">
+    <link rel="stylesheet" href="cyberpunk-typography.css">
+    
+    <style>
+        /* Test styles to demonstrate variables */
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+        }
+        
+        .color-sample {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .color-box {
+            height: 100px;
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-sm);
+            display: flex;
+            align-items: flex-end;
+            font-size: var(--text-sm);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-md);
+            border: var(--border-primary);
+            border-radius: var(--border-radius-md);
+            background-color: var(--background-secondary);
+        }
+        
+        .button-sample {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .button {
+            background-color: var(--background-tertiary);
+            color: var(--accent-cyan);
+            border: var(--border-primary);
+            border-radius: var(--border-radius-md);
+            padding: var(--button-padding);
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+        
+        .button:hover {
+            background-color: var(--accent-cyan);
+            color: var(--background-primary);
+            box-shadow: var(--border-glow-cyan);
+        }
+        
+        .button-primary {
+            background-image: var(--gradient-cyan);
+        }
+        
+        .button-secondary {
+            background-color: var(--background-tertiary);
+        }
+        
+        .button-danger {
+            color: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+        
+        .button-danger:hover {
+            background-color: var(--accent-red);
+            box-shadow: 0 0 5px var(--accent-red);
+        }
+        
+        .spacing-sample {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+        
+        .spacing-box {
+            background-color: var(--background-tertiary);
+            border: var(--border-primary);
+            border-radius: var(--border-radius-md);
+        }
+        
+        .xs { padding: var(--spacing-xs); }
+        .sm { padding: var(--spacing-sm); }
+        .md { padding: var(--spacing-md); }
+        .lg { padding: var(--spacing-lg); }
+        .xl { padding: var(--spacing-xl); }
+        
+        .theme-toggle {
+            position: fixed;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 class="title-glitch" data-text="Cyberpunk CSS Architecture">Cyberpunk CSS Architecture</h1>
+        <p class="lead">This page demonstrates the new CSS architecture with variables for the Cyberpunk GM Screen UI modernization.</p>
+        
+        <div class="theme-toggle">
+            <button class="button" onclick="document.documentElement.className = ''">Dark Mode</button>
+            <button class="button" onclick="document.documentElement.className = 'light-mode'">Light Mode</button>
+            <button class="button" onclick="document.documentElement.className = 'high-contrast'">High Contrast</button>
+        </div>
+        
+        <div class="section">
+            <h2>Color System</h2>
+            <p>Color variables provide consistent theming across the application.</p>
+            
+            <h3 class="text-accent">Background Colors</h3>
+            <div class="color-sample">
+                <div class="color-box" style="background-color: var(--background-primary);">primary</div>
+                <div class="color-box" style="background-color: var(--background-secondary);">secondary</div>
+                <div class="color-box" style="background-color: var(--background-tertiary);">tertiary</div>
+            </div>
+            
+            <h3 class="text-accent">Accent Colors</h3>
+            <div class="color-sample">
+                <div class="color-box" style="background-color: var(--accent-cyan);">cyan</div>
+                <div class="color-box" style="background-color: var(--accent-cyan-dim);">cyan-dim</div>
+                <div class="color-box" style="background-color: var(--accent-magenta);">magenta</div>
+                <div class="color-box" style="background-color: var(--accent-magenta-dim);">magenta-dim</div>
+                <div class="color-box" style="background-color: var(--accent-yellow);">yellow</div>
+                <div class="color-box" style="background-color: var(--accent-red);">red</div>
+                <div class="color-box" style="background-color: var(--accent-green);">green</div>
+            </div>
+            
+            <h3 class="text-accent">Neutral Colors</h3>
+            <div class="color-sample">
+                <div class="color-box" style="background-color: var(--neutral-dark);">dark</div>
+                <div class="color-box" style="background-color: var(--neutral-medium);">medium</div>
+                <div class="color-box" style="background-color: var(--neutral-light); color: var(--background-primary)">light</div>
+                <div class="color-box" style="background-color: var(--neutral-muted); color: var(--background-primary)">muted</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Typography</h2>
+            <p>Consistent typography creates visual hierarchy and improves readability.</p>
+            
+            <h1>Heading Level 1</h1>
+            <h2>Heading Level 2</h2>
+            <h3>Heading Level 3</h3>
+            <h4>Heading Level 4</h4>
+            <h5>Heading Level 5</h5>
+            <h6>Heading Level 6</h6>
+            
+            <p>This is standard paragraph text that demonstrates the base font size and line height. The text should be readable and properly spaced for optimal user experience.</p>
+            
+            <p class="lead">This is a lead paragraph which is larger than standard text, typically used for introductions or important statements.</p>
+            
+            <p><strong>This text is bold</strong> while <em>this text is italicized</em>. You can also have <code>inline code</code> within paragraphs.</p>
+            
+            <p class="text-sm">This is smaller text, useful for captions or secondary information.</p>
+            
+            <p class="text-xs">This is extra small text, used for footnotes or very secondary information.</p>
+            
+            <div class="text-center">This text is center aligned.</div>
+            <div class="text-right">This text is right aligned.</div>
+            
+            <p>
+                <span class="text-primary">Primary text color</span> •
+                <span class="text-secondary">Secondary text color</span> •
+                <span class="text-accent">Accent text color</span> •
+                <span class="text-accent-magenta">Magenta text color</span>
+            </p>
+            
+            <p>
+                <span class="text-success">Success text</span> •
+                <span class="text-warning">Warning text</span> •
+                <span class="text-danger">Danger text</span> •
+                <span class="text-info">Info text</span>
+            </p>
+            
+            <p>
+                <span class="text-glow">Text with glow effect</span> •
+                <span class="text-glow-accent">Accent glow</span> •
+                <span class="font-mono">Monospace font</span>
+            </p>
+        </div>
+        
+        <div class="section">
+            <h2>Buttons</h2>
+            <p>Buttons demonstrate the use of color, spacing, and border variables.</p>
+            
+            <div class="button-sample">
+                <button class="button">Default Button</button>
+                <button class="button button-primary">Primary Button</button>
+                <button class="button button-secondary">Secondary Button</button>
+                <button class="button button-danger">Danger Button</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Spacing System</h2>
+            <p>Consistent spacing creates visual rhythm and improves layout organization.</p>
+            
+            <div class="spacing-sample">
+                <div class="spacing-box xs">Spacing XS (0.25rem)</div>
+                <div class="spacing-box sm">Spacing SM (0.5rem)</div>
+                <div class="spacing-box md">Spacing MD (1rem)</div>
+                <div class="spacing-box lg">Spacing LG (1.5rem)</div>
+                <div class="spacing-box xl">Spacing XL (2rem)</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Borders & Shadows</h2>
+            <p>Consistent border and shadow styles create depth and visual hierarchy.</p>
+            
+            <div style="display: flex; gap: var(--spacing-lg); flex-wrap: wrap; margin-bottom: var(--spacing-lg);">
+                <div style="width: 100px; height: 100px; background-color: var(--background-tertiary); box-shadow: var(--shadow-sm);">Shadow SM</div>
+                <div style="width: 100px; height: 100px; background-color: var(--background-tertiary); box-shadow: var(--shadow-md);">Shadow MD</div>
+                <div style="width: 100px; height: 100px; background-color: var(--background-tertiary); box-shadow: var(--shadow-lg);">Shadow LG</div>
+                <div style="width: 100px; height: 100px; background-color: var(--background-tertiary); box-shadow: var(--shadow-panel);">Panel Shadow</div>
+            </div>
+            
+            <div style="display: flex; gap: var(--spacing-lg); flex-wrap: wrap;">
+                <div style="width: 100px; height: 100px; background-color: var(--background-tertiary); border: var(--border-width-thin) var(--border-solid) var(--accent-cyan); border-radius: var(--border-radius-sm);">Border SM</div>
+                <div style="width: 100px; height: 100px; background-color: var(--background-tertiary); border: var(--border-width-thin) var(--border-solid) var(--accent-cyan); border-radius: var(--border-radius-md);">Border MD</div>
+                <div style="width: 100px; height: 100px; background-color: var(--background-tertiary); border: var(--border-width-thin) var(--border-solid) var(--accent-cyan); border-radius: var(--border-radius-lg);">Border LG</div>
+                <div style="width: 100px; height: 100px; background-color: var(--background-tertiary); border: var(--border-width-thin) var(--border-solid) var(--accent-cyan); box-shadow: var(--border-glow-cyan);">Glow Border</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simple function to copy variable value to clipboard when clicking on a color box
+        document.querySelectorAll('.color-box').forEach(box => {
+            box.addEventListener('click', () => {
+                const varName = box.textContent.trim();
+                navigator.clipboard.writeText(`var(--${varName})`).then(() => {
+                    const original = box.textContent;
+                    box.textContent = 'Copied!';
+                    setTimeout(() => {
+                        box.textContent = original;
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

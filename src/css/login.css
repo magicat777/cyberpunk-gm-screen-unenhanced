@@ -1,0 +1,210 @@
+/* 
+ * Cyberpunk GM Screen - Login Styles
+ * Styles for the login page and authentication UI
+ */
+
+/* Login container */
+#login-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background-primary, #121212);
+    background-image: 
+        linear-gradient(rgba(0, 204, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 204, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* Login box */
+.login-box {
+    background-color: var(--background-secondary, #1e1e2d);
+    border: 1px solid var(--accent-color, #00ccff);
+    box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 8px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.login-box h2 {
+    color: var(--accent-color, #00ccff);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-display, sans-serif);
+    text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+}
+
+/* Form elements */
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color, #e0e0e0);
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: rgba(42, 42, 58, 0.7);
+    color: var(--text-color, #e0e0e0);
+    border: 1px solid var(--accent-color, #00ccff);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent-color-bright, #00ffff);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+input::placeholder {
+    color: rgba(224, 224, 224, 0.6);
+}
+
+.login-button {
+    background-color: var(--button-bg, #1e3a5a);
+    color: var(--accent-color, #00ccff);
+    border: 1px solid var(--accent-color, #00ccff);
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.login-button:hover {
+    background-color: var(--accent-color, #00ccff);
+    color: var(--button-bg, #1e3a5a);
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.5);
+}
+
+.login-button:focus {
+    outline: 2px solid var(--accent-color-bright, #00ffff);
+    outline-offset: 2px;
+}
+
+.login-button:active {
+    transform: translateY(1px);
+}
+
+/* App container */
+#app-container {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.logout-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1001;
+    width: auto;
+    background-color: var(--button-bg, #1e3a5a);
+    color: var(--accent-color, #00ccff);
+    border: 1px solid var(--accent-color, #00ccff);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.logout-button:hover {
+    background-color: var(--accent-color, #00ccff);
+    color: var(--button-bg, #1e3a5a);
+}
+
+.logout-button:focus {
+    outline: 2px solid var(--accent-color-bright, #00ffff);
+    outline-offset: 2px;
+}
+
+/* Error message */
+.error-message {
+    color: var(--error-color, #ff5555);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: none;
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+.error-message.visible {
+    display: block;
+}
+
+/* No JavaScript warning */
+.no-js-warning {
+    display: none;
+    background-color: var(--error-bg, #5c2323);
+    color: var(--text-color, #e0e0e0);
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid var(--error-color, #ff5555);
+    margin-top: 1rem;
+    border-radius: 4px;
+}
+
+.no-js .no-js-warning {
+    display: block;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .login-box {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    input, .login-button {
+        padding: 0.6rem;
+    }
+}
+
+/* Dark mode variables */
+:root {
+    --background-primary: #121212;
+    --background-secondary: #1e1e2d;
+    --accent-color: #00ccff;
+    --accent-color-bright: #00ffff;
+    --text-color: #e0e0e0;
+    --button-bg: #1e3a5a;
+    --error-color: #ff5555;
+    --error-bg: #5c2323;
+    --font-display: 'Cyberpunk', 'BladeRunner', 'Segoe UI', sans-serif;
+}

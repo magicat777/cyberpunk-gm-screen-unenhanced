@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk RED GM Screen - Theme Showcase</title>
+    
+    <!-- CSS Architecture -->
+    <link rel="stylesheet" href="cyberpunk-variables.css">
+    <link rel="stylesheet" href="cyberpunk-reset.css">
+    <link rel="stylesheet" href="cyberpunk-typography.css">
+    
+    <!-- Theme Files -->
+    <link rel="stylesheet" href="cyberpunk-neon-synthwave.css">
+    <link rel="stylesheet" href="cyberpunk-tech-noir.css">
+    
+    <style>
+        /* Page-specific styles */
+        body {
+            overflow: auto !important;
+            min-height: auto !important;
+        }
+        
+        .theme-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+        }
+        
+        .theme-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            border-bottom: var(--border-primary);
+        }
+        
+        .theme-selector {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+            position: sticky;
+            top: 0;
+            background-color: var(--background-primary);
+            padding: var(--spacing-md);
+            z-index: 100;
+            border-bottom: var(--border-primary);
+        }
+        
+        .theme-button {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background-color: var(--background-tertiary);
+            color: var(--accent-cyan);
+            border: var(--border-primary);
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+        
+        .theme-button:hover {
+            background-color: var(--accent-cyan);
+            color: var(--background-primary);
+            box-shadow: var(--border-glow-cyan);
+        }
+        
+        .theme-button.active {
+            background-color: var(--accent-cyan);
+            color: var(--background-primary);
+            box-shadow: var(--border-glow-cyan);
+        }
+        
+        .theme-showcase {
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-md);
+            border: var(--border-primary);
+            border-radius: var(--border-radius-md);
+            background-color: var(--background-secondary);
+        }
+        
+        .color-sample {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .color-box {
+            height: 100px;
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-sm);
+            display: flex;
+            align-items: flex-end;
+            font-size: var(--text-sm);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .button-sample {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .button {
+            background-color: var(--background-tertiary);
+            color: var(--accent-cyan);
+            border: var(--border-primary);
+            border-radius: var(--border-radius-md);
+            padding: var(--button-padding);
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+        
+        .button:hover {
+            background-color: var(--accent-cyan);
+            color: var(--background-primary);
+            box-shadow: var(--border-glow-cyan);
+        }
+        
+        .button-primary {
+            background-image: var(--gradient-cyan);
+        }
+        
+        .button-secondary {
+            background-color: var(--background-tertiary);
+        }
+        
+        .button-danger {
+            color: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+        
+        .button-danger:hover {
+            background-color: var(--accent-red);
+            box-shadow: 0 0 5px var(--accent-red);
+        }
+        
+        .panel-preview {
+            border: var(--border-primary);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            width: 350px;
+            background-color: var(--background-secondary);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .panel-header {
+            background: var(--gradient-header);
+            padding: var(--spacing-sm) var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            color: var(--neutral-light);
+            border-bottom: var(--border-primary);
+        }
+        
+        .panel-content {
+            padding: var(--spacing-md);
+            font-family: var(--font-primary);
+            font-size: var(--text-base);
+            line-height: var(--line-height-normal);
+            color: var(--neutral-light);
+            min-height: 150px;
+        }
+        
+        .panel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-container">
+        <div class="theme-header">
+            <h1 class="title-glitch" data-text="Cyberpunk Theme Showcase">Cyberpunk Theme Showcase</h1>
+            <p class="lead">Explore different cyberpunk aesthetic themes for the GM Screen</p>
+        </div>
+        
+        <div class="theme-selector">
+            <button class="theme-button active" onclick="setTheme('')">Default Theme</button>
+            <button class="theme-button" onclick="setTheme('neon-synthwave')">Neon Synthwave</button>
+            <button class="theme-button" onclick="setTheme('tech-noir')">Tech Noir</button>
+        </div>
+        
+        <div class="theme-showcase">
+            <div class="section">
+                <h2>Panel Examples</h2>
+                <p>Panels with different content types showcasing the current theme.</p>
+                
+                <div class="panel-grid">
+                    <div class="panel-preview">
+                        <div class="panel-header">
+                            <div>Dice Roller</div>
+                            <button class="close-button">&times;</button>
+                        </div>
+                        <div class="panel-content">
+                            <div style="display: flex; justify-content: center; margin-bottom: 15px;">
+                                <select style="width: 50px; margin-right: 5px;">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option selected>3</option>
+                                </select>
+                                d
+                                <select style="width: 50px; margin-left: 5px; margin-right: 10px;">
+                                    <option>4</option>
+                                    <option>6</option>
+                                    <option selected>10</option>
+                                </select>
+                                <button class="button">Roll</button>
+                            </div>
+                            <div style="border: var(--border-primary); padding: 10px; text-align: center;">
+                                <div>Rolls: 7, 4, 9</div>
+                                <div style="font-size: 24px; margin-top: 5px;">20</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-preview">
+                        <div class="panel-header">
+                            <div>Notes</div>
+                            <button class="close-button">&times;</button>
+                        </div>
+                        <div class="panel-content">
+                            <textarea style="width: 100%; height: 100%; background-color: var(--background-tertiary); color: var(--neutral-light); border: var(--border-primary); resize: none; min-height: 120px;">Players entered combat with corporate security. Jackie took a critical injury to the leg. Need to follow up on the data shard they recovered from the office.</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-preview">
+                        <div class="panel-header">
+                            <div>Rules Reference</div>
+                            <button class="close-button">&times;</button>
+                        </div>
+                        <div class="panel-content">
+                            <select style="width: 100%; margin-bottom: 10px;">
+                                <option selected>Combat Basics</option>
+                                <option>Damage</option>
+                                <option>Skills</option>
+                            </select>
+                            <div style="border: var(--border-primary); padding: 10px;">
+                                <p><strong>Combat Basics</strong></p>
+                                <p>Combat in Cyberpunk RED is handled in Rounds (3 second increments) and Turns.</p>
+                                <p>To make an attack, roll 1d10 + STAT + SKILL + Bonus vs DV.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Color System</h2>
+                <p>Color variables provide consistent theming across the application.</p>
+                
+                <h3 class="text-accent">Background Colors</h3>
+                <div class="color-sample">
+                    <div class="color-box" style="background-color: var(--background-primary);">primary</div>
+                    <div class="color-box" style="background-color: var(--background-secondary);">secondary</div>
+                    <div class="color-box" style="background-color: var(--background-tertiary);">tertiary</div>
+                </div>
+                
+                <h3 class="text-accent">Accent Colors</h3>
+                <div class="color-sample">
+                    <div class="color-box" style="background-color: var(--accent-cyan);">cyan</div>
+                    <div class="color-box" style="background-color: var(--accent-cyan-dim);">cyan-dim</div>
+                    <div class="color-box" style="background-color: var(--accent-magenta);">magenta</div>
+                    <div class="color-box" style="background-color: var(--accent-magenta-dim);">magenta-dim</div>
+                    <div class="color-box" style="background-color: var(--accent-yellow);">yellow</div>
+                    <div class="color-box" style="background-color: var(--accent-red);">red</div>
+                    <div class="color-box" style="background-color: var(--accent-green);">green</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Typography</h2>
+                <p>Consistent typography creates visual hierarchy and improves readability.</p>
+                
+                <h1>Heading Level 1</h1>
+                <h2>Heading Level 2</h2>
+                <h3>Heading Level 3</h3>
+                <h4>Heading Level 4</h4>
+                <h5>Heading Level 5</h5>
+                <h6>Heading Level 6</h6>
+                
+                <p>This is standard paragraph text that demonstrates the base font size and line height. The text should be readable and properly spaced for optimal user experience.</p>
+                
+                <p class="lead">This is a lead paragraph which is larger than standard text, typically used for introductions or important statements.</p>
+                
+                <p><strong>This text is bold</strong> while <em>this text is italicized</em>. You can also have <code>inline code</code> within paragraphs.</p>
+                
+                <p>
+                    <span class="text-primary">Primary text color</span> •
+                    <span class="text-secondary">Secondary text color</span> •
+                    <span class="text-accent">Accent text color</span>
+                </p>
+                
+                <p>
+                    <span class="text-success">Success text</span> •
+                    <span class="text-warning">Warning text</span> •
+                    <span class="text-danger">Danger text</span> •
+                    <span class="text-info">Info text</span>
+                </p>
+            </div>
+            
+            <div class="section">
+                <h2>Buttons</h2>
+                <p>Buttons demonstrate the use of color, spacing, and border variables.</p>
+                
+                <div class="button-sample">
+                    <button class="button">Default Button</button>
+                    <button class="button button-primary">Primary Button</button>
+                    <button class="button button-secondary">Secondary Button</button>
+                    <button class="button button-danger">Danger Button</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Theme switching functionality
+        function setTheme(theme) {
+            // Remove all theme classes
+            document.body.classList.remove('neon-synthwave', 'tech-noir');
+            document.documentElement.classList.remove('neon-synthwave', 'tech-noir');
+            
+            // Add selected theme class if not default
+            if (theme) {
+                document.body.classList.add(theme);
+                document.documentElement.classList.add(theme);
+            }
+            
+            // Update active button
+            document.querySelectorAll('.theme-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Find the clicked button and make it active
+            const themeMap = {
+                '': 0,
+                'neon-synthwave': 1,
+                'tech-noir': 2
+            };
+            
+            const index = themeMap[theme];
+            document.querySelectorAll('.theme-button')[index].classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+/* 
+ * Cyberpunk GM Screen - Reset & Base Styles
+ * This file normalizes browser defaults and sets base styles
+ */
+
+/* Box sizing for all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin and padding */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set core body defaults */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  text-rendering: optimizeSpeed;
+  line-height: var(--line-height-normal);
+  font-family: var(--font-primary);
+  background-color: var(--background-primary);
+  color: var(--neutral-light);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Set img defaults */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Make images easier to work with */
+img {
+  border-style: none;
+  height: auto;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Remove default button styling */
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Default anchor styling */
+a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  transition: var(--transition-color);
+}
+
+a:hover {
+  color: var(--accent-cyan-dim);
+  text-shadow: var(--glow-text);
+}
+
+/* Focus styles for accessibility */
+:focus {
+  outline: var(--border-focus);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--accent-cyan-dim);
+  color: var(--neutral-light);
+}
+
+/* Scrollbar styling (Webkit browsers) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-cyan-dim);
+  border-radius: var(--border-radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+/* Remove default fieldset styling */
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Consistent form elements */
+input,
+textarea,
+select {
+  background-color: var(--background-tertiary);
+  border: var(--border-primary);
+  border-radius: var(--border-radius-sm);
+  padding: var(--input-padding);
+  transition: var(--transition-all);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: var(--border-glow-cyan);
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Default table styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  background-color: var(--background-secondary);
+}
+
+th,
+td {
+  padding: var(--spacing-sm);
+  border: var(--border-primary);
+}
+
+/* Hide elements with the hidden attribute */
+[hidden] {
+  display: none !important;
+}
+
+/* Reset dialog element */
+dialog {
+  background-color: var(--background-secondary);
+  border: var(--border-primary);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  color: var(--neutral-light);
+  max-width: 90vw;
+  margin: auto;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* Placeholder styling */
+::placeholder {
+  color: var(--neutral-muted);
+  opacity: 1;
+}
+
+/* Base heading styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--neutral-light);
+}
+
+/* Screen reader only class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

@@ -1,0 +1,391 @@
+/* Cyberpunk GM Screen - Styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: monospace;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+/* Toolbar */
+.toolbar {
+    background-color: #1e1e2d;
+    color: #00ccff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #00ccff;
+}
+
+.title {
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+/* Buttons */
+button {
+    background-color: #1e3a5a;
+    color: #00ccff;
+    border: 1px solid #00ccff;
+    margin: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #254b75;
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.dropbtn {
+    min-width: 100px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1e1e2d;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    border: 1px solid #00ccff;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #e0e0e0;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #254b75;
+    color: #00ccff;
+}
+
+.menu-category {
+    background-color: #0d0d1a;
+    color: #00ccff;
+    padding: 8px 12px;
+    font-weight: bold;
+    border-top: 1px solid #00ccff;
+    border-bottom: 1px solid #00ccff;
+}
+
+/* Panels */
+.panel {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background-color: #1e1e2d;
+    border: 1px solid #00ccff;
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.panel-header {
+    background-color: #254b75;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    cursor: move;
+    border-bottom: 1px solid #00ccff;
+}
+
+.panel-content {
+    flex-grow: 1;
+    padding: 10px;
+    overflow: auto;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: #00ccff;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0;
+    padding: 0 5px;
+    font-size: 16px;
+    line-height: 16px;
+    font-family: Arial, sans-serif;
+}
+
+/* Font controls */
+.controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #1e1e2d;
+    border: 1px solid #00ccff;
+    padding: 10px;
+    width: 250px;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.3);
+}
+
+.font-controls-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #00ccff;
+}
+
+.font-options {
+    margin-bottom: 10px;
+}
+
+.font-options label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.font-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.font-size-btn {
+    flex: 1;
+    background-color: #1e3a5a;
+    color: #00ccff;
+    border: 1px solid #00ccff;
+    padding: 3px 0;
+    cursor: pointer;
+}
+
+.font-size-btn.active {
+    background-color: #00ccff;
+    color: #121212;
+}
+
+select {
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #1e3a5a;
+    color: #e0e0e0;
+    border: 1px solid #00ccff;
+    padding: 5px;
+}
+
+/* Resize handle */
+.resize-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    right: 0;
+    bottom: 0;
+    cursor: nwse-resize;
+    background-color: #00ccff;
+}
+
+/* Animation toggles */
+.no-animations * {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Notes textarea */
+textarea {
+    width: 100%;
+    height: 100%;
+    background-color: #2a2a3a;
+    color: #e0e0e0;
+    border: 1px solid #00ccff;
+    resize: none;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+th {
+    background-color: #1e3a5a;
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #00ccff;
+}
+
+td {
+    padding: 8px;
+    border: 1px solid #00ccff;
+}
+
+/* Forms */
+input[type="text"],
+input[type="number"] {
+    background-color: #2a2a3a;
+    color: #e0e0e0;
+    border: 1px solid #00ccff;
+    padding: 5px;
+}
+
+/* Common Panel Elements */
+.panel-rule-section {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.panel-content-section {
+    border: 1px solid #00ccff;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.text-centered {
+    text-align: center;
+}
+
+.margin-bottom {
+    margin-bottom: 15px;
+}
+
+.margin-top {
+    margin-top: 15px;
+}
+
+.flex-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* Timer */
+.timer-display {
+    font-size: 32px;
+    margin-bottom: 10px;
+    font-family: monospace;
+}
+
+/* Initiative Tracker */
+.initiative-form {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.initiative-form input[type="text"] {
+    flex: 2;
+}
+
+.initiative-form input[type="number"] {
+    flex: 1;
+}
+
+.initiative-table {
+    width: 100%;
+    border: 1px solid #00ccff;
+    padding: 10px;
+    margin-bottom: 10px;
+    min-height: 100px;
+}
+
+.initiative-active {
+    background-color: #254b75 !important;
+}
+
+.initiative-npc {
+    background-color: #2a151a;
+}
+
+.initiative-pc {
+    background-color: #152a1a;
+}
+
+.initiative-empty {
+    text-align: center;
+    color: #888;
+}
+
+.initiative-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.initiative-remove {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: none;
+    border: none;
+    color: #f55;
+    font-size: 10px;
+    padding: 2px 5px;
+    margin: 0;
+}
+
+.initiative-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* Dice Roller */
+.dice-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dice-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.dice-controls select {
+    width: 60px;
+    margin: 0 5px;
+}
+
+#dice-result {
+    border: 1px solid #00ccff;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.2em;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 204, 255, 0.1);
+}
+
+.dice-total {
+    font-size: 24px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #00ccff;
+}

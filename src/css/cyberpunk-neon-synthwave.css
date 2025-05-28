@@ -1,0 +1,234 @@
+/* 
+ * Cyberpunk GM Screen - Neon Synthwave Theme
+ * This file defines an 80s-inspired neon cyberpunk theme
+ */
+
+:root.neon-synthwave {
+  /* Core Background Colors */
+  --background-primary: #120b1e;     /* Deep purple-black */
+  --background-secondary: #1e0f33;   /* Rich purple */
+  --background-tertiary: #2a1645;    /* Lighter purple */
+  --background-overlay: rgba(18, 11, 30, 0.85); /* For modal overlays */
+  
+  /* Accent Colors */
+  --accent-cyan: #00ffff;            /* Bright cyan */
+  --accent-cyan-dim: #00ccff;        /* Dimmer cyan */
+  --accent-magenta: #ff00ff;         /* Vivid magenta */
+  --accent-magenta-dim: #cc00cc;     /* Dimmer magenta */
+  --accent-yellow: #ffff00;          /* Vivid yellow */
+  --accent-red: #ff2a6d;             /* Hot pink-red */
+  --accent-green: #05ffa1;           /* Bright teal-green */
+  --accent-purple: #b967ff;          /* Rich purple */
+  --accent-blue: #01b4ff;            /* Electric blue */
+  
+  /* Neutral Colors */
+  --neutral-dark: #0c0c1e;           /* Deep blue-black */
+  --neutral-medium: #534f80;         /* Purple-gray */
+  --neutral-light: #e6e6ff;          /* Purplish white */
+  --neutral-muted: #a3a0d1;          /* Faded purple-white */
+  
+  /* Gradient Colors */
+  --gradient-synthwave: linear-gradient(135deg, #ff00ff, #00ffff);
+  --gradient-sunset: linear-gradient(135deg, #ff00a1, #ffc300);
+  --gradient-cyber: linear-gradient(90deg, #05ffa1, #01b4ff);
+  --gradient-neon-dark: linear-gradient(90deg, #240046, #901cbb);
+  --gradient-header: linear-gradient(90deg, #5c2a9d, #b967ff);
+  
+  /* Special Effects */
+  --glow-cyan: 0 0 20px rgba(0, 255, 255, 0.7), 0 0 40px rgba(0, 255, 255, 0.3);
+  --glow-magenta: 0 0 20px rgba(255, 0, 255, 0.7), 0 0 40px rgba(255, 0, 255, 0.3);
+  --glow-yellow: 0 0 20px rgba(255, 255, 0, 0.7), 0 0 40px rgba(255, 255, 0, 0.3);
+  --glow-cyan-soft: 0 0 15px rgba(0, 255, 255, 0.5);
+  --glow-magenta-soft: 0 0 15px rgba(255, 0, 255, 0.5);
+  --glow-text: 0 0 5px var(--accent-magenta);
+  
+  /* Typography */
+  --font-display: 'Cyberpunk', 'VCR OSD Mono', 'BladeRunner', monospace;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+  --shadow-panel: 0 0 30px rgba(255, 0, 255, 0.2), 0 0 10px rgba(0, 255, 255, 0.1);
+  
+  /* Glowing Borders */
+  --border-glow-cyan: 0 0 10px var(--accent-cyan), 0 0 5px var(--accent-cyan);
+  --border-glow-magenta: 0 0 10px var(--accent-magenta), 0 0 5px var(--accent-magenta);
+  --border-glow-yellow: 0 0 10px var(--accent-yellow), 0 0 5px var(--accent-yellow);
+  --border-glow-bright: 0 0 15px var(--accent-magenta), 0 0 30px rgba(255, 0, 255, 0.4);
+  
+  /* Grid Lines */
+  --grid-color: rgba(185, 103, 255, 0.2);
+  --grid-size: 30px;
+}
+
+/* Grid Background Effect */
+body.neon-synthwave {
+  background-color: var(--background-primary);
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  background-position: 0 0;
+  perspective: 1000px;
+}
+
+/* Synthwave Sun */
+body.neon-synthwave::before {
+  content: '';
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #ff00a1 0%, rgba(255, 0, 161, 0) 70%);
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Mountains Silhouette */
+body.neon-synthwave::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(180deg, rgba(18, 11, 30, 0) 0%, var(--background-primary) 90%), 
+              linear-gradient(135deg, var(--background-secondary) 25%, transparent 25%) 0 50px,
+              linear-gradient(225deg, var(--background-secondary) 25%, transparent 25%) 0 50px,
+              linear-gradient(315deg, var(--background-secondary) 25%, transparent 25%),
+              linear-gradient(45deg, var(--background-secondary) 25%, transparent 25%);
+  background-size: 100px 100px;
+  background-position: 0 0;
+  opacity: 0.5;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Neon Text Effect */
+.neon-synthwave .title-glitch {
+  color: var(--accent-magenta);
+  text-shadow: 0 0 5px var(--accent-magenta), 0 0 10px var(--accent-magenta), 0 0 20px var(--accent-magenta);
+  animation: neonPulse 2s infinite alternate;
+}
+
+@keyframes neonPulse {
+  from {
+    text-shadow: 0 0 5px var(--accent-magenta), 0 0 10px var(--accent-magenta), 0 0 20px var(--accent-magenta);
+  }
+  to {
+    text-shadow: 0 0 5px var(--accent-cyan), 0 0 10px var(--accent-cyan), 0 0 20px var(--accent-cyan), 0 0 30px var(--accent-cyan);
+  }
+}
+
+/* Section Styling */
+.neon-synthwave .section {
+  background-color: var(--background-secondary);
+  border: 2px solid var(--accent-magenta);
+  box-shadow: var(--shadow-panel), var(--border-glow-magenta);
+  backdrop-filter: blur(5px);
+}
+
+/* Buttons */
+.neon-synthwave .button {
+  background-color: transparent;
+  color: var(--accent-magenta);
+  border: 2px solid var(--accent-magenta);
+  box-shadow: 0 0 5px var(--accent-magenta);
+  text-shadow: 0 0 5px var(--accent-magenta);
+  transition: all 0.3s ease;
+}
+
+.neon-synthwave .button:hover {
+  background-color: var(--accent-magenta);
+  color: var(--background-primary);
+  box-shadow: 0 0 10px var(--accent-magenta), 0 0 20px var(--accent-magenta);
+}
+
+.neon-synthwave .button-primary {
+  background-image: var(--gradient-synthwave);
+  border: none;
+  color: var(--neutral-light);
+}
+
+.neon-synthwave .button-secondary {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 5px var(--accent-cyan);
+  text-shadow: 0 0 5px var(--accent-cyan);
+}
+
+.neon-synthwave .button-secondary:hover {
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px var(--accent-cyan);
+}
+
+.neon-synthwave .button-danger {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+  box-shadow: 0 0 5px var(--accent-red);
+  text-shadow: 0 0 5px var(--accent-red);
+}
+
+.neon-synthwave .button-danger:hover {
+  background-color: var(--accent-red);
+  box-shadow: 0 0 10px var(--accent-red), 0 0 20px var(--accent-red);
+}
+
+/* Heading Styles */
+.neon-synthwave h1,
+.neon-synthwave h2,
+.neon-synthwave h3 {
+  font-family: var(--font-display);
+  letter-spacing: 2px;
+}
+
+.neon-synthwave h1 {
+  color: var(--accent-magenta);
+  text-shadow: var(--glow-magenta-soft);
+}
+
+.neon-synthwave h2 {
+  color: var(--accent-cyan);
+  text-shadow: var(--glow-cyan-soft);
+  border-bottom: 2px solid var(--accent-cyan);
+  padding-bottom: 0.5rem;
+}
+
+.neon-synthwave h3 {
+  color: var(--accent-yellow);
+  text-shadow: var(--glow-yellow);
+}
+
+/* Color Box */
+.neon-synthwave .color-box {
+  border: 1px solid var(--accent-magenta);
+  box-shadow: inset 0 0 10px rgba(255, 0, 255, 0.3);
+}
+
+/* Special Classes */
+.neon-synthwave .text-glow {
+  text-shadow: var(--glow-text);
+}
+
+.neon-synthwave .text-accent {
+  color: var(--accent-magenta);
+}
+
+/* Scrollbar styling */
+.neon-synthwave::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+.neon-synthwave::-webkit-scrollbar-thumb {
+  background: var(--accent-magenta-dim);
+  border-radius: var(--border-radius-full);
+  border: 2px solid var(--background-secondary);
+}
+
+.neon-synthwave::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-magenta);
+}

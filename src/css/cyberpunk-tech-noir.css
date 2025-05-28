@@ -1,0 +1,310 @@
+/* 
+ * Cyberpunk GM Screen - Tech Noir Theme
+ * This file defines a dark, dystopian cyberpunk theme reminiscent of old computer terminals
+ */
+
+:root.tech-noir {
+  /* Core Background Colors */
+  --background-primary: #0a0e11;     /* Deep blue-black */
+  --background-secondary: #121a1e;   /* Dark steel blue */
+  --background-tertiary: #1a2428;    /* Darker teal */
+  --background-overlay: rgba(10, 14, 17, 0.9); /* For modal overlays */
+  
+  /* Accent Colors */
+  --accent-cyan: #05c2c7;            /* Muted terminal teal */
+  --accent-cyan-dim: #0a8f92;        /* Dimmer teal */
+  --accent-green: #39ff14;           /* Terminal green */
+  --accent-green-dim: #2bb70f;       /* Dimmer green */
+  --accent-amber: #ffb000;           /* Terminal amber */
+  --accent-amber-dim: #cc8c00;       /* Dimmer amber */
+  --accent-red: #ff3a47;             /* Danger red */
+  --accent-blue: #005fde;            /* Deep blue */
+  
+  /* Neutral Colors */
+  --neutral-dark: #080c0e;           /* Almost black */
+  --neutral-medium: #39474e;         /* Dark gray with blue tint */
+  --neutral-light: #a3b0b8;          /* Light blue-gray */
+  --neutral-muted: #617986;          /* Muted blue-gray */
+  
+  /* Status Colors */
+  --status-success: var(--accent-green);
+  --status-warning: var(--accent-amber);
+  --status-danger: var(--accent-red);
+  --status-info: var(--accent-cyan);
+  
+  /* Gradient Colors */
+  --gradient-terminal: linear-gradient(180deg, var(--accent-green-dim), var(--accent-green));
+  --gradient-amber: linear-gradient(90deg, var(--accent-amber-dim), var(--accent-amber));
+  --gradient-header: linear-gradient(90deg, #0a8f92, #121a1e);
+  --gradient-scanline: linear-gradient(rgba(18, 26, 30, 0.75) 50%, rgba(18, 26, 30, 0.85) 50%);
+  
+  /* Special Effects */
+  --glow-green: 0 0 5px rgba(57, 255, 20, 0.7), 0 0 10px rgba(57, 255, 20, 0.4);
+  --glow-amber: 0 0 5px rgba(255, 176, 0, 0.7), 0 0 10px rgba(255, 176, 0, 0.4);
+  --glow-cyan: 0 0 5px rgba(5, 194, 199, 0.7), 0 0 10px rgba(5, 194, 199, 0.4);
+  --glow-text: 0 0 3px var(--accent-green);
+  
+  /* Typography */
+  --font-display: 'Share Tech Mono', 'VT323', 'Courier New', monospace;
+  --font-primary: 'Share Tech Mono', 'Courier New', monospace;
+  --font-mono: 'Share Tech Mono', 'Courier New', monospace;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.7);
+  --shadow-panel: 0 0 20px rgba(57, 255, 20, 0.1), 0 0 10px rgba(0, 0, 0, 0.5);
+  
+  /* Borders */
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 3px;
+  
+  /* Glowing Borders */
+  --border-glow-green: 0 0 5px var(--accent-green);
+  --border-glow-amber: 0 0 5px var(--accent-amber);
+  --border-glow-cyan: 0 0 5px var(--accent-cyan);
+  --border-glow-bright: 0 0 5px var(--accent-green), 0 0 10px rgba(57, 255, 20, 0.4);
+  
+  /* Terminal Effects */
+  --scanline-size: 2px;
+  --scanline-color: rgba(57, 255, 20, 0.1);
+  --flicker-intensity: 0.3;
+}
+
+/* Terminal Background Effect */
+body.tech-noir {
+  background-color: var(--background-primary);
+  position: relative;
+  color: var(--accent-green);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-shadow: var(--glow-text);
+  overflow-x: hidden;
+}
+
+/* Scanline Effect */
+body.tech-noir::before {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    transparent var(--scanline-size),
+    var(--scanline-color) var(--scanline-size),
+    var(--scanline-color) calc(var(--scanline-size) * 2)
+  );
+  background-size: 100% calc(var(--scanline-size) * 4);
+  z-index: 2000;
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+/* CRT Flicker Animation */
+body.tech-noir::after {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-green);
+  opacity: 0;
+  z-index: 2001;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0; }
+  1% { opacity: var(--flicker-intensity); }
+  2% { opacity: 0; }
+  95% { opacity: 0; }
+  96% { opacity: var(--flicker-intensity); }
+  97% { opacity: 0; }
+  98% { opacity: var(--flicker-intensity); }
+  100% { opacity: 0; }
+}
+
+/* Terminal Glitch Effect */
+.tech-noir .title-glitch {
+  position: relative;
+  color: var(--accent-green);
+  text-shadow: var(--glow-green);
+  animation: textNoise 3s infinite;
+}
+
+@keyframes textNoise {
+  0% { text-shadow: var(--glow-green); }
+  5% { text-shadow: var(--glow-green); letter-spacing: 2px; }
+  6% { text-shadow: var(--glow-amber); letter-spacing: normal; }
+  10% { text-shadow: var(--glow-green); }
+  25% { text-shadow: var(--glow-green); }
+  26% { text-shadow: var(--glow-amber); }
+  27% { text-shadow: var(--glow-green); }
+  100% { text-shadow: var(--glow-green); }
+}
+
+/* Section Styling */
+.tech-noir .section {
+  background-color: var(--background-secondary);
+  border: var(--border-width-thin) solid var(--accent-green);
+  box-shadow: var(--shadow-panel), var(--border-glow-green);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-noir .section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-green);
+  opacity: 0.8;
+  box-shadow: var(--glow-green);
+}
+
+/* Buttons */
+.tech-noir .button {
+  background-color: var(--background-tertiary);
+  color: var(--accent-green);
+  border: var(--border-width-thin) solid var(--accent-green);
+  box-shadow: var(--border-glow-green);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: var(--font-mono);
+  transition: all 0.2s ease;
+}
+
+.tech-noir .button:hover {
+  background-color: var(--accent-green);
+  color: var(--background-primary);
+  text-shadow: none;
+}
+
+.tech-noir .button-primary {
+  background-color: var(--accent-green-dim);
+  border-color: var(--accent-green);
+}
+
+.tech-noir .button-secondary {
+  border-color: var(--accent-amber);
+  color: var(--accent-amber);
+  box-shadow: var(--border-glow-amber);
+}
+
+.tech-noir .button-secondary:hover {
+  background-color: var(--accent-amber);
+}
+
+.tech-noir .button-danger {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+  box-shadow: 0 0 5px var(--accent-red);
+}
+
+.tech-noir .button-danger:hover {
+  background-color: var(--accent-red);
+}
+
+/* Heading Styles */
+.tech-noir h1,
+.tech-noir h2,
+.tech-noir h3,
+.tech-noir h4,
+.tech-noir h5,
+.tech-noir h6 {
+  font-family: var(--font-display);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.tech-noir h1 {
+  color: var(--accent-green);
+  text-shadow: var(--glow-green);
+  position: relative;
+}
+
+.tech-noir h1::before {
+  content: "> ";
+  color: var(--accent-amber);
+}
+
+.tech-noir h2 {
+  color: var(--accent-amber);
+  text-shadow: var(--glow-amber);
+  border-bottom: 1px solid var(--accent-amber);
+  padding-bottom: 0.5rem;
+}
+
+.tech-noir h2::before {
+  content: "## ";
+  opacity: 0.7;
+}
+
+.tech-noir h3 {
+  color: var(--accent-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.tech-noir h3::before {
+  content: "### ";
+  opacity: 0.7;
+}
+
+/* Color Box */
+.tech-noir .color-box {
+  border: 1px solid var(--accent-green);
+  box-shadow: inset 0 0 10px rgba(57, 255, 20, 0.2);
+}
+
+/* Special Classes */
+.tech-noir .text-glow {
+  text-shadow: var(--glow-text);
+}
+
+.tech-noir .text-accent {
+  color: var(--accent-amber);
+  text-shadow: var(--glow-amber);
+}
+
+/* Scrollbar styling */
+.tech-noir::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+.tech-noir::-webkit-scrollbar-thumb {
+  background: var(--accent-green-dim);
+  border-radius: 0;
+  border: 1px solid var(--accent-green);
+}
+
+.tech-noir::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-green);
+}
+
+/* Code and pre elements */
+.tech-noir code,
+.tech-noir pre {
+  font-family: var(--font-mono);
+  background-color: var(--background-tertiary);
+  color: var(--accent-amber);
+  border: 1px solid var(--accent-amber-dim);
+  text-shadow: var(--glow-amber);
+}
+
+/* Terminal Commands */
+.tech-noir .lead::before {
+  content: "> ";
+  color: var(--accent-green);
+  opacity: 0.7;
+}

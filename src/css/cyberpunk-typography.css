@@ -1,0 +1,387 @@
+/* 
+ * Cyberpunk GM Screen - Typography System
+ * This file defines typography styles and text-related utilities
+ */
+
+/* Base typography */
+body {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: var(--line-height-normal);
+  color: var(--neutral-light);
+}
+
+/* Headings */
+h1, .h1 {
+  font-size: var(--text-4xl);
+  letter-spacing: var(--letter-spacing-tight);
+  margin-bottom: var(--spacing-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--accent-cyan);
+  text-shadow: var(--glow-cyan-soft);
+}
+
+h2, .h2 {
+  font-size: var(--text-3xl);
+  letter-spacing: var(--letter-spacing-tight);
+  margin-bottom: var(--spacing-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--accent-cyan);
+}
+
+h3, .h3 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--spacing-md);
+  font-weight: var(--font-weight-bold);
+}
+
+h4, .h4 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--spacing-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+h5, .h5 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--spacing-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+h6, .h6 {
+  font-size: var(--text-base);
+  margin-bottom: var(--spacing-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Paragraphs and content text */
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+.lead {
+  font-size: var(--text-lg);
+  line-height: var(--line-height-loose);
+  margin-bottom: var(--spacing-lg);
+}
+
+small, .text-sm {
+  font-size: var(--text-sm);
+}
+
+.text-xs {
+  font-size: var(--text-xs);
+}
+
+.text-lg {
+  font-size: var(--text-lg);
+}
+
+.text-xl {
+  font-size: var(--text-xl);
+}
+
+.text-2xl {
+  font-size: var(--text-2xl);
+}
+
+/* Text styling */
+strong, .font-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+em, .font-italic {
+  font-style: italic;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-strikethrough {
+  text-decoration: line-through;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+}
+
+/* Font families */
+.font-primary {
+  font-family: var(--font-primary);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Font weights */
+.font-normal {
+  font-weight: var(--font-weight-normal);
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.font-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+/* Text alignment */
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+/* Line heights */
+.leading-tight {
+  line-height: var(--line-height-tight);
+}
+
+.leading-normal {
+  line-height: var(--line-height-normal);
+}
+
+.leading-loose {
+  line-height: var(--line-height-loose);
+}
+
+/* Letter spacing */
+.tracking-tight {
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.tracking-normal {
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.tracking-wide {
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.tracking-wider {
+  letter-spacing: var(--letter-spacing-wider);
+}
+
+/* Text color */
+.text-primary {
+  color: var(--neutral-light);
+}
+
+.text-secondary {
+  color: var(--neutral-muted);
+}
+
+.text-accent {
+  color: var(--accent-cyan);
+}
+
+.text-accent-magenta {
+  color: var(--accent-magenta);
+}
+
+.text-success {
+  color: var(--status-success);
+}
+
+.text-warning {
+  color: var(--status-warning);
+}
+
+.text-danger {
+  color: var(--status-danger);
+}
+
+.text-info {
+  color: var(--status-info);
+}
+
+/* Text effects */
+.text-glow {
+  text-shadow: var(--glow-text);
+}
+
+.text-glow-accent {
+  text-shadow: var(--glow-cyan);
+}
+
+.text-glow-magenta {
+  text-shadow: var(--glow-magenta);
+}
+
+/* Text truncation */
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Lists */
+ul.list-disc {
+  list-style-type: disc;
+  padding-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+ol.list-decimal {
+  list-style-type: decimal;
+  padding-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+ul.list-none, ol.list-none {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Code blocks */
+code, pre {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  background-color: var(--background-tertiary);
+  border-radius: var(--border-radius-sm);
+}
+
+code {
+  padding: 0.2em 0.4em;
+}
+
+pre {
+  padding: var(--spacing-md);
+  overflow-x: auto;
+  margin-bottom: var(--spacing-md);
+  border: var(--border-primary);
+}
+
+pre code {
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+/* Blockquote */
+blockquote {
+  border-left: 4px solid var(--accent-cyan);
+  padding-left: var(--spacing-md);
+  margin-left: 0;
+  margin-bottom: var(--spacing-md);
+  font-style: italic;
+}
+
+/* Horizontal rule */
+hr {
+  border: 0;
+  border-top: 1px solid var(--accent-cyan-dim);
+  margin: var(--spacing-lg) 0;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  h1, .h1 {
+    font-size: var(--text-3xl);
+  }
+  
+  h2, .h2 {
+    font-size: var(--text-2xl);
+  }
+  
+  h3, .h3 {
+    font-size: var(--text-xl);
+  }
+}
+
+/* Special typography classes for cyberpunk theme */
+.title-glitch {
+  position: relative;
+  color: var(--accent-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.title-glitch::before,
+.title-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.title-glitch::before {
+  /* Red shadow */
+  left: 2px;
+  text-shadow: -1px 0 var(--accent-red);
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.title-glitch::after {
+  /* Blue shifted shadow */
+  left: -2px;
+  text-shadow: 2px 0 var(--accent-cyan);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0%, 80%, 100% {
+    transform: none;
+    opacity: 0.3;
+  }
+  20%, 60% {
+    transform: skewX(0.5deg) skewY(0.3deg);
+    opacity: 0.7;
+  }
+  40% {
+    transform: skewX(-0.3deg) skewY(-0.2deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0%, 60%, 100% {
+    transform: none;
+    opacity: 0.2;
+  }
+  30%, 80% {
+    transform: skewX(0.4deg) skewY(0.2deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: skewX(-0.2deg) skewY(-0.1deg);
+    opacity: 0.7;
+  }
+}

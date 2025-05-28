@@ -1,0 +1,470 @@
+/**
+ * Enhanced Typography System for Cyberpunk GM Screen
+ * Optimized for readability across all devices and content types
+ */
+
+/* Import high-quality fonts for different content types */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700&display=swap');
+
+/* Typography Custom Properties */
+:root {
+  /* Font Families */
+  --font-display: 'Bebas Neue', 'Cyberpunk', 'Impact', sans-serif;
+  --font-heading: 'Orbitron', 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-reading: 'Roboto Slab', 'Georgia', serif; /* For long-form content */
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  --font-accent: 'VeniteAdoremus', 'Angora', cursive;
+  
+  /* Font Sizes - Fluid Typography */
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --font-size-md: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  --font-size-lg: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --font-size-xl: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+  --font-size-2xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.25rem);
+  --font-size-3xl: clamp(2.25rem, 1.8rem + 2.25vw, 3rem);
+  --font-size-4xl: clamp(3rem, 2.4rem + 3vw, 3.75rem);
+  
+  /* Line Heights for Readability */
+  --line-height-tight: 1.1;
+  --line-height-snug: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 1.75;
+  --line-height-reading: 1.8; /* Optimized for long text */
+  
+  /* Letter Spacing */
+  --letter-spacing-tighter: -0.05em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+  --letter-spacing-display: 0.15em; /* For cyberpunk headers */
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Text Colors with Better Contrast */
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.75);
+  --text-tertiary: rgba(255, 255, 255, 0.6);
+  --text-muted: rgba(255, 255, 255, 0.45);
+  --text-accent: #00ffff;
+  --text-danger: #ff3366;
+  --text-success: #00ff88;
+  --text-warning: #ffaa00;
+  
+  /* Readability Enhancements */
+  --text-shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --text-shadow-neon: 0 0 10px currentColor;
+  --text-shadow-strong: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Base Typography Styles */
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--letter-spacing-normal);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+/* Headings - Cyberpunk Style with Readability */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  text-shadow: var(--text-shadow-neon);
+}
+
+h1 {
+  font-size: var(--font-size-4xl);
+  font-family: var(--font-display);
+  letter-spacing: var(--letter-spacing-display);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+h2 {
+  font-size: var(--font-size-3xl);
+  color: var(--primary);
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wider);
+}
+
+h5 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+h6 {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+}
+
+/* Body Text Styles */
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+  line-height: var(--line-height-relaxed);
+}
+
+/* Reading Mode - For Long Content */
+.reading-mode {
+  font-family: var(--font-reading);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-reading);
+  letter-spacing: 0.01em;
+  max-width: 65ch; /* Optimal reading width */
+  margin: 0 auto;
+}
+
+.reading-mode p {
+  margin-bottom: 1.5em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Small Text */
+small, .text-sm {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-snug);
+}
+
+/* Large Text */
+.text-lg {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+.text-xl {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Code and Technical Text */
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: 0;
+}
+
+code {
+  background: rgba(0, 255, 255, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  color: var(--text-accent);
+}
+
+pre {
+  background: var(--bg-surface);
+  padding: 1em;
+  border-radius: 4px;
+  overflow-x: auto;
+  line-height: var(--line-height-relaxed);
+  border: 1px solid var(--border-color);
+}
+
+kbd {
+  background: var(--bg-overlay);
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+  font-size: 0.85em;
+}
+
+/* Lists */
+ul, ol {
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+  line-height: var(--line-height-relaxed);
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+/* Nested Lists */
+ul ul, ol ol, ul ol, ol ul {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+}
+
+/* Links */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+a:hover {
+  color: var(--accent);
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* Underline Effect */
+a:not(.button):not(.btn)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+a:not(.button):not(.btn):hover::after {
+  width: 100%;
+}
+
+/* Emphasis */
+strong, b {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+em, i {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+mark {
+  background: rgba(255, 170, 0, 0.2);
+  color: var(--text-warning);
+  padding: 0.1em 0.3em;
+  border-radius: 2px;
+}
+
+/* Blockquotes */
+blockquote {
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+  border-left: 4px solid var(--primary);
+  background: var(--bg-surface);
+  font-style: italic;
+  color: var(--text-secondary);
+  position: relative;
+}
+
+blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  font-size: 4em;
+  color: var(--primary);
+  opacity: 0.3;
+  font-family: var(--font-accent);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+  font-size: var(--font-size-sm);
+}
+
+th, td {
+  padding: 0.75em 1em;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  font-size: var(--font-size-xs);
+  background: var(--bg-surface);
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+.text-uppercase { text-transform: uppercase; }
+.text-lowercase { text-transform: lowercase; }
+.text-capitalize { text-transform: capitalize; }
+
+.text-primary { color: var(--text-primary) !important; }
+.text-secondary { color: var(--text-secondary) !important; }
+.text-muted { color: var(--text-muted) !important; }
+.text-accent { color: var(--text-accent) !important; }
+.text-danger { color: var(--text-danger) !important; }
+.text-success { color: var(--text-success) !important; }
+.text-warning { color: var(--text-warning) !important; }
+
+/* Font Weight Utilities */
+.font-light { font-weight: var(--font-weight-light) !important; }
+.font-normal { font-weight: var(--font-weight-normal) !important; }
+.font-medium { font-weight: var(--font-weight-medium) !important; }
+.font-semibold { font-weight: var(--font-weight-semibold) !important; }
+.font-bold { font-weight: var(--font-weight-bold) !important; }
+
+/* Cyberpunk Text Effects */
+.glitch-text {
+  position: relative;
+  animation: glitch 2s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  animation: glitch-1 0.5s infinite;
+  color: var(--primary);
+  z-index: -1;
+}
+
+.glitch-text::after {
+  animation: glitch-2 0.5s infinite;
+  color: var(--accent);
+  z-index: -2;
+}
+
+@keyframes glitch {
+  0%, 100% { text-shadow: 0 0 2px var(--primary); }
+  25% { text-shadow: -2px 0 var(--accent), 2px 0 var(--primary); }
+  50% { text-shadow: 2px 0 var(--accent), -2px 0 var(--primary); }
+  75% { text-shadow: 0 0 10px var(--primary); }
+}
+
+@keyframes glitch-1 {
+  0%, 100% { clip-path: inset(0 0 0 0); }
+  25% { clip-path: inset(10% 0 60% 0); transform: translate(-2px); }
+  50% { clip-path: inset(60% 0 10% 0); transform: translate(2px); }
+  75% { clip-path: inset(30% 0 30% 0); transform: translate(0); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { clip-path: inset(0 0 0 0); }
+  25% { clip-path: inset(60% 0 10% 0); transform: translate(2px); }
+  50% { clip-path: inset(10% 0 60% 0); transform: translate(-2px); }
+  75% { clip-path: inset(40% 0 40% 0); transform: translate(0); }
+}
+
+/* Neon Text */
+.neon-text {
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 0 40px currentColor;
+  animation: neon-pulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neon-pulse {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  body {
+    font-size: var(--font-size-sm);
+  }
+  
+  h1 { font-size: var(--font-size-3xl); }
+  h2 { font-size: var(--font-size-2xl); }
+  h3 { font-size: var(--font-size-xl); }
+  h4 { font-size: var(--font-size-lg); }
+  
+  .reading-mode {
+    font-size: var(--font-size-base);
+    padding: 0 1rem;
+  }
+}
+
+/* Dark Mode Optimizations */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-primary: rgba(255, 255, 255, 0.9);
+    --text-secondary: rgba(255, 255, 255, 0.7);
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    font-family: Georgia, serif;
+    color: black;
+    background: white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: black;
+    text-shadow: none;
+  }
+  
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+}
+
+/* Accessibility - High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-muted: #b0b0b0;
+  }
+  
+  body {
+    font-weight: var(--font-weight-medium);
+  }
+}
