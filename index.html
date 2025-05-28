@@ -12,15 +12,15 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CP GM Screen">
   <meta name="msapplication-TileColor" content="#00ffff">
-  <meta name="msapplication-TileImage" content="src/images/icon-192x192.png">
+  <meta name="msapplication-TileImage" content="src/assets/images/icon-192x192.png">
   
   <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json">
   
   <!-- Icons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="src/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="src/images/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="src/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="src/assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="src/assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="src/assets/images/apple-touch-icon.png">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,12 +28,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="src/styles/design-system.css">
-  <link rel="stylesheet" href="src/styles/cyberpunk-typography.css">
-  <link rel="stylesheet" href="src/styles/cyberpunk-background.css">
-  <link rel="stylesheet" href="src/styles/themes.css">
-  <link rel="stylesheet" href="src/styles/enhanced-panels-fixed.css">
-  <link rel="stylesheet" href="src/styles/cybernetic-theme.css">
+  <link rel="stylesheet" href="src/css/cyberpunk-variables.css">
+  <link rel="stylesheet" href="src/css/cyberpunk-reset.css">
+  <link rel="stylesheet" href="src/css/cyberpunk-typography.css">
+  <link rel="stylesheet" href="src/css/styles-enhanced.css">
+  <link rel="stylesheet" href="src/css/styles-modern.css">
+  <link rel="stylesheet" href="src/css/cyberpunk-neon-synthwave.css">
   
   <style>
     :root {
@@ -1142,46 +1142,46 @@
   </audio>
   
   <!-- Scripts -->
-  <script src="src/js/cyberpunk-background.js"></script>
-  <script src="src/js/theme-manager.js"></script>
-  <script src="src/js/enhanced-panel-system-fixed.js"></script>
-  <script src="src/components/holo-button.js"></script>
-  <script src="src/components/neon-input.js"></script>
-  <script src="src/components/glitch-text.js"></script>
-  <script src="src/components/cyber-card.js"></script>
-  <script src="src/components/data-table.js"></script>
-  <script src="src/components/loading-spinner.js"></script>
-  <script src="src/components/error-message.js"></script>
-  <script src="src/js/enhanced-dice-roller-fixed.js"></script>
-  <script src="src/js/compact-dice-roller.js?v=3"></script>
-  <script src="src/js/advanced-combat-tracker-fixed.js"></script>
-  <script src="src/js/npc-generator.js"></script>
-  <script src="src/js/enhanced-npc-generator.js"></script>
-  <script src="src/js/rules-reference.js"></script>
-  <script src="src/js/enhanced-rules-reference.js"></script>
-  <script src="src/js/location-generator-implementation.js"></script>
-  <script src="src/js/enhanced-location-generator.js"></script>
-  <script src="src/js/encounter-generator-advanced.js"></script>
-  <script src="src/js/encounter-panel-advanced.js"></script>
+  <script src="src/js/components/cyberpunk-background.js"></script>
+  <script src="src/js/core/theme-manager.js"></script>
+  <script src="src/js/components/enhanced-panel-system-fixed.js"></script>
+  <!-- <script src="src/js/components/holo-button.js"></script> -->
+  <!-- <script src="src/js/components/neon-input.js"></script> -->
+  <!-- <script src="src/js/components/glitch-text.js"></script> -->
+  <!-- <script src="src/js/components/cyber-card.js"></script> -->
+  <!-- <script src="src/js/components/data-table.js"></script> -->
+  <!-- <script src="src/js/components/loading-spinner.js"></script> -->
+  <!-- <script src="src/js/components/error-message.js"></script> -->
+  <script src="src/js/components/enhanced-dice-roller-fixed.js"></script>
+  <script src="src/js/components/compact-dice-roller.js?v=3"></script>
+  <script src="src/js/components/advanced-combat-tracker-fixed.js"></script>
+  <script src="src/js/components/npc-generator.js"></script>
+  <script src="src/js/components/enhanced-npc-generator.js"></script>
+  <script src="src/js/components/rules-reference.js"></script>
+  <script src="src/js/components/enhanced-rules-reference.js"></script>
+  <script src="src/js/components/location-generator-implementation.js"></script>
+  <script src="src/js/components/enhanced-location-generator.js"></script>
+  <script src="src/js/components/encounter-generator-advanced.js"></script>
+  <script src="src/js/components/encounter-panel-advanced.js"></script>
   <script src="src/js/encounter-panel-simple.js"></script>
-  <script src="src/js/netrunning-interface.js"></script>
+  <script src="src/js/components/netrunning-interface.js"></script>
   <script src="src/js/netrunning-advanced.js"></script>
-  <script src="src/js/netrunning-enhanced.js"></script>
-  <script src="src/js/enhanced-lore-database.js"></script>
-  <script src="src/js/enhanced-sound-system.js"></script>
+  <script src="src/js/components/netrunning-enhanced.js"></script>
+  <script src="src/js/components/enhanced-lore-database.js"></script>
+  <script src="src/js/components/enhanced-sound-system.js"></script>
   <script src="src/js/enhanced-performance-monitor.js"></script>
   <script src="src/js/virtual-scroll.js"></script>
   <script src="src/js/collaboration-system.js"></script>
   <script src="src/js/atmosphere-system.js"></script>
-  <script src="src/js/ai-gm-assistant.js"></script>
-  <script src="src/js/campaign-tracker.js"></script>
+  <script src="src/js/components/ai-gm-assistant.js"></script>
+  <script src="src/js/components/campaign-tracker.js"></script>
   <script src="src/js/panel-utils.js"></script>
   <script src="src/js/notes-text-editor.js"></script>
-  <script src="src/js/notes-filesystem-manager.js"></script>
+  <!-- <script src="src/js/notes-filesystem-manager.js"></script> -->
   <script src="src/js/module-index.js"></script>
-  <script src="src/js/panel-templates.js"></script>
+  <script src="src/js/components/panel-templates.js"></script>
   <script src="src/js/help-system.js"></script>
-  <script src="src/js/campaign-manager.js"></script>
+  <script src="src/js/components/campaign-manager.js"></script>
   <script src="src/js/performance-optimizer.js"></script>
   <script src="src/js/comprehensive-rules-reference.js"></script>
   <script src="src/js/panel-implementations-fixed.js"></script>
@@ -3258,7 +3258,7 @@
   </script>
   
   <!-- Sound Manager -->
-  <script src="src/js/sound-manager.js"></script>
+  <script src="src/js/components/sound-manager.js"></script>
   <script>
     // Initialize sound manager
     window.soundManager = new SoundManager();
@@ -4844,7 +4844,7 @@
   </script>
   
   <!-- User Profile Manager -->
-  <script src="src/js/user-profile-manager.js"></script>
+  <!-- <script src="src/js/user-profile-manager.js"></script> -->
   
   <!-- Notes File Manager -->
   <script src="src/js/notes-file-manager.js"></script>
