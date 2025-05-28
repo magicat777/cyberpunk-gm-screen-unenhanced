@@ -981,19 +981,10 @@
   </style>
 </head>
 <body>
-  <!-- Audio preload elements for sound effects -->
-  <audio id="dice-roll-sound" preload="auto">
-    <source src="src/assets/sounds/dice-roll.mp3" type="audio/mpeg">
-    <source src="src/assets/sounds/dice-roll.ogg" type="audio/ogg">
-  </audio>
-  <audio id="critical-hit-sound" preload="auto">
-    <source src="src/assets/sounds/critical-hit.mp3" type="audio/mpeg">
-    <source src="src/assets/sounds/critical-hit.ogg" type="audio/ogg">
-  </audio>
-  <audio id="combat-hit-sound" preload="auto">
-    <source src="src/assets/sounds/combat-hit.mp3" type="audio/mpeg">
-    <source src="src/assets/sounds/combat-hit.ogg" type="audio/ogg">
-  </audio>
+  <!-- Audio preload elements for sound effects (using embedded base64 data) -->
+  <audio id="dice-roll-sound" preload="auto"></audio>
+  <audio id="critical-hit-sound" preload="auto"></audio>
+  <audio id="combat-hit-sound" preload="auto"></audio>
   <!-- Animated Background -->
   <!-- Will be added by JavaScript -->
   
@@ -1402,6 +1393,107 @@
         console.error('❌ Error during initialization:', error);
       }
     });
+    
+    // Global utility functions
+    function toggleSideTray() {
+      const sideTray = document.querySelector('.side-tray');
+      if (sideTray) {
+        sideTray.classList.toggle('open');
+      }
+    }
+    
+    function showSettingsDialog() {
+      if (!window.panelSystem) {
+        console.error('Panel system not initialized');
+        return;
+      }
+      
+      const uniqueId = `settings-dialog-${Date.now()}`;
+      window.panelSystem.createPanel({
+        title: 'Settings',
+        content: `
+          <div id="${uniqueId}" style="padding: 20px;">
+            <h3 style="color: var(--primary); margin-bottom: 20px;">Application Settings</h3>
+            <div style="margin-bottom: 15px;">
+              <label style="display: block; margin-bottom: 5px;">Theme</label>
+              <select id="theme-select" style="width: 100%; padding: 8px; background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-primary);">
+                <option value="cyberpunk">Cyberpunk Classic</option>
+                <option value="corpo">Corpo</option>
+                <option value="street-kid">Street Kid</option>
+                <option value="nomad">Nomad</option>
+                <option value="netrunner">Netrunner</option>
+              </select>
+            </div>
+            <div style="margin-bottom: 15px;">
+              <label style="display: flex; align-items: center;">
+                <input type="checkbox" id="sound-enabled" style="margin-right: 10px;">
+                Enable Sound Effects
+              </label>
+            </div>
+            <div style="margin-bottom: 15px;">
+              <label style="display: block; margin-bottom: 5px;">Sound Volume</label>
+              <input type="range" id="sound-volume" min="0" max="100" value="50" style="width: 100%;">
+            </div>
+            <button onclick="saveSettings('${uniqueId}')" class="holo-button primary" style="width: 100%; margin-top: 20px;">Save Settings</button>
+          </div>
+        `,
+        position: { x: 400, y: 200 },
+        size: { width: 400, height: 400 }
+      });
+    }
+    
+    function showTemplatesDialog() {
+      if (!window.panelSystem) {
+        console.error('Panel system not initialized');
+        return;
+      }
+      
+      const uniqueId = `templates-dialog-${Date.now()}`;
+      window.panelSystem.createPanel({
+        title: 'Quick Templates',
+        content: `
+          <div id="${uniqueId}" style="padding: 20px;">
+            <h3 style="color: var(--primary); margin-bottom: 20px;">Panel Templates</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+              <button onclick="loadTemplate('combat')" class="holo-button primary" style="padding: 20px;">
+                <div style="font-size: 24px;">⚔️</div>
+                <div>Combat Setup</div>
+              </button>
+              <button onclick="loadTemplate('investigation')" class="holo-button primary" style="padding: 20px;">
+                <div style="font-size: 24px;">🔍</div>
+                <div>Investigation</div>
+              </button>
+              <button onclick="loadTemplate('social')" class="holo-button primary" style="padding: 20px;">
+                <div style="font-size: 24px;">🗣️</div>
+                <div>Social Encounter</div>
+              </button>
+              <button onclick="loadTemplate('netrunning')" class="holo-button primary" style="padding: 20px;">
+                <div style="font-size: 24px;">💻</div>
+                <div>Netrunning</div>
+              </button>
+            </div>
+          </div>
+        `,
+        position: { x: 350, y: 150 },
+        size: { width: 500, height: 400 }
+      });
+    }
+    
+    function saveSettings(dialogId) {
+      // Implementation for saving settings
+      console.log('Settings saved');
+      // Close the settings panel
+      const panel = document.getElementById(dialogId)?.closest('.enhanced-panel');
+      if (panel) {
+        panel.querySelector('.close-btn')?.click();
+      }
+    }
+    
+    function loadTemplate(templateType) {
+      // Implementation for loading templates
+      console.log('Loading template:', templateType);
+      // Close panels and load template based on type
+    }
     
     // Panel creation functions
     function createDicePanel() {
